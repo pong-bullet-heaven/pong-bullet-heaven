@@ -1,0 +1,87 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Images/Player/character.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/Player/Damage/character_hit.png" type="Texture" id=2]
+[ext_resource path="res://Source/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Source/Player/Paddle.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "damage",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "walking",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 100, 80 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 160, 65 )
+
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
+scale = Vector2( 10, 10 )
+z_index = 10
+frames = SubResource( 1 )
+animation = "walking"
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
+current = true
+zoom = Vector2( 2, 2 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." groups=["Player"]]
+position = Vector2( 0, -70 )
+shape = SubResource( 2 )
+
+[node name="Paddle" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+position = Vector2( 0, 70 )
+rotation = 3.14159
+shape = SubResource( 3 )
+one_way_collision_margin = 10.0
+
+[connection signal="body_entered" from="Paddle" to="Paddle" method="_on_Paddle_body_entered"]
