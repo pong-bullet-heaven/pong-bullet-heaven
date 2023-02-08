@@ -9,8 +9,8 @@ func _ready():
 
 func _physics_process(delta):
 	pass
-	
-func _on_Paddle_body_entered(body):	
+
+func _on_Paddle_body_entered(body):
 	if(body.is_in_group("ball")):
 		var v=body.linear_velocity
 		var reflectionAxis=Player.rotation-PI/2
@@ -20,5 +20,3 @@ func _on_Paddle_body_entered(body):
 				v=body.speed*Vector2(1,0).rotated(reflectionAxis)
 			v=v+v.normalized()*1000
 			body.linear_velocity=v
-
-
