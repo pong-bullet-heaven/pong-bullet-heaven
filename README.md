@@ -22,3 +22,11 @@ If your execution policy prevents you from executing powershell scripts, set it 
 ```pwsh
 Set-ExecutionPolicy RemoteSigned
 ```
+
+Install [pre-commit](https://github.com/pre-commit/pre-commit) and setup git hooks
+
+```pwsh
+pip install pre-commit
+pre-commit install
+pre-commit run --all-files
+```
