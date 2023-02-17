@@ -18,12 +18,21 @@ position = Vector2( 772, -128 )
 linear_damp = 0.02
 speed = 3000
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( -1399, -831 )
-
 [node name="EnemyController" parent="." instance=ExtResource( 2 )]
 
 [node name="SpawnWave" parent="EnemyController" instance=ExtResource( 5 )]
 end_time = 120.0
 exponent = 0.4
-scene_path = ExtResource( 3 )
+entity = NodePath("Enemy")
+
+[node name="Enemy" parent="EnemyController/SpawnWave" instance=ExtResource( 3 )]
+position = Vector2( -1, -411 )
+
+[node name="SpawnWave2" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 60.0
+end_time = 180.0
+exponent = 0.3
+
+[node name="Enemy" parent="EnemyController/SpawnWave2" instance=ExtResource( 3 )]
+speed = 75
+health = 3
