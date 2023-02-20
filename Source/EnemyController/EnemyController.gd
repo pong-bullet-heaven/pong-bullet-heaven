@@ -13,7 +13,6 @@ func _ready():
 func _process(delta):
 	radius=get_viewport_rect().end.length()+50
 	
-	print(get_enemy_count())
 	var enemy_overflow=get_enemy_count()-maximum
 	if(enemy_overflow>0):
 		delete(enemy_overflow)
