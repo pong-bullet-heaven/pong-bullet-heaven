@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Images/Player/character.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/Damage/character_hit.png" type="Texture" id=2]
@@ -56,6 +56,8 @@ extents = Vector2( 100, 80 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 160, 65 )
 
+[sub_resource type="CircleShape2D" id=12]
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 3 )
 
@@ -84,4 +86,10 @@ rotation = 3.14159
 shape = SubResource( 3 )
 one_way_collision_margin = 10.0
 
+[node name="XPCollector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XPCollector"]
+shape = SubResource( 12 )
+
 [connection signal="body_entered" from="Paddle" to="Paddle" method="_on_Paddle_body_entered"]
+[connection signal="area_entered" from="XPCollector" to="." method="_on_XPCollector_area_entered"]
