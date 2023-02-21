@@ -51,9 +51,9 @@ jobs:
           ./godot --export linux ${EXPORT_DIR}/linux/${GITHUB_REPOSITORY_NAME}.x86_64 project.godot
           ./godot --export web ${EXPORT_DIR}/web/${GITHUB_REPOSITORY_NAME}.html project.godot
           ./godot --export windows ${EXPORT_DIR}/windows/${GITHUB_REPOSITORY_NAME}.exe project.godot
-          tar -acf ${EXPORT_DIR}/${LINUX_FILE} ${EXPORT_DIR}/linux
-          tar -acf ${EXPORT_DIR}/${WEB_FILE} ${EXPORT_DIR}/web
-          zip -r ${EXPORT_DIR}/${WINDOWS_FILE} ${EXPORT_DIR}/windows
+          (cd ${EXPORT_DIR}/linux && tar -acf ../${LINUX_FILE} *)
+          (cd ${EXPORT_DIR}/web && tar -acf ../${WEB_FILE} *)
+          (cd ${EXPORT_DIR}/windows && zip -r ../${WINDOWS_FILE} *)
           echo "EXPORT_DIR=${EXPORT_DIR}" >> $GITHUB_ENV
           echo "EXPORT_FILES=${LINUX_FILE} ${WEB_FILE} ${WINDOWS_FILE}" >> $GITHUB_ENV
       - name: Create latest tag
