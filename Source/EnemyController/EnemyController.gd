@@ -8,7 +8,6 @@ var time_elapsed=0
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	radius=get_viewport_rect().end.length()+50
