@@ -10,18 +10,13 @@ config_version=4
 
 [application]
 
-config/name="Bouncer"
-run/main_scene="res://Levels/Test/testLevel.tscn"
+config/name="Pong Bullet Heaven"
+run/main_scene="res://Levels/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Player="*res://Source/Player/Player.tscn"
-
-[editor]
-
-version_control_autoload_on_startup=true
-version_control_plugin_name="GitAPI"
 
 [gdnative]
 
@@ -62,6 +57,10 @@ move_down={
  ]
 }
 
+[mono]
+
+project/assembly_name="Pong Bullet Heaven"
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -71,4 +70,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
 environment/default_environment="res://default_env.tres"

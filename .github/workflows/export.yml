@@ -1,0 +1,111 @@
+name: Export
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: 3.5.1
+      GODOT_RELEASE: stable
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Godot
+        run: |
+          GODOT_NAME="Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64"
+          GODOT_ARCHIVE="${GODOT_NAME}.zip"
+          GODOT_URL="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_ARCHIVE}"
+          GODOT_DIR="${HOME}/.godot"
+          rm -rf ${GODOT_DIR}
+          mkdir -p ${GODOT_DIR}
+          curl -Lso ${GODOT_ARCHIVE} ${GODOT_URL}
+          unzip -q ${GODOT_ARCHIVE} -d ${GODOT_DIR}
+          ln -s "${GODOT_DIR}/${GODOT_NAME}" godot
+          chmod +x godot
+      - name: Setup Godot Export Templates
+        run: |
+          GODOT_NAME="Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates"
+          GODOT_ARCHIVE="${GODOT_NAME}.tpz"
+          GODOT_URL="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_ARCHIVE}"
+          GODOT_DIR="${HOME}/.local/share/godot/templates"
+          rm -rf ${GODOT_DIR}
+          mkdir -p ${GODOT_DIR}
+          curl -Lso ${GODOT_ARCHIVE} ${GODOT_URL}
+          unzip -q ${GODOT_ARCHIVE} -d ${GODOT_DIR}
+          mv "${GODOT_DIR}/templates" "${GODOT_DIR}/${GODOT_VERSION}.${GODOT_RELEASE}"
+      - name: Run Godot Editor once for importing
+        run: ./godot --editor --quit
+      - name: Export Project
+        env:
+          GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
+          EXPORT_DIR: export
+          LINUX_FILE: linux.tar.gz
+          WEB_FILE: web.tar.gz
+          WINDOWS_FILE: windows.zip
+        run: |
+          mkdir -p ${EXPORT_DIR}/{linux,web,windows}
+          ./godot --export linux ${EXPORT_DIR}/linux/${GITHUB_REPOSITORY_NAME}.x86_64 project.godot
+          ./godot --export web ${EXPORT_DIR}/web/${GITHUB_REPOSITORY_NAME}.html project.godot
+          ./godot --export windows ${EXPORT_DIR}/windows/${GITHUB_REPOSITORY_NAME}.exe project.godot
+          tar -acf ${EXPORT_DIR}/${LINUX_FILE} ${EXPORT_DIR}/linux
+          tar -acf ${EXPORT_DIR}/${WEB_FILE} ${EXPORT_DIR}/web
+          zip -r ${EXPORT_DIR}/${WINDOWS_FILE} ${EXPORT_DIR}/windows
+          echo "EXPORT_DIR=${EXPORT_DIR}" >> $GITHUB_ENV
+          echo "EXPORT_FILES=${LINUX_FILE} ${WEB_FILE} ${WINDOWS_FILE}" >> $GITHUB_ENV
+      - name: Create latest tag
+        run: |
+          git config --global user.name "Masterflitzer"
+          git config --global user.email "60170948+Masterflitzer@users.noreply.github.com"
+          git ls-remote --tags --exit-code origin latest
+          if test "$?" -eq 0
+          then
+            git push -d origin latest
+          fi
+          git tag -f latest
+          git push origin latest
+      - name: GitHub Releases
+        env:
+          GITHUB_API_VER: "2022-11-28"
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        run: |
+          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X GET -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest")"
+
+          if test "${CODE}" -eq 200
+          then
+            RELEASE_ID="$(cat /tmp/.tmp | jq -r '.id')"
+
+            CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}")"
+
+            if test "${CODE}" -ne 204
+            then
+              echo "::error::Couldn't delete the latest release (Status Code: ${CODE})"
+              exit 1
+            fi
+          fi
+
+          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{ \"tag_name\": \"latest\", \"name\": \"Release\", \"body\": \"see readme for installation instructions\", \"draft\": false, \"prerelease\": false, \"generate_release_notes\": false }")"
+
+          if test "${CODE}" -ne 201
+          then
+            echo "::error::Couldn't create a new release (Status Code: ${CODE})"
+            exit 1
+          fi
+
+          RELEASE_ID="$(cat /tmp/.tmp | jq -r '.id')"
+
+          for ASSET_NAME in ${EXPORT_FILES[@]}
+          do
+            FILE="${EXPORT_DIR}/${ASSET_NAME}"
+
+            CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" -H "Content-Type: application/octet-stream" "https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}/assets?name=${ASSET_NAME}" --data-binary "@${FILE}")"
+
+            if test "${CODE}" -ne 201
+            then
+              echo "::error::Couldn't upload asset for latest release (Status Code: ${CODE})"
+              exit 1
+            fi
+          done

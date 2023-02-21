@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if(position.y>borderD):
 		position.y=borderD
 		linear_velocity.y=-abs(linear_velocity.y)
-	
+
 func _on_Ball_body_entered(body):
 	if(body.is_in_group("Enemy")):
 		body.damage(1)
