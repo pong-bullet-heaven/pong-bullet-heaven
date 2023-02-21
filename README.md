@@ -2,6 +2,8 @@
 
 [![Lint](https://github.com/pong-bullet-heaven/pong-bullet-heaven/actions/workflows/lint.yml/badge.svg)](https://github.com/pong-bullet-heaven/pong-bullet-heaven/actions/workflows/lint.yml)
 
+[![Export](https://github.com/pong-bullet-heaven/pong-bullet-heaven/actions/workflows/export.yml/badge.svg)](https://github.com/pong-bullet-heaven/pong-bullet-heaven/actions/workflows/export.yml)
+
 Game as part of a group project in computer science written in Godot Engine
 
 ## Setting up
