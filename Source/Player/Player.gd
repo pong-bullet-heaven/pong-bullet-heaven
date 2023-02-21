@@ -39,12 +39,11 @@ func _physics_process(delta):
 		var collider=collision.get_collider()
 		if(collider.is_in_group("Enemy")):
 			playerHit(collider)
-	
+
 	if(health<=0):
 		queue_free()
 
-func _input(event):#turn to mouse	
+func _input(event):#turn to mouse
 	if event is InputEventMouseMotion:
 		var vec=event.position/get_viewport_rect().size-Vector2(0.5,0.5)
 		rotation=vec.angle()-PI/2
-

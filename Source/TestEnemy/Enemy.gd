@@ -14,7 +14,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.play("default")
 	pass
-	
+
 func _physics_process(delta):
 	var v=(Player.position-position).normalized() * speed
 	rotation=v.angle()-PI/2
@@ -25,4 +25,3 @@ func damage(amount):
 	health-=amount
 	if(health<=0):
 		queue_free()#death
-	

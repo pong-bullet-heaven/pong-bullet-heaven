@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	pass
-	
+
 
 
 
@@ -24,6 +24,4 @@ func _on_Panel_body_entered(body):
 		v=v.reflect(Vector2(0,1).rotated(rotation))
 		if(v.length()==0):
 			v=body.speed*Vector2(1,0).rotated(rotation)
-		body.linear_velocity=v			
-
-
+		body.linear_velocity=v
