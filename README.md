@@ -12,7 +12,7 @@ You can download the latest release from [GitHub Releases](https://github.com/po
 If you are using Windows you can also execute this PowerShell command to download the game and create an entry in the start menu
 
 ```pwsh
-irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/install.ps1 | iex
+irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 | iex
 ```
 
 ## Develop
