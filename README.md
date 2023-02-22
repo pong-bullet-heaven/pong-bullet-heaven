@@ -5,31 +5,42 @@
 
 Game as part of a group project in computer science written in Godot Engine
 
-## Setting up
+## Play
 
-### Windows
+You can download the latest release from [GitHub Releases](https://github.com/pong-bullet-heaven/pong-bullet-heaven/releases)
 
-This will clone the repo and help you download godot and automatically create a start menu entry.
+If you are using Windows you can also execute this PowerShell command to download the game and create an entry in the start menu
+
+```pwsh
+irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/install.ps1 | iex
+```
+
+## Develop
+
+- Clone the repo
 
 ```pwsh
 git clone git@github.com:pong-bullet-heaven/pong-bullet-heaven.git
 # OR
 git clone https://github.com/pong-bullet-heaven/pong-bullet-heaven.git
-
-cd pong-bullet-heaven
-./setup-godot.ps1
 ```
 
-If your execution policy prevents you from executing powershell scripts, set it to `RemoteSigned`:
-
-```pwsh
-Set-ExecutionPolicy RemoteSigned
-```
-
-Install [pre-commit](https://github.com/pre-commit/pre-commit) and setup git hooks
+- Install [pre-commit](https://github.com/pre-commit/pre-commit) and setup git hooks
 
 ```pwsh
 pip install pre-commit
 pre-commit install
 pre-commit run --all-files
+```
+
+If you are using Windows you can also execute this PowerShell command to download Godot and create an entry in the start menu
+
+```pwsh
+irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/godot.ps1 | iex
+```
+
+If your execution policy prevents you from executing powershell scripts, set it to `RemoteSigned`:
+
+```pwsh
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
