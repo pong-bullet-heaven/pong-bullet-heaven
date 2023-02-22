@@ -23,7 +23,7 @@ Remove-Item -Force $tmpFile
 
 $exe = Get-ChildItem -File -Filter "*.exe" $localAppsDir | Select-Object -First 1
 
-if (!(Test-Path -PathType Leaf $exe)) {
+if (!$exe) {
     throw "Couldn't find the game exe"
 }
 
