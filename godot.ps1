@@ -25,13 +25,13 @@ $localAppsDir = [System.IO.Path]::GetFullPath("$env:LOCALAPPDATA/Programs/Godot"
 $startMenuDir = [System.Environment]::GetFolderPath("Programs")
 $lnk = [System.IO.Path]::Combine($startMenuDir, "Godot.lnk")
 
-if (!(Test-Path -PathType Leaf $file -ErrorAction SilentlyContinue)) {
+if (!$file) {
     Write-Output "Opening download page of Godot"
     Write-Output "Please download Godot for your platform and select the downloaded file in this prompt"
     Start-Process "https://godotengine.org/download/windows/"
     $file = GetFileDialog
 
-    if (!(Test-Path -PathType Leaf $file -ErrorAction SilentlyContinue)) {
+    if (!$file) {
         throw "Invalid path to godot archive"
     }
 }
@@ -42,7 +42,7 @@ if (Test-Path $tmpDir) {
 
 Expand-Archive -Path $file -DestinationPath $tmpDir
 $exe = Get-ChildItem -Recurse -File -Filter "*.exe" $tmpDir | Select-Object -First 1
-if (!(Test-Path -PathType Leaf $exe)) {
+if (!$exe) {
     throw "Couldn't find the godot exe"
 }
 
@@ -58,7 +58,7 @@ if (Test-Path $tmpDir) {
 
 $exe = Get-ChildItem -File -Filter "*.exe" $localAppsDir | Select-Object -First 1
 
-if (!(Test-Path -PathType Leaf $exe)) {
+if (!$exe) {
     throw "Couldn't find the godot exe"
 }
 
