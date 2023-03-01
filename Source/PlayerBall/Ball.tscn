@@ -11,22 +11,18 @@ bounce = 1.0
 radius = 136.235
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
 
@@ -46,8 +42,8 @@ gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 linear_velocity = Vector2( 1000, 0 )
+linear_damp = 0.1
 script = ExtResource( 2 )
-speed = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["ball"]]
 shape = SubResource( 2 )
@@ -55,7 +51,7 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
 frames = SubResource( 7 )
-frame = 1
+frame = 2
 playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]

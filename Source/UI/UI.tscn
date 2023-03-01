@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="Canvas" type="CanvasLayer"]
+pause_mode = 2

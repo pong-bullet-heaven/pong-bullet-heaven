@@ -14,9 +14,7 @@ scale = Vector2( 10, 10 )
 texture = ExtResource( 1 )
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
-position = Vector2( 772, -128 )
-linear_damp = 0.02
-speed = 3000
+position = Vector2( 422, 0 )
 
 [node name="EnemyController" parent="." instance=ExtResource( 2 )]
 
@@ -26,7 +24,7 @@ exponent = 0.4
 entity = NodePath("Enemy")
 
 [node name="Enemy" parent="EnemyController/SpawnWave" instance=ExtResource( 3 )]
-position = Vector2( -1, -411 )
+position = Vector2( -765, -552 )
 
 [node name="SpawnWave2" parent="EnemyController" instance=ExtResource( 5 )]
 start_time = 60.0
@@ -34,5 +32,6 @@ end_time = 180.0
 exponent = 0.3
 
 [node name="Enemy" parent="EnemyController/SpawnWave2" instance=ExtResource( 3 )]
+position = Vector2( -535, -552 )
 speed = 75
 health = 3

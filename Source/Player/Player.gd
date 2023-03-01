@@ -3,12 +3,12 @@ extends KinematicBody2D
 
 
 export var health = 20
-export var speed = 1000
+var speed = 500
 export var invincibleSeconds=0
 var xp=0
 var xp_needed=1
 var level=0
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$XPCollector/CollisionShape2D.shape.radius=300 #change collection radius
@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	speed=500+get_upgrade_level("speed")*100
 	if(xp>=xp_needed):
 		on_level_up()
 	pass
@@ -43,7 +43,7 @@ func _physics_process(delta):
 			playerHit(collider)
 	
 	if(health<=0):
-		queue_free()
+		pass
 
 func _input(event):#turn to mouse	
 	if event is InputEventMouseMotion:
@@ -65,3 +65,13 @@ func on_level_up():
 	level+=1
 	xp_needed = level*5
 	print("level up")
+	
+	var scene = load("res://Source/UI/Levelup/LevelUp.tscn")
+	UI.add_child(scene.instance())
+
+func get_upgrade_level(name):
+	var node = $Upgrades.get_node(name)
+	return node.level
+	
+func get_available_upgrades():
+	return $Upgrades.get_children() #no checks for requirements yet
