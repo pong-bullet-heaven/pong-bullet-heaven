@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/unknown.png-324e806637a98d4a426dacf893537d7d.stex"
+path="res://.import/frame11.png-6e96f42d0c6961a38a0b8c3c2ea56811.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Background/unknown.png"
-dest_files=[ "res://.import/unknown.png-324e806637a98d4a426dacf893537d7d.stex" ]
+source_file="res://Assets/Images/Background/frame11.png"
+dest_files=[ "res://.import/frame11.png-6e96f42d0c6961a38a0b8c3c2ea56811.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
