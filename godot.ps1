@@ -41,7 +41,7 @@ if (Test-Path $tmpDir) {
 }
 
 Expand-Archive -Path $file -DestinationPath $tmpDir
-$exe = Get-ChildItem -Recurse -File -Filter "*.exe" $tmpDir | Select-Object -First 1
+$exe = Get-ChildItem -Recurse -File -Filter "*.exe" $tmpDir | Where-Object { !$_.BaseName.Contains("console") } | Select-Object -First 1
 if (!$exe) {
     throw "Couldn't find the godot exe"
 }
@@ -56,7 +56,7 @@ if (Test-Path $tmpDir) {
     Remove-Item -Recurse -Force $tmpDir
 }
 
-$exe = Get-ChildItem -File -Filter "*.exe" $localAppsDir | Select-Object -First 1
+$exe = Get-ChildItem -File -Filter "*.exe" $localAppsDir | Where-Object { !$_.BaseName.Contains("console") } | Select-Object -First 1
 
 if (!$exe) {
     throw "Couldn't find the godot exe"
