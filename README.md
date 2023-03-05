@@ -19,28 +19,35 @@ irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 |
 
 - Clone the repo
 
-```pwsh
-git clone git@github.com:pong-bullet-heaven/pong-bullet-heaven.git
-# OR
-git clone https://github.com/pong-bullet-heaven/pong-bullet-heaven.git
-```
+  ```pwsh
+  git clone git@github.com:pong-bullet-heaven/pong-bullet-heaven.git
+  # OR
+  git clone https://github.com/pong-bullet-heaven/pong-bullet-heaven.git
+  ```
 
 - Install [pre-commit](https://github.com/pre-commit/pre-commit) and setup git hooks
 
-```pwsh
-pip install pre-commit
-pre-commit install
-pre-commit run --all-files
-```
+  ```pwsh
+  pip install pre-commit
+  pre-commit install
+  pre-commit run --all-files
+  ```
 
-If you are using Windows you can also execute this PowerShell command to download Godot and create an entry in the start menu
+- Install Godot
+  - Windows
 
-```pwsh
-irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/godot.ps1 | iex
-```
+    ```pwsh
+    irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/godot.ps1 | iex
+    ```
 
-If your execution policy prevents you from executing powershell scripts, set it to `RemoteSigned`:
+    If your execution policy prevents you from executing powershell scripts, set it to `RemoteSigned`:
 
-```pwsh
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
+    ```pwsh
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ```
+
+  - macOS
+
+    ```bash
+    brew install --cask godot
+    ```
