@@ -11,9 +11,15 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	#linear_velocity=linear_velocity.normalized()*speed #constant speed
 	var speed = base_speed+Player.get_upgrade_level("ball_speed")*1000
-	#print(speed)
+	
+	if(Input.is_action_just_released("action")):
+		if(Player.position.distance_to(position)<200):
+			linear_velocity=Vector2(0,1).rotated(Player.rotation)*speed*0.5
+			
+	if(Input.is_action_pressed("action")):
+		var target=Player.position+Vector2(0,1).rotated(Player.rotation)*100
+		linear_velocity=(target-position)*10
 	if(linear_velocity.length()>speed): #maxspeed for variable velocity
 		linear_velocity=linear_velocity.normalized()*speed
 		
@@ -38,5 +44,7 @@ func _physics_process(delta):
 func _on_Ball_body_entered(body):
 	if(body.is_in_group("Enemy")):
 		body.damage(1+Player.get_upgrade_level("damage"))
+		
+
 		
 
