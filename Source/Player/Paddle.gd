@@ -1,16 +1,13 @@
 extends Area2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-
 func _physics_process(delta):
 	pass
-	
-func _on_Paddle_body_entered(body):	
+
+func _on_Paddle_body_entered(body):
 	if(body.is_in_group("ball")):
 		var v=body.linear_velocity
 		var reflectionAxis=Player.rotation-PI/2
@@ -21,5 +18,3 @@ func _on_Paddle_body_entered(body):
 			v=v+v.normalized()*1000
 			body.linear_velocity=v
 		body._on_bounce(Player)
-
-

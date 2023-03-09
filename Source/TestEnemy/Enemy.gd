@@ -14,7 +14,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.play("default")
 	pass
-	
+
 func _physics_process(delta):
 	var v=(Player.position-position).normalized() * speed
 	rotation=v.angle()-PI/2

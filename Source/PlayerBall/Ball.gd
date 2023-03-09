@@ -5,7 +5,6 @@ export var base_speed=1000
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -98,7 +97,6 @@ func home_on_enemy(ignore):
 		print(closest)
 		linear_velocity = position.direction_to(closest.position)*linear_velocity.length()
 		UI.draw_debug_line("ball_bounce",position,closest.position,Color.red)
-		
 		
 func _on_Ball_body_entered(body):
 	pass

@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-
-
 export var health = 20
 var base_speed = 500
 export var invincibleSeconds=0
@@ -13,7 +11,6 @@ var level=0
 func _ready():
 	$XPCollector/CollisionShape2D.shape.radius=300 #change collection radius
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -43,11 +40,11 @@ func _physics_process(delta):
 		var collider=collision.get_collider()
 		if(collider.is_in_group("Enemy")):
 			playerHit(collider)
-	
+
 	if(health<=0):
 		pass
 
-func _input(event):#turn to mouse	
+func _input(event):#turn to mouse
 	if event is InputEventMouseMotion:
 		var vec=event.position/get_viewport_rect().size-Vector2(0.5,0.5)
 		rotation=vec.angle()-PI/2
