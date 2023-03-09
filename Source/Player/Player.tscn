@@ -3,6 +3,7 @@
 [ext_resource path="res://Assets/Images/Player/character.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/Damage/character_hit.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Source/Upgrade/multi_ball.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/Paddle.gd" type="Script" id=5]
 [ext_resource path="res://Source/Upgrade/Base_Upgrade.tscn" type="PackedScene" id=6]
 
@@ -59,10 +60,6 @@ extents = Vector2( 160, 65 )
 
 [sub_resource type="CircleShape2D" id=12]
 
-[sub_resource type="GDScript" id=13]
-script/source = "extends Node
-"
-
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 3 )
 
@@ -97,7 +94,6 @@ one_way_collision_margin = 10.0
 shape = SubResource( 12 )
 
 [node name="Upgrades" type="Node" parent="."]
-script = SubResource( 13 )
 
 [node name="speed" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "speed"
@@ -113,6 +109,17 @@ max_level = 10
 display_name = "damage"
 description = "more damage"
 max_level = 10
+
+[node name="homing" parent="Upgrades" instance=ExtResource( 6 )]
+display_name = "homing"
+description = "homing bei bounce"
+max_level = 3
+
+[node name="multi_ball" parent="Upgrades" instance=ExtResource( 6 )]
+script = ExtResource( 4 )
+display_name = "multishot"
+description = "more balls"
+max_level = 3
 
 [connection signal="body_entered" from="Paddle" to="Paddle" method="_on_Paddle_body_entered"]
 [connection signal="area_entered" from="XPCollector" to="." method="_on_XPCollector_area_entered"]

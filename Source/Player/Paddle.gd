@@ -20,5 +20,6 @@ func _on_Paddle_body_entered(body):
 				v=body.speed*Vector2(1,0).rotated(reflectionAxis)
 			v=v+v.normalized()*1000
 			body.linear_velocity=v
+		body._on_bounce(Player)
 
 
