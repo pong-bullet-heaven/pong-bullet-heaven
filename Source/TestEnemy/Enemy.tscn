@@ -53,7 +53,7 @@ animations = [ {
 } ]
 
 [node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
-collision_layer = 3
+collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
 health = 1
@@ -64,5 +64,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 10, 10 )
 frames = SubResource( 6 )
-frame = 2
+frame = 3
 playing = true

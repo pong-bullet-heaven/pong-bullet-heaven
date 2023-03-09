@@ -13,10 +13,10 @@ func _ready():
 func _physics_process(delta):
 	var speed = base_speed+Player.get_upgrade_level("ball_speed")*1000
 	if(Input.is_action_just_pressed("action")):		
-		$CollisionShape2D.disabled=true
+		set_collision_mask_bit(1, false)
 		
 	if(Input.is_action_just_released("action")):
-		$CollisionShape2D.disabled=false
+		set_collision_mask_bit(1, true)
 		if(Player.position.distance_to(position)<300):
 			linear_velocity = Vector2(0,1).rotated(Player.rotation)*speed
 			
@@ -89,7 +89,7 @@ func home_on_enemy(ignore):
 		UI.draw_debug_line("ball_bounce",position,vector)
 		if(result.has("collider")):
 			result=result.get("collider")
-			if(result.is_in_group("Enemy" )or result==Player and result!=ignore):
+			if(result.is_in_group("Enemy" ) and result!=ignore):#or result==Player):
 				var distance=position.distance_to(result.position)
 				if(distance<distance_to_closest and in_borders(result)):
 					closest=result
