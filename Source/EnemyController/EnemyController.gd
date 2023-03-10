@@ -12,11 +12,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	radius=get_viewport_rect().end.length()+50
-	
+
 	var enemy_overflow=get_enemy_count()-maximum
 	if(enemy_overflow>0):
 		delete(enemy_overflow)
-		
+
 	timer-=delta
 	time_elapsed+=delta
 	if(timer<0):
@@ -24,23 +24,23 @@ func _process(delta):
 		for wave in get_children():
 			if(wave.start_time<=time_elapsed and wave.end_time>time_elapsed):
 				spawn_wave(wave)
-			
+
 func spawn_wave(wave):
 	var exponential_count = wave.base_count * pow(wave.base, time_elapsed)
 	var polynomial_count  = wave.base_count * pow(time_elapsed,wave.exponent)
 	var count =  (exponential_count+polynomial_count) * wave.linear_factor
 	count=floor(count)
-	
+
 	#delete enemies if not enough space
 	var enemy_space=maximum-get_enemy_count()
 	if(enemy_space<count):
 		count=delete(count-enemy_space)+enemy_space
-	
+
 	for j in count:
 		var scene=wave.packed_scene
 		spawn_enemy(wave,scene)
 	pass
-	
+
 func spawn_enemy(wave,scene):
 	var angle = randf()*2*PI
 	var pos =Player.position+Vector2(0,radius).rotated(angle)
@@ -48,7 +48,7 @@ func spawn_enemy(wave,scene):
 	enemy.position=pos
 	wave.add_child(enemy)
 	pass
-	
+
 func get_enemy_count():
 	var count=0
 	for wave in get_children():
@@ -67,4 +67,3 @@ func delete(count): #delete enemies, return amount of deleted enemies
 					if(count<=0):
 						return deleted
 	return deleted
-	

@@ -18,8 +18,8 @@ func _ready():
 			break
 		button.get_node("Title").text=available[i].display_name
 		button.get_node("Description").text=available[i].description
-	
-	
+
+
 	get_tree().paused = true
 
 

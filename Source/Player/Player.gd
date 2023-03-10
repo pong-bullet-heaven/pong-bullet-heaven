@@ -19,11 +19,11 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	invincibleSeconds=max(invincibleSeconds-delta,0)	
+	invincibleSeconds=max(invincibleSeconds-delta,0)
 	var speed=base_speed+get_upgrade_level("speed")*100
 	if(Input.is_action_pressed("action")):
 		speed=0
-		
+
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
 		v = v.normalized() * speed
@@ -64,21 +64,21 @@ func on_level_up():
 	level+=1
 	xp_needed = level*5
 	print("level up")
-	
+
 	var scene = load("res://Source/UI/Levelup/LevelUp.tscn")
 	UI.add_child(scene.instance())
 
 func get_upgrade_level(name):
 	var node = $Upgrades.get_node(name)
 	return node.level
-	
-func get_available_upgrades():	
+
+func get_available_upgrades():
 	var available=[]
 	for upgrade in $Upgrades.get_children():
 		if(_filter_upgrade(upgrade)):
 			available.append(upgrade)
 	return available
-	
+
 func _filter_upgrade(upgrade):
 	if(upgrade.level >= upgrade.max_level):
 		return false

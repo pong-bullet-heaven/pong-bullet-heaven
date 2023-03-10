@@ -23,5 +23,5 @@ func on_upgrade():
 	for ball in balls:
 		if(ball is RigidBody2D):
 			ball.get_parent().add_child(ball.duplicate())
-			
+
 	.on_upgrade()

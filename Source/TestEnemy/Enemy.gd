@@ -31,5 +31,5 @@ func die():
 	var instance = scene.instance()
 	instance.position=position
 	get_node("/root").add_child(instance)
-	
+
 	queue_free()

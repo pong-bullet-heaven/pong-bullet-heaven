@@ -27,11 +27,10 @@ func draw_debug_line(tag,a,b,color=Color.blanchedalmond,thickness=5):
 		line.width=thickness
 		get_node("/root").add_child(line)
 		debug_lines[tag].append(line)
-	
+
 func clear_debug_lines(tag):
 	if(draw_debug):
 		if(debug_lines.has(tag)):
 			for line in debug_lines[tag]:
 				line.queue_free()
 			debug_lines[tag]=[]
-		
