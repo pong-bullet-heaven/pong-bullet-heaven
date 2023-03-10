@@ -18,6 +18,16 @@ config/icon="res://icon.png"
 
 Player="*res://Source/Player/Player.tscn"
 
+[display]
+
+window/size/width=640
+window/size/height=360
+window/size/test_width=3200
+window/size/test_height=1800
+window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [gdnative]
 
 singletons=[  ]

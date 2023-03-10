@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frame5.png-bde021e4631c916b5e0c6e96b76125b7.stex"
+path="res://.import/background-tile-11.png-7a3bd68bf813bfbda612a50740258c05.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Background/frame5.png"
-dest_files=[ "res://.import/frame5.png-bde021e4631c916b5e0c6e96b76125b7.stex" ]
+source_file="res://Assets/Images/Background/background-tile-11.png"
+dest_files=[ "res://.import/background-tile-11.png-7a3bd68bf813bfbda612a50740258c05.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
