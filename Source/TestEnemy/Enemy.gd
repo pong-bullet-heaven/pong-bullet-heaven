@@ -24,4 +24,12 @@ func damage(amount):
 	damageAnimSeconds=0.5
 	health-=amount
 	if(health<=0):
-		queue_free()#death
+		die()
+
+func die():
+	var scene = load("res://Source/XPDrops/XP.tscn")
+	var instance = scene.instance()
+	instance.position=position
+	get_node("/root").add_child(instance)
+
+	queue_free()

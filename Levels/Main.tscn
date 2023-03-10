@@ -11,7 +11,6 @@
 [node name="Ball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 772, -128 )
 linear_damp = 0.02
-speed = 3000
 
 [node name="EnemyController" parent="." instance=ExtResource( 2 )]
 

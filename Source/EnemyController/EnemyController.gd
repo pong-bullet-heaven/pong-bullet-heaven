@@ -8,11 +8,11 @@ var time_elapsed=0
 func _ready():
 	pass # Replace with function body.
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	radius=get_viewport_rect().end.length()+50
 
-	print(get_enemy_count())
 	var enemy_overflow=get_enemy_count()-maximum
 	if(enemy_overflow>0):
 		delete(enemy_overflow)
