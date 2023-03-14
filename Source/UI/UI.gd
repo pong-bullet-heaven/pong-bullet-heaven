@@ -1,5 +1,5 @@
 extends CanvasLayer
-export var draw_debug=true
+export var draw_debug=false
 
 # Declare member variables here. Examples:
 # var a = 2

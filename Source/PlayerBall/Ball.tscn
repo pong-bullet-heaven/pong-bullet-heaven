@@ -8,7 +8,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 134.015
+radius = 132.034
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
@@ -54,5 +54,13 @@ frames = SubResource( 7 )
 frame = 3
 playing = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["ball"]]
+shape = SubResource( 2 )
+
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Ball_body_exited"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

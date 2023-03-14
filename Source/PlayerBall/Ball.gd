@@ -1,6 +1,8 @@
 extends RigidBody2D
 export var base_speed=1000
-
+var old_velocity=Vector2(0,0)
+var old_position=Vector2(0,0)
+var pierce_count=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -55,6 +57,8 @@ func _physics_process(delta):
 		_on_bounce()
 
 
+	old_velocity=linear_velocity
+	old_position=position
 func in_borders(node):
 	var visibleRectGlobal: Rect2 = get_viewport_transform().affine_inverse().xform(get_viewport_rect())
 	var borderL=visibleRectGlobal.position.x
@@ -94,23 +98,40 @@ func home_on_enemy(ignore):
 					closest=result
 					distance_to_closest=distance
 	if(closest!=null):
-		print(closest)
 		linear_velocity = position.direction_to(closest.position)*linear_velocity.length()
 		UI.draw_debug_line("ball_bounce",position,closest.position,Color.red)
 
 func _on_Ball_body_entered(body):
-	pass
-
-
-func _on_Ball_body_exited(body):
 
 	if(body.is_in_group("Enemy")):
-		body.damage(1+Player.get_upgrade_level("damage"))
+		var damage:float=1.0+Player.get_upgrade_level("damage")
+		damage=damage*pow(2.0/3.0, Player.get_upgrade_level("multi_ball"))
+		body.damage(damage)
 
 	_on_bounce(body)
 
 
+func _on_Ball_body_exited(body):
+	pass
+
+
 func _on_bounce(target=null):
+	if(pierce_count>0 and target!=null and target.is_in_group("Enemy")):
+		linear_velocity=old_velocity
+		position=old_position
+		self.add_collision_exception_with(target)
+		pierce_count-=1
+
+	elif(target!=null):
+		pierce_count=pow(2,Player.get_upgrade_level("piercing"))-1#0,1,3,7,15,31
+
 	if(Player.get_upgrade_level("homing")>0):
 		home_on_enemy(target)
+	print("bounce")
 	pass
+
+
+func _on_Area2D_body_exited(body):
+	self.remove_collision_exception_with(body)
+
+	pass # Replace with function body.

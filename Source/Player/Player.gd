@@ -22,7 +22,14 @@ func _physics_process(delta):
 	invincibleSeconds=max(invincibleSeconds-delta,0)
 	var speed=base_speed+get_upgrade_level("speed")*100
 	if(Input.is_action_pressed("action")):
-		speed=0
+		match (Player.get_upgrade_level("pulse_movement")):
+			0:
+				speed=0
+			1:
+				speed=speed*0.5
+			3:
+				speed=speed*1.5
+
 
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
