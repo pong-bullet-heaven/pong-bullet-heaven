@@ -4,6 +4,7 @@ export var collision_damage=1
 export var speed =100
 export var health = 3
 var damageAnimSeconds=0
+
 func _ready():
 	pass
 
@@ -13,13 +14,12 @@ func _process(delta):
 		$AnimatedSprite.play("damage")
 	else:
 		$AnimatedSprite.play("default")
-	pass
 
-func _physics_process(delta):
-	var v=(Player.position-position).normalized() * speed
-	rotation=v.angle()-PI/2
-	move_and_slide(v)
-	pass
+func _physics_process(_delta):
+	var v = (Player.position-position).normalized() * speed
+	rotation = v.angle()-PI/2
+	v = move_and_slide(v)
+
 func damage(amount):
 	damageAnimSeconds=0.5
 	health-=amount

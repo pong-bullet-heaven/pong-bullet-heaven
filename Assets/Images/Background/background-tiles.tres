@@ -20,7 +20,7 @@
 [ext_resource path="res://Assets/Images/Background/background-tile-17.png" type="Texture" id=18]
 
 [resource]
-flags = 3
+flags = 2
 frames = 18
 fps = 5.0
 frame_0/texture = ExtResource( 1 )

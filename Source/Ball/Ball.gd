@@ -9,7 +9,20 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _physics_process(delta):
+func get_borders():
+	var screen_size = OS.get_screen_size()
+	var screen_size_half_x = screen_size[0] / 2
+	var screen_size_half_y = screen_size[1] / 2
+	var player_position_x = Player.position[0]
+	var player_position_y = Player.position[1]
+	return {
+		"down": player_position_y + screen_size_half_y,
+		"left": player_position_x - screen_size_half_x,
+		"right": player_position_x + screen_size_half_x,
+		"up": player_position_y - screen_size_half_y
+	}
+
+func _physics_process(_delta):
 	var speed = base_speed+Player.get_upgrade_level("ball_speed")*1000
 	if(Input.is_action_just_pressed("action")):
 		set_collision_mask_bit(1, false)
@@ -28,46 +41,38 @@ func _physics_process(delta):
 			linear_velocity += v*(1/v.length()) * speed/10
 
 
-	if(linear_velocity.length()>speed): #maxspeed for variable velocity
-		linear_velocity=linear_velocity.normalized()*speed
+	if(linear_velocity.length() > speed): #maxspeed for variable velocity
+		linear_velocity = linear_velocity.normalized() * speed
 
-	var visibleRectGlobal: Rect2 = get_viewport_transform().affine_inverse().xform(get_viewport_rect())
-	var borderL=visibleRectGlobal.position.x
-	var borderR=visibleRectGlobal.end.x
-	var borderU=visibleRectGlobal.position.y
-	var borderD=visibleRectGlobal.end.y
+	var borders = get_borders()
 
-	if(position.x<borderL):
-		position.x=borderL
-		linear_velocity.x=abs(linear_velocity.x)
+	if(position.y > borders.down):
+		position.y = borders.down
+		linear_velocity.y = -abs(linear_velocity.y)
 		_on_bounce()
-	if(position.x>borderR):
-		position.x=borderR
-		linear_velocity.x=-abs(linear_velocity.x)
+	if(position.x < borders.left):
+		position.x = borders.left
+		linear_velocity.x = abs(linear_velocity.x)
 		_on_bounce()
-	if(position.y<borderU):
-		position.y=borderU
-		linear_velocity.y=abs(linear_velocity.y)
+	if(position.x > borders.right):
+		position.x = borders.right
+		linear_velocity.x = -abs(linear_velocity.x)
 		_on_bounce()
-	if(position.y>borderD):
-		position.y=borderD
-		linear_velocity.y=-abs(linear_velocity.y)
+	if(position.y < borders.up):
+		position.y = borders.up
+		linear_velocity.y = abs(linear_velocity.y)
 		_on_bounce()
-
 
 func in_borders(node):
-	var visibleRectGlobal: Rect2 = get_viewport_transform().affine_inverse().xform(get_viewport_rect())
-	var borderL=visibleRectGlobal.position.x
-	var borderR=visibleRectGlobal.end.x
-	var borderU=visibleRectGlobal.position.y
-	var borderD=visibleRectGlobal.end.y
-	if(node.position.x<borderL):
+	var borders = get_borders()
+
+	if(node.position.y > borders.down):
 		return false
-	if(node.position.x>borderR):
+	if(node.position.x < borders.left):
 		return false
-	if(node.position.y<borderU):
+	if(node.position.x > borders.right):
 		return false
-	if(node.position.y>borderD):
+	if(node.position.y < borders.up):
 		return false
 	return true
 
@@ -98,9 +103,8 @@ func home_on_enemy(ignore):
 		linear_velocity = position.direction_to(closest.position)*linear_velocity.length()
 		UI.draw_debug_line("ball_bounce",position,closest.position,Color.red)
 
-func _on_Ball_body_entered(body):
+func _on_Ball_body_entered(_body):
 	pass
-
 
 func _on_Ball_body_exited(body):
 
@@ -108,7 +112,6 @@ func _on_Ball_body_exited(body):
 		body.damage(1+Player.get_upgrade_level("damage"))
 
 	_on_bounce(body)
-
 
 func _on_bounce(target=null):
 	if(Player.get_upgrade_level("homing")>0):

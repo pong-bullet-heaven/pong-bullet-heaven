@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ball.png-31e5975886ee825e02bd8058d3f0aed5.stex"
+path="res://.import/ball_hit.png-d47e25215e7377b697c333b926157b15.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Projectiles/PlayerBall/ball.png"
-dest_files=[ "res://.import/ball.png-31e5975886ee825e02bd8058d3f0aed5.stex" ]
+source_file="res://Assets/Images/Projectiles/Ball/ball_hit.png"
+dest_files=[ "res://.import/ball_hit.png-d47e25215e7377b697c333b926157b15.stex" ]
 
 [params]
 
