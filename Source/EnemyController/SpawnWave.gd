@@ -12,7 +12,7 @@ var packed_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(get_node(entity) == null):
+	if(entity == "" || get_node(entity) == null):
 		print("Warning: Spawnwave without assigned entity, assigning child")
 		entity = get_children()[0].get_path()
 	var scene = PackedScene.new()
