@@ -13,7 +13,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(xp>=xp_needed):
 		on_level_up()
 	pass
@@ -34,7 +34,7 @@ func _physics_process(delta):
 		$AnimatedSprite.play("walking")
 	else:
 		$AnimatedSprite.stop()
-	move_and_slide(v)
+	v = move_and_slide(v)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var collider=collision.get_collider()

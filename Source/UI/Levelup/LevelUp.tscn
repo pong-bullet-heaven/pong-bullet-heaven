@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Source/UI/Levelup/LevelUp.gd" type="Script" id=1]
+[ext_resource path="res://Source/UI/LevelUp/LevelUp.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/UI/blank_upgrade_UI_single.png" type="Texture" id=2]
 
 [node name="HBoxContainer" type="HBoxContainer"]
@@ -67,7 +67,7 @@ text = "Test upgrade"
 [node name="Button3" type="TextureButton" parent="."]
 margin_left = 685.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 576.0
 rect_pivot_offset = Vector2( -1091, 414 )
 size_flags_horizontal = 3
 texture_normal = ExtResource( 2 )

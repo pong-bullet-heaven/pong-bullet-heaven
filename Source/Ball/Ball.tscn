@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Images/Projectiles/Ball/ball.png" type="Texture" id=1]
+[ext_resource path="res://Source/Ball/Ball.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 29.0172
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Ball" type="RigidBody2D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 6
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_velocity = Vector2( 1000, 0 )
+linear_damp = 0.1
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["ball"]]
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["ball"]]
+scale = Vector2( 2, 2 )
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Ball_body_exited"]
