@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Player="*res://Source/Player/Player.tscn"
 UI="*res://Source/UI/UI.tscn"
+Debugging="*res://Source/Debugging/Debugging.gd"
 
 [display]
 

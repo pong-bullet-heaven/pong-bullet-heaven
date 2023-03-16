@@ -88,11 +88,11 @@ func home_on_enemy(ignore):
 
 	var closest
 	var distance_to_closest=INF
-	UI.clear_debug_lines("ball_bounce")
+	Debugging.clear_debug_lines("ball_bounce")
 	for i in range(-n,n+1):
 		var vector= linear_velocity.rotated(deg2rad(i))*100
 		var result = space_state.intersect_ray(position, vector)
-		UI.draw_debug_line("ball_bounce",position,vector)
+		Debugging.draw_debug_line("ball_bounce",position,vector)
 		if(result.has("collider")):
 			result=result.get("collider")
 			if(result.is_in_group("Enemy" ) and result!=ignore):#or result==Player):
@@ -103,7 +103,7 @@ func home_on_enemy(ignore):
 	if(closest!=null):
 		print(closest)
 		linear_velocity = position.direction_to(closest.position)*linear_velocity.length()
-		UI.draw_debug_line("ball_bounce",position,closest.position,Color.red)
+		Debugging.draw_debug_line("ball_bounce",position,closest.position,Color.red)
 
 func _on_Ball_body_entered(_body):
 	pass
