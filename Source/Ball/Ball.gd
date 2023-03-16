@@ -10,16 +10,16 @@ func _ready():
 #	pass
 
 func get_borders():
-	var screen_size = OS.get_screen_size()
-	var screen_size_half_x = screen_size[0] / 2
-	var screen_size_half_y = screen_size[1] / 2
+	var window_size = OS.window_size
+	var window_size_half_x = window_size[0] / 2
+	var window_size_half_y = window_size[1] / 2
 	var player_position_x = Player.position[0]
 	var player_position_y = Player.position[1]
 	return {
-		"down": player_position_y + screen_size_half_y,
-		"left": player_position_x - screen_size_half_x,
-		"right": player_position_x + screen_size_half_x,
-		"up": player_position_y - screen_size_half_y
+		"bottom": player_position_y + window_size_half_y,
+		"left": player_position_x - window_size_half_x,
+		"right": player_position_x + window_size_half_x,
+		"top": player_position_y - window_size_half_y
 	}
 
 func _physics_process(_delta):
@@ -46,8 +46,8 @@ func _physics_process(_delta):
 
 	var borders = get_borders()
 
-	if(position.y > borders.down):
-		position.y = borders.down
+	if(position.y > borders.bottom):
+		position.y = borders.bottom
 		linear_velocity.y = -abs(linear_velocity.y)
 		_on_bounce()
 	if(position.x < borders.left):
@@ -58,21 +58,21 @@ func _physics_process(_delta):
 		position.x = borders.right
 		linear_velocity.x = -abs(linear_velocity.x)
 		_on_bounce()
-	if(position.y < borders.up):
-		position.y = borders.up
+	if(position.y < borders.top):
+		position.y = borders.top
 		linear_velocity.y = abs(linear_velocity.y)
 		_on_bounce()
 
 func in_borders(node):
 	var borders = get_borders()
 
-	if(node.position.y > borders.down):
+	if(node.position.y > borders.bottom):
 		return false
 	if(node.position.x < borders.left):
 		return false
 	if(node.position.x > borders.right):
 		return false
-	if(node.position.y < borders.up):
+	if(node.position.y < borders.top):
 		return false
 	return true
 
