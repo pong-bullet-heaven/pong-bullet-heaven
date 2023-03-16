@@ -32,10 +32,10 @@ health = 3
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1024, 576 )
+motion_mirroring = Vector2( 2048, 1152 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 1024, 576 )
+region_rect = Rect2( 0, 0, 2048, 1152 )
