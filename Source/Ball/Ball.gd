@@ -10,11 +10,13 @@ func _ready():
 #	pass
 
 func get_borders():
-	var window_size = OS.window_size
-	var window_size_half_x = window_size[0] / 2
-	var window_size_half_y = window_size[1] / 2
+	var offset = $CollisionShape2D.shape.radius
+	var window_size = get_viewport_rect().size
+	var window_size_half_x = window_size[0] / 2 - offset
+	var window_size_half_y = window_size[1] / 2 - offset
 	var player_position_x = Player.position[0]
 	var player_position_y = Player.position[1]
+
 	return {
 		"bottom": player_position_y + window_size_half_y,
 		"left": player_position_x - window_size_half_x,
