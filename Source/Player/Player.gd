@@ -20,7 +20,7 @@ func _process(_delta):
 
 func _physics_process(delta):
 	invincibleSeconds=max(invincibleSeconds-delta,0)
-	var speed=base_speed+get_upgrade_level("speed")*100
+	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if(Input.is_action_pressed("action")):
 		speed=0
 

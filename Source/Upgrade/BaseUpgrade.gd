@@ -1,4 +1,5 @@
 extends Node
+
 export var display_name: String
 export var description: String
 export var level: int
@@ -11,4 +12,3 @@ func on_upgrade():
 		level+=1
 		print(display_name)
 		print(level)
-	pass

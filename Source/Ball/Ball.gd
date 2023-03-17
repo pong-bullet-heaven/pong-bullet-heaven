@@ -25,7 +25,7 @@ func get_borders():
 	}
 
 func _physics_process(_delta):
-	var speed = base_speed+Player.get_upgrade_level("ball_speed")*1000
+	var speed = base_speed + 1000 * Player.get_upgrade_level("ball_speed")
 	if(Input.is_action_just_pressed("action")):
 		set_collision_mask_bit(1, false)
 
@@ -109,9 +109,8 @@ func _on_Ball_body_entered(_body):
 	pass
 
 func _on_Ball_body_exited(body):
-
 	if(body.is_in_group("Enemy")):
-		body.damage(1+Player.get_upgrade_level("damage"))
+		body.damage(1 + Player.get_upgrade_level("damage"))
 
 	_on_bounce(body)
 
