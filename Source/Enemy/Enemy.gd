@@ -30,6 +30,5 @@ func die():
 	var scene = load("res://Source/XPDrops/XP.tscn")
 	var instance = scene.instance()
 	instance.position=position
-	get_node("/root").add_child(instance)
-
+	get_node("/root").call_deferred("add_child", instance)
 	queue_free()
