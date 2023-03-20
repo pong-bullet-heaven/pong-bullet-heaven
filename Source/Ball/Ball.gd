@@ -115,6 +115,7 @@ func _on_Ball_body_exited(body):
 	_on_bounce(body)
 
 func _on_bounce(target=null):
+	$BounceSound.play()
 	if(Player.get_upgrade_level("homing")>0):
 		home_on_enemy(target)
 	pass

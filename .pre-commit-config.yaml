@@ -3,6 +3,9 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-added-large-files # Prevent giant files from being committed
+        args:
+          - --maxkb=8192
+          - --enforce-all
       - id: check-case-conflict # Check for files with names that would conflict on a case-insensitive filesystem
       - id: check-docstring-first # Checks for a common error of placing code before the docstring
       - id: check-executables-have-shebangs # Checks that non-binary executables have a proper shebang

@@ -18,20 +18,27 @@ texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="Title" type="RichTextLabel" parent="Button"]
-margin_left = 87.0
-margin_top = 292.0
-margin_right = 251.0
-margin_bottom = 326.0
+anchor_left = 0.257
+anchor_top = 0.463
+anchor_right = 0.257
+anchor_bottom = 0.463
+margin_left = 0.134003
+margin_top = 22.0
+margin_right = 164.134
+margin_bottom = 56.0
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
-text = "Title
-"
+text = "Title"
 
 [node name="Description" type="RichTextLabel" parent="Button"]
-margin_left = 85.0
-margin_top = 335.0
-margin_right = 249.0
-margin_bottom = 498.0
+anchor_left = 0.249
+anchor_top = 0.463
+anchor_right = 0.249
+anchor_bottom = 0.463
+margin_left = -0.162003
+margin_top = 57.2
+margin_right = 164.838
+margin_bottom = 220.2
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
 text = "Test upgrade"
@@ -46,20 +53,27 @@ texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="Title" type="RichTextLabel" parent="Button2"]
-margin_left = 87.0
-margin_top = 292.0
-margin_right = 251.0
-margin_bottom = 326.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -82.161
+margin_top = -0.200012
+margin_right = 81.839
+margin_bottom = 33.8
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
-text = "Title
-"
+text = "Title"
 
 [node name="Description" type="RichTextLabel" parent="Button2"]
-margin_left = 85.0
-margin_top = 335.0
-margin_right = 249.0
-margin_bottom = 498.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -82.127
+margin_top = 35.0
+margin_right = 81.873
+margin_bottom = 198.0
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
 text = "Test upgrade"
@@ -74,20 +88,27 @@ texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="Title" type="RichTextLabel" parent="Button3"]
-margin_left = 87.0
-margin_top = 292.0
-margin_right = 251.0
-margin_bottom = 326.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -82.161
+margin_top = -0.200012
+margin_right = 81.839
+margin_bottom = 33.8
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
-text = "Title
-"
+text = "Title"
 
 [node name="Description" type="RichTextLabel" parent="Button3"]
-margin_left = 85.0
-margin_top = 335.0
-margin_right = 249.0
-margin_bottom = 498.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.5
+margin_top = 27.0
+margin_right = 80.5
+margin_bottom = 190.0
 rect_pivot_offset = Vector2( 82, -33 )
 mouse_filter = 2
 text = "Test upgrade"

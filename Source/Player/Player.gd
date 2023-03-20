@@ -50,6 +50,7 @@ func _input(event):#turn to mouse
 		rotation=vec.angle()-PI/2
 
 func _on_XPCollector_area_entered(area):
+	$XPSound.play()
 	if(area.is_in_group("collectable")):
 		area.caught=true
 
