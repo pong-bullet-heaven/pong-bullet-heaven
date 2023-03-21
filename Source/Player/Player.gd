@@ -7,16 +7,16 @@ var xp=0
 var xp_needed=1
 var level=0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$XPCollector/CollisionShape2D.shape.radius=300 #change collection radius
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready():
+	pass
+
+
 func _process(_delta):
 	if(xp>=xp_needed):
 		on_level_up()
 	pass
+
 
 func _physics_process(delta):
 	invincibleSeconds=max(invincibleSeconds-delta,0)
@@ -44,15 +44,18 @@ func _physics_process(delta):
 	if(health<=0):
 		pass
 
+
 func _input(event):#turn to mouse
 	if event is InputEventMouseMotion:
 		var vec=event.position/get_viewport_rect().size-Vector2(0.5,0.5)
 		rotation=vec.angle()-PI/2
 
+
 func _on_XPCollector_area_entered(area):
 	$XPSound.play()
 	if(area.is_in_group("collectable")):
 		area.caught=true
+
 
 func playerHit(enemy):
 	if(invincibleSeconds==0):
@@ -60,18 +63,19 @@ func playerHit(enemy):
 		invincibleSeconds=0.5
 		print(health)
 
-func on_level_up():
-	xp-=xp_needed
-	level+=1
-	xp_needed = level*5
-	print("level up")
 
-	var scene = load("res://Source/UI/Levelup/LevelUp.tscn")
-	UI.add_child(scene.instance())
+func on_level_up():
+	var scene_lvlup = load("res://Source/UI/Levelup/LevelUp.tscn")
+	xp -= xp_needed
+	level += 1
+	xp_needed = 5 * level
+	print("lvl up")
+	UI.add_child(scene_lvlup.instance())
 
 func get_upgrade_level(name):
 	var node = $Upgrades.get_node(name)
 	return node.level
+
 
 func get_available_upgrades():
 	var available=[]
@@ -79,6 +83,7 @@ func get_available_upgrades():
 		if(_filter_upgrade(upgrade)):
 			available.append(upgrade)
 	return available
+
 
 func _filter_upgrade(upgrade):
 	if(upgrade.level >= upgrade.max_level):

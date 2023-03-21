@@ -5,6 +5,7 @@ export var speed =100
 export var health = 3
 var damageAnimSeconds=0
 
+
 func _ready():
 	pass
 
@@ -27,8 +28,8 @@ func damage(amount):
 		die()
 
 func die():
-	var scene = load("res://Source/XPDrops/XP.tscn")
-	var instance = scene.instance()
+	var scene_xp = load("res://Source/XP/XP.tscn")
+	var instance = scene_xp.instance()
 	instance.position=position
 	get_node("/root").call_deferred("add_child", instance)
 	queue_free()

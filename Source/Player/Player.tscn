@@ -61,7 +61,7 @@ extents = Vector2( 21, 17 )
 extents = Vector2( 24, 13.5 )
 
 [sub_resource type="CircleShape2D" id=12]
-radius = 31.0161
+radius = 32.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 3 )
@@ -125,6 +125,7 @@ description = "more balls"
 max_level = 3
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 stream = ExtResource( 7 )
 autoplay = true
 

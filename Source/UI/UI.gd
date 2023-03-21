@@ -2,7 +2,8 @@ extends CanvasLayer
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	custom_cursor()
 
 
 func _process(_delta):
@@ -13,10 +14,30 @@ func _process(_delta):
 		toggle_sound()
 
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		$MouseCursor.position = event.position
+	elif event is InputEventMouseButton:
+		if (event.pressed):
+			$MouseCursor.animation = "click"
+		else:
+			$MouseCursor.animation = "default"
+
+
+func custom_cursor():
+	var size = round(OS.window_size.y / 67.5)
+	var sprite_size = $MouseCursor.frames.get_frame("default", 0).get_size()
+	var scale = Vector2(1 / (sprite_size.x / size), 1 / (sprite_size.y / size))
+	$MouseCursor.scale *= scale
+
+
 func toggle_fullscreen():
 	if (OS.window_fullscreen):
 		var screen_size = OS.get_screen_size()
-		var base = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+		var base = Vector2(
+			ProjectSettings.get_setting("display/window/size/width"),
+			ProjectSettings.get_setting("display/window/size/height")
+		)
 		var div = screen_size / base
 		var window_size = base * floor(min(div[0], div[1]))
 		OS.window_size = window_size

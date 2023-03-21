@@ -35,8 +35,10 @@ func _physics_process(_delta):
 			linear_velocity = Vector2(0,1).rotated(Player.rotation)*speed
 
 	if(Input.is_action_pressed("action")):
-		var target=Player.position+Vector2(0,1).rotated(Player.rotation)*200
-		var v=target-position
+		var player_size = Player.get_node("AnimatedSprite").frames.get_frame("walking", 0).get_size()
+		var player_diagonal = round(sqrt(pow(player_size.x, 2) + pow(player_size.y, 2)))
+		var target = Player.position + player_diagonal * Vector2(0, 1).rotated(Player.rotation)
+		var v = target-position
 		if(Player.position.distance_to(position)<300):
 			linear_velocity = v*10
 		else:
