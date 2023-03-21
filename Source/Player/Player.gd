@@ -9,11 +9,11 @@ var level=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$XPCollector/CollisionShape2D.shape.radius=300 #change collection radius
+	$XPCollector/CollisionShape2D.shape.radius=100 #change collection radius
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(xp>=xp_needed):
 		on_level_up()
 	pass
@@ -41,7 +41,7 @@ func _physics_process(delta):
 		$AnimatedSprite.play("walking")
 	else:
 		$AnimatedSprite.stop()
-	move_and_slide(v)
+	v = move_and_slide(v)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var collider=collision.get_collider()

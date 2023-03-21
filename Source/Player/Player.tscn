@@ -53,28 +53,28 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 100, 80 )
+extents = Vector2( 21, 17 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 160, 65 )
+extents = Vector2( 24, 13.5 )
 
 [sub_resource type="CircleShape2D" id=12]
+radius = 31.0161
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
-scale = Vector2( 10, 10 )
+scale = Vector2( 2, 2 )
 z_index = 10
 frames = SubResource( 1 )
 animation = "walking"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
-zoom = Vector2( 2, 2 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2( 0, -70 )
+position = Vector2( -1, -13 )
 shape = SubResource( 2 )
 
 [node name="Paddle" type="Area2D" parent="."]
@@ -83,7 +83,7 @@ collision_mask = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
-position = Vector2( 0, 70 )
+position = Vector2( -1.00003, 17.5 )
 rotation = 3.14159
 shape = SubResource( 3 )
 one_way_collision_margin = 10.0
@@ -91,6 +91,7 @@ one_way_collision_margin = 10.0
 [node name="XPCollector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="XPCollector"]
+position = Vector2( -1, 0 )
 shape = SubResource( 12 )
 
 [node name="Upgrades" type="Node" parent="."]
