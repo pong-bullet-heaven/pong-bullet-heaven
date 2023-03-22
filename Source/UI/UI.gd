@@ -7,10 +7,10 @@ func _ready():
 
 
 func _process(_delta):
-	if (Input.is_action_just_pressed("toggle_fullscreen")):
+	if Input.is_action_just_pressed("toggle_fullscreen"):
 		toggle_fullscreen()
 
-	if (Input.is_action_just_pressed("toggle_sound")):
+	if Input.is_action_just_pressed("toggle_sound"):
 		toggle_sound()
 
 
@@ -18,7 +18,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		$MouseCursor.position = event.position
 	elif event is InputEventMouseButton:
-		if (event.pressed):
+		if event.pressed:
 			$MouseCursor.animation = "click"
 		else:
 			$MouseCursor.animation = "default"
@@ -32,7 +32,7 @@ func custom_cursor():
 
 
 func toggle_fullscreen():
-	if (OS.window_fullscreen):
+	if OS.window_fullscreen:
 		var screen_size = OS.get_screen_size()
 		var base = Vector2(
 			ProjectSettings.get_setting("display/window/size/width"),

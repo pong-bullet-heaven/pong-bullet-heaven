@@ -26,8 +26,8 @@ repos:
       - id: pretty-format-json # Replaces or checks mixed line ending
       - id: requirements-txt-fixer # Sorts entries in requirements.txt and constraints.txt and removes incorrect entry for pkg-resources==0.0.0
       - id: trailing-whitespace # Trims trailing whitespace
-  # - repo: https://github.com/Scony/godot-gdscript-toolkit
-  #   rev: 3.5.0
-  #   hooks:
-  #      - id: gdlint
-  #      - id: gdformat
+  - repo: https://github.com/Scony/godot-gdscript-toolkit
+    rev: 3.5.0
+    hooks:
+      - id: gdlint
+      - id: gdformat
