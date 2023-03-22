@@ -19,16 +19,21 @@ irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 |
 
 - Clone the repo
 
-  ```pwsh
+  ```bash
   git clone git@github.com:pong-bullet-heaven/pong-bullet-heaven.git
   # OR
   git clone https://github.com/pong-bullet-heaven/pong-bullet-heaven.git
   ```
 
-- Install [pre-commit](https://github.com/pre-commit/pre-commit) and setup git hooks
+- Install python dependencies
 
-  ```pwsh
-  pip install pre-commit
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+- Setup git hooks with [pre-commit](https://github.com/pre-commit/pre-commit)
+
+  ```bash
   pre-commit install
   pre-commit run --all-files
   ```
