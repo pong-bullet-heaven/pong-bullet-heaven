@@ -124,6 +124,9 @@ func _on_Ball_body_exited(body):
 
 
 func _on_bounce(target=null):
+	if(target!=null and target.is_in_group("ball")):
+		return
+
 	if(pierce_count>0 and target!=null and target.is_in_group("Enemy")):
 		linear_velocity=old_velocity
 		position=old_position
@@ -133,9 +136,15 @@ func _on_bounce(target=null):
 	elif(target!=null):
 		pierce_count=pow(2,Player.get_upgrade_level("piercing"))-1#0,1,3,7,15,31
 
+	if(Player.get_upgrade_level("aoe")>0):
+
+		var aoe= load("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
+		aoe=aoe.instance()
+		aoe.position=position
+		get_node("/root").add_child(aoe)
+
 	if(Player.get_upgrade_level("homing")>0):
 		home_on_enemy(target)
-	print("bounce")
 	pass
 
 
