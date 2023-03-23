@@ -1,0 +1,44 @@
+name: Pages
+
+on:
+  workflow_run:
+    workflows:
+      - Export
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      PAGES_DIR: pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare Artifact
+        run: |
+          mkdir -p ${PAGES_DIR}
+          curl -Lso ${PAGES_DIR}.tar.gz https://github.com/${GITHUB_REPOSITORY}/releases/download/latest/web.tar.gz
+          tar -xzf ${PAGES_DIR}.tar.gz -C ${PAGES_DIR}
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ env.PAGES_DIR }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
