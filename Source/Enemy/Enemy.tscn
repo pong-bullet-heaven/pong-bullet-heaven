@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/Images/Enemy/enemy_one_hit.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/Enemy/01-enemy-hit.png" type="Texture" id=1]
 [ext_resource path="res://Source/Enemy/Enemy.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Images/Enemy/enemy_one.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/Enemy/01-enemy.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 21 )
@@ -65,4 +65,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 6 )
+frame = 1
 playing = true
