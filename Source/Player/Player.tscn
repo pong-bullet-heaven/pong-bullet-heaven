@@ -127,6 +127,7 @@ max_level = 3
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+volume_db = -16.0
 autoplay = true
 
 [node name="XPSound" type="AudioStreamPlayer2D" parent="."]

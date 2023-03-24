@@ -52,11 +52,11 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["ball"]]
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 1
 playing = true
 
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -8.0
 
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Ball_body_exited"]
