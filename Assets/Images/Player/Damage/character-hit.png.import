@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_two.png-ab4dac1ebeff77e33123cdc5d6f3487b.stex"
+path="res://.import/character-hit.png-7d22bf02ceab833a2f1d50b856ca023a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Enemy/enemy_two.png"
-dest_files=[ "res://.import/enemy_two.png-ab4dac1ebeff77e33123cdc5d6f3487b.stex" ]
+source_file="res://Assets/Images/Player/Damage/character-hit.png"
+dest_files=[ "res://.import/character-hit.png-7d22bf02ceab833a2f1d50b856ca023a.stex" ]
 
 [params]
 

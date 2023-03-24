@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Images/XP/XPGlowstick.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/XP/xp.png" type="Texture" id=1]
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4

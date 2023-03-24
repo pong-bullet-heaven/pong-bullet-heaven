@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ball_hit.png-d47e25215e7377b697c333b926157b15.stex"
+path="res://.import/ball-hit.png-46e4412eea28189e1a3f84c45e6c3963.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Projectiles/Ball/ball_hit.png"
-dest_files=[ "res://.import/ball_hit.png-d47e25215e7377b697c333b926157b15.stex" ]
+source_file="res://Assets/Images/Ball/ball-hit.png"
+dest_files=[ "res://.import/ball-hit.png-46e4412eea28189e1a3f84c45e6c3963.stex" ]
 
 [params]
 
