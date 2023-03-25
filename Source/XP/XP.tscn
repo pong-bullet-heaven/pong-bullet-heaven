@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Images/XP/01-xp.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Assets/Images/XP/xp-01.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Source/XP/XP.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -14,7 +14,6 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["collectable"]]
 frames = ExtResource( 1 )
-frame = 1
 playing = true
 
 [node name="Collision" type="CollisionShape2D" parent="." groups=["collectable"]]

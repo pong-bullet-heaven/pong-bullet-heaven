@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/01-enemy.png-be212ea7ef831eed8bb8550d48acb83a.stex"
+path="res://.import/background-tile-03.png-d01ea0bb77402451b3438a8ef91161e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Enemy/01-enemy.png"
-dest_files=[ "res://.import/01-enemy.png-be212ea7ef831eed8bb8550d48acb83a.stex" ]
+source_file="res://Assets/Images/Background/background-tile-03.png"
+dest_files=[ "res://.import/background-tile-03.png-d01ea0bb77402451b3438a8ef91161e7.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

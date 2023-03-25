@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background-tile-5.png-f5b482277a203b8a7d7c04cb3b98823c.stex"
+path="res://.import/ranged-enemy-05.png-9507673a444a399e33997753d1d95fb9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Background/background-tile-5.png"
-dest_files=[ "res://.import/background-tile-5.png-f5b482277a203b8a7d7c04cb3b98823c.stex" ]
+source_file="res://Assets/Images/RangedEnemy/ranged-enemy-05.png"
+dest_files=[ "res://.import/ranged-enemy-05.png-9507673a444a399e33997753d1d95fb9.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
-flags/filter=false
+flags/repeat=0
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

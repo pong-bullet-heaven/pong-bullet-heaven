@@ -7,7 +7,7 @@ func _ready():
 	#get random upgrades
 	available = Player.get_available_upgrades()
 	available.shuffle()
-	print(available)
+	# print(available)
 	for i in range(0, 3):
 		var button = get_child(i)
 		if available.size() <= i:

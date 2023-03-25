@@ -11,5 +11,5 @@ export var required_level: int
 func on_upgrade():
 	if level < max_level:
 		level += 1
-		print(display_name)
-		print(level)
+		# print(display_name)
+		# print(level)

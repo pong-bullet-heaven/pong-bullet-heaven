@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/02-enemy-hit.png-77f91e18165322f9e185d04ada5a0969.stex"
+path="res://.import/ranged-enemy-03.png-5b4a799488662233fd39b977d9a09977.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Enemy/02-enemy-hit.png"
-dest_files=[ "res://.import/02-enemy-hit.png-77f91e18165322f9e185d04ada5a0969.stex" ]
+source_file="res://Assets/Images/RangedEnemy/ranged-enemy-03.png"
+dest_files=[ "res://.import/ranged-enemy-03.png-5b4a799488662233fd39b977d9a09977.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
