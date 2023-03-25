@@ -21,7 +21,13 @@ func _physics_process(delta):
 	invincible_seconds = max(invincible_seconds - delta, 0)
 	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if Input.is_action_pressed("action"):
-		speed = 0
+		match Player.get_upgrade_level("pulse_movement"):
+			0:
+				speed = 0
+			1:
+				speed = speed * 0.5
+			3:
+				speed = speed * 1.5
 
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
@@ -38,7 +44,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider.is_in_group("Enemy"):
-			player_hit(collider)
+			player_hit(collider.collision_damage)
 
 	if health <= 0:
 		pass
@@ -56,9 +62,9 @@ func _on_XPCollector_area_entered(area):
 		area.caught = true
 
 
-func player_hit(enemy):
+func player_hit(damage):
 	if invincible_seconds == 0:
-		health -= enemy.collision_damage
+		health -= damage
 		invincible_seconds = 0.5
 		# print(health)
 

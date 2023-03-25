@@ -1,7 +1,12 @@
 extends RigidBody2D
 export var base_speed = 1000
+var old_velocity = Vector2(0, 0)
+var old_position = Vector2(0, 0)
+var pierce_count = 0
+var aoe_cooldown = 0
 
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
@@ -29,15 +34,13 @@ func _physics_process(_delta):
 
 	if Input.is_action_just_released("action"):
 		set_collision_mask_bit(1, true)
-		if Player.position.distance_to(position) < 300:
+		if Player.position.distance_to(position) < 130:
 			linear_velocity = Vector2(0, 1).rotated(Player.rotation) * speed
 
 	if Input.is_action_pressed("action"):
-		var player_size = Player.get_node("AnimatedSprite").frames.get_frame("walking", 0).get_size()
-		var player_diagonal = round(sqrt(pow(player_size.x, 2) + pow(player_size.y, 2)))
-		var target = Player.position + player_diagonal * Vector2(0, 1).rotated(Player.rotation)
+		var target = Player.position + Vector2(0, 1).rotated(Player.rotation) * 70
 		var v = target - position
-		if Player.position.distance_to(position) < 300:
+		if Player.position.distance_to(position) < 130:
 			linear_velocity = v * 10
 		else:
 			linear_velocity += v * (1 / v.length()) * speed / 10
@@ -63,6 +66,12 @@ func _physics_process(_delta):
 		position.y = borders.top
 		linear_velocity.y = abs(linear_velocity.y)
 		on_bounce()
+
+	old_velocity = linear_velocity
+	old_position = position
+
+	if aoe_cooldown > 0:
+		aoe_cooldown -= _delta
 
 
 func in_borders(node):
@@ -96,7 +105,7 @@ func home_on_enemy(ignore):
 	for i in range(-n, n + 1):
 		var vector = linear_velocity.rotated(deg2rad(i)) * 100
 		var result = space_state.intersect_ray(position, vector)
-		Debugging.draw_debug_line("ball_bounce", position, vector)
+		Debugging.draw_debug_line("ball_bounce", position, vector, Color.whitesmoke, 2)
 		if result.has("collider"):
 			result = result.get("collider")
 			if result.is_in_group("Enemy") and result != ignore:  #or result==Player):
@@ -105,23 +114,44 @@ func home_on_enemy(ignore):
 					closest = result
 					distance_to_closest = distance
 	if closest != null:
-		# print(closest)
 		linear_velocity = position.direction_to(closest.position) * linear_velocity.length()
-		Debugging.draw_debug_line("ball_bounce", position, closest.position, Color.red)
+		Debugging.draw_debug_line("ball_bounce", position, closest.position, Color.red, 2)
 
 
-func _on_Ball_body_entered(_body):
-	pass
-
-
-func _on_Ball_body_exited(body):
+func _on_Ball_body_entered(body):
 	if body.is_in_group("Enemy"):
-		body.damage(1 + Player.get_upgrade_level("damage"))
-
-	on_bounce(body)
+		var damage: float = 1.0 + Player.get_upgrade_level("damage")
+		damage = damage * pow(2.0 / 3.0, Player.get_upgrade_level("multi_ball"))
+		body.damage(damage)
+		on_bounce(body)
 
 
 func on_bounce(target = null):
-	$BounceSound.play()
+	if target != null and target.is_in_group("ball"):
+		return
+
+	#pierce
+	if pierce_count > 0 and target != null and target.is_in_group("Enemy"):
+		linear_velocity = old_velocity
+		position = old_position
+		self.add_collision_exception_with(target)
+		pierce_count -= 1
+
+	elif target != null:
+		pierce_count = pow(2, Player.get_upgrade_level("piercing")) - 1  #0,1,3,7,15,31
+
+	#aoe
+	if Player.get_upgrade_level("aoe") > 0 && aoe_cooldown <= 0:
+		var aoe = load("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
+		aoe = aoe.instance()
+		aoe.position = position
+		get_node("/root").call_deferred("add_child", aoe)
+		aoe_cooldown = 1 - 0.1 * Player.get_upgrade_level("aoe")
+
+	#homing
 	if Player.get_upgrade_level("homing") > 0:
 		home_on_enemy(target)
+
+
+func _on_Area2D_body_exited(body):
+	self.remove_collision_exception_with(body)

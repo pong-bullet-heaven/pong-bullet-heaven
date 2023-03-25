@@ -85,6 +85,12 @@ toggle_fullscreen={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Ball"
+
 [mono]
 
 project/assembly_name="Pong Bullet Heaven"

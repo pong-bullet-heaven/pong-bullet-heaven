@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-07.png" type="Texture" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 62.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -30,8 +31,9 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=3]
 
-[node name="RangedEnemy" type="KinematicBody2D"]
+[node name="RangedEnemy" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 0.5, 0.5 )
+collision_layer = 2
 collision_mask = 512
 script = ExtResource( 1 )
 
@@ -43,6 +45,7 @@ one_way_collision = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+frame = 3
 playing = true
 
 [node name="Range" type="Area2D" parent="."]
