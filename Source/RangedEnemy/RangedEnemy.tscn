@@ -43,7 +43,6 @@ one_way_collision = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 12
 playing = true
 
 [node name="Range" type="Area2D" parent="."]

@@ -29,7 +29,7 @@ func move_forward():
 	if timero == 0:
 		var v = (Player.position - position).normalized() * speed
 		rotation = v.angle() - PI / 2
-		move_and_slide(v)
+		v = move_and_slide(v)
 	else:
 		move_backward()
 
@@ -39,7 +39,7 @@ func move_backward():
 		timero -= 1
 		var c = (Player.position - position).normalized() * backwardsspeed
 		rotation = c.angle() - PI / 2
-		move_and_slide(c)
+		c = move_and_slide(c)
 	else:
 		timero = 50
 
@@ -47,17 +47,16 @@ func move_backward():
 func _physics_process(_delta):
 	if move_back == false:
 		move_forward()
-		attacktimercount = attack_timer(attacktimercount)
+		attack_timer()
 	elif move_back == true:
 		move_backward()
 
 
-func attack_timer(attacktimercount):
+func attack_timer():
 	attacktimercount = attacktimercount - 1
 	if attacktimercount == 0:
 		shoot()
 		attacktimercount = 800  # this is the attack speed
-	return attacktimercount
 
 
 func shoot():  # shoot the projectile
