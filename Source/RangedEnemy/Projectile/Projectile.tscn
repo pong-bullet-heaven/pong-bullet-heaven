@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Source/RangedEnemy/Projectile/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle3.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle1.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-03.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-02.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-01.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-04.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 

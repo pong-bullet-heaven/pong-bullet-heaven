@@ -1,22 +1,22 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Source/RangedEnemy/RangedEnemy.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy14.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy13.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy15.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy00.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy01.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy03.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy05.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy07.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy08.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy02.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy09.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy11.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy12.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy10.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy04.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Images/RangedEnemy/RangedEnemy06.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-15.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-14.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-16.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-01.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-02.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-04.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-06.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-08.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-09.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-03.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-10.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-12.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-13.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-11.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-05.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-07.png" type="Texture" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -43,7 +43,7 @@ one_way_collision = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 1
+frame = 12
 playing = true
 
 [node name="Range" type="Area2D" parent="."]
