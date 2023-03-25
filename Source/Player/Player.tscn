@@ -142,7 +142,6 @@ max_level = 5
 [node name="aoe" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "aoe"
 description = "aoe"
-level = 1
 max_level = 5
 
 [connection signal="body_entered" from="Paddle" to="Paddle" method="_on_Paddle_body_entered"]

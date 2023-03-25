@@ -3,6 +3,7 @@ export var base_speed=1000
 var old_velocity=Vector2(0,0)
 var old_position=Vector2(0,0)
 var pierce_count=0
+var aoe_cooldown=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -70,6 +71,9 @@ func _physics_process(_delta):
 	old_velocity=linear_velocity
 	old_position=position
 
+	if(aoe_cooldown>0):
+		aoe_cooldown-=_delta
+
 func in_borders(node):
 	var borders = get_borders()
 
@@ -127,6 +131,7 @@ func _on_bounce(target=null):
 	if(target!=null and target.is_in_group("ball")):
 		return
 
+	#pierce
 	if(pierce_count>0 and target!=null and target.is_in_group("Enemy")):
 		linear_velocity=old_velocity
 		position=old_position
@@ -136,13 +141,15 @@ func _on_bounce(target=null):
 	elif(target!=null):
 		pierce_count=pow(2,Player.get_upgrade_level("piercing"))-1#0,1,3,7,15,31
 
-	if(Player.get_upgrade_level("aoe")>0):
-
+	#aoe
+	if(Player.get_upgrade_level("aoe")>0 && aoe_cooldown<=0):
 		var aoe= load("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
 		aoe=aoe.instance()
 		aoe.position=position
-		get_node("/root").add_child(aoe)
+		get_node("/root").call_deferred("add_child",aoe)
+		aoe_cooldown=1-0.1*Player.get_upgrade_level("aoe")
 
+	#homing
 	if(Player.get_upgrade_level("homing")>0):
 		home_on_enemy(target)
 	pass

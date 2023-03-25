@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Images/Projectiles/Ball/ball_hit.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 14.0357
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -40,7 +40,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 2
+frame = 3
 playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
