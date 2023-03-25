@@ -60,7 +60,7 @@ func player_hit(enemy):
 	if invincible_seconds == 0:
 		health -= enemy.collision_damage
 		invincible_seconds = 0.5
-		print(health)
+		# print(health)
 
 
 func on_level_up():
@@ -68,7 +68,7 @@ func on_level_up():
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
-	print("lvl up")
+	# print("lvl up")
 	UI.add_child(scene_lvlup.instance())
 
 

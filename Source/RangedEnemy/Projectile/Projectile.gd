@@ -24,7 +24,7 @@ func destroy():
 func _on_Projectile_body_entered(body):
 	if body == Player:
 		body.health -= projectile_damage
-		print(body.health)
+		# print(body.health)
 		destroy()
 
 

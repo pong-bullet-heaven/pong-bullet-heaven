@@ -13,7 +13,7 @@ var packed_scene
 
 func _ready():
 	if entity == "" || get_node(entity) == null:
-		print("Warning: Spawnwave without assigned entity, assigning child")
+		# print("Warning: Spawnwave without assigned entity, assigning child")
 		entity = get_children()[0].get_path()
 	var scene = PackedScene.new()
 	scene.pack(get_node(entity))

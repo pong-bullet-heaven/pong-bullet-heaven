@@ -105,7 +105,7 @@ func home_on_enemy(ignore):
 					closest = result
 					distance_to_closest = distance
 	if closest != null:
-		print(closest)
+		# print(closest)
 		linear_velocity = position.direction_to(closest.position) * linear_velocity.length()
 		Debugging.draw_debug_line("ball_bounce", position, closest.position, Color.red)
 
