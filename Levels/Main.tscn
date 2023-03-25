@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Images/Background/background-tiles.tres" type="Texture" id=1]
 [ext_resource path="res://Source/EnemyController/EnemyController.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Source/Enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Source/Ball/Ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Source/EnemyController/SpawnWave.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Source/RangedEnemy/RangedEnemy.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 
@@ -29,9 +30,17 @@ exponent = 0.3
 speed = 75
 health = 3
 
+[node name="SpawnWave3" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 30.0
+end_time = 180.0
+exponent = 0.1
+
+[node name="RangedEnemy" parent="EnemyController/SpawnWave3" instance=ExtResource( 6 )]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.75, 0.75, 0.75, 1 )
 motion_mirroring = Vector2( 2048, 1152 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]

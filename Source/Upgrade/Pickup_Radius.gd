@@ -1,5 +1,4 @@
-extends "res://Source/Upgrade/Base_Upgrade.gd"
-
+extends "res://Source/Upgrade/BaseUpgrade.gd"
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,9 +7,12 @@ extends "res://Source/Upgrade/Base_Upgrade.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass  # Replace with function body.
 
 
 func on_upgrade():
-	Player.get_node("XPCollector/CollisionShape2D").shape.radius=Player.get_node("XPCollector/CollisionShape2D").shape.radius*1.4
+	Player.get_node("XPCollector/CollisionShape2D").shape.radius = (
+		Player.get_node("XPCollector/CollisionShape2D").shape.radius
+		* 1.4
+	)
 	.on_upgrade()

@@ -1,12 +1,14 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Images/Player/character.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Images/Player/Damage/character_hit.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/Player/Damage/character-hit.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=3]
-[ext_resource path="res://Source/Upgrade/multi_ball.gd" type="Script" id=4]
+[ext_resource path="res://Source/Upgrade/MultiBall.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/Paddle.gd" type="Script" id=5]
-[ext_resource path="res://Source/Upgrade/Base_Upgrade.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Source/Upgrade/Pickup_Radius.gd" type="Script" id=7]
+[ext_resource path="res://Source/Upgrade/BaseUpgrade.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Sounds/background.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sounds/xp.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Source/Upgrade/Pickup_Radius.gd" type="Script" id=9]
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
@@ -60,9 +62,10 @@ extents = Vector2( 21, 17 )
 extents = Vector2( 24, 13.5 )
 
 [sub_resource type="CircleShape2D" id=12]
-radius = 31.0161
+radius = 128.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+collision_layer = 513
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
@@ -126,6 +129,7 @@ max_level = 3
 [node name="piercing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "piercing"
 description = "piercing"
+level = 5
 max_level = 5
 
 [node name="pulse_movement" parent="Upgrades" instance=ExtResource( 6 )]
@@ -134,7 +138,7 @@ description = "more speed while space"
 max_level = 3
 
 [node name="pickup_radius" parent="Upgrades" instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 display_name = "pickup range"
 description = "more range for pickup"
 max_level = 5
@@ -143,6 +147,15 @@ max_level = 5
 display_name = "aoe"
 description = "aoe"
 max_level = 5
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+volume_db = -16.0
+autoplay = true
+
+[node name="XPSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="body_entered" from="Paddle" to="Paddle" method="_on_Paddle_body_entered"]
 [connection signal="area_entered" from="XPCollector" to="." method="_on_XPCollector_area_entered"]

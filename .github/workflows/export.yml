@@ -10,6 +10,7 @@ jobs:
   export:
     runs-on: ubuntu-latest
     env:
+      EXPORT_DIR: export
       GODOT_VERSION: 3.5.1
       GODOT_RELEASE: stable
     steps:
@@ -42,26 +43,23 @@ jobs:
       - name: Export Project
         env:
           GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
-          EXPORT_DIR: export
           LINUX_FILE: linux.tar.gz
           WEB_FILE: web.tar.gz
           WINDOWS_FILE: windows.zip
         run: |
           mkdir -p ${EXPORT_DIR}/{linux,web,windows}
           ./godot --export linux ${EXPORT_DIR}/linux/${GITHUB_REPOSITORY_NAME}.x86_64 project.godot
-          ./godot --export web ${EXPORT_DIR}/web/${GITHUB_REPOSITORY_NAME}.html project.godot
+          ./godot --export web ${EXPORT_DIR}/web/index.html project.godot
           ./godot --export windows ${EXPORT_DIR}/windows/${GITHUB_REPOSITORY_NAME}.exe project.godot
-          (cd ${EXPORT_DIR}/linux && tar -acf ../${LINUX_FILE} *)
-          (cd ${EXPORT_DIR}/web && tar -acf ../${WEB_FILE} *)
+          (cd ${EXPORT_DIR}/linux && tar -czf ../${LINUX_FILE} *)
+          (cd ${EXPORT_DIR}/web && tar -czf ../${WEB_FILE} *)
           (cd ${EXPORT_DIR}/windows && zip -r ../${WINDOWS_FILE} *)
-          echo "EXPORT_DIR=${EXPORT_DIR}" >> $GITHUB_ENV
-          echo "EXPORT_FILES=${LINUX_FILE} ${WEB_FILE} ${WINDOWS_FILE}" >> $GITHUB_ENV
+          echo "ASSET_NAMES=${LINUX_FILE} ${WEB_FILE} ${WINDOWS_FILE}" >> $GITHUB_ENV
       - name: Create latest tag
         run: |
-          git config --global user.name "Masterflitzer"
-          git config --global user.email "60170948+Masterflitzer@users.noreply.github.com"
-          git ls-remote --tags --exit-code origin latest
-          if test "$?" -eq 0
+          git config --global user.name "masterflitzer"
+          git config --global user.email "60170948+masterflitzer@users.noreply.github.com"
+          if test ! -z "$(git ls-remote --tags origin latest)"
           then
             git push -d origin latest
           fi
@@ -72,22 +70,28 @@ jobs:
           GITHUB_API_VER: "2022-11-28"
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
-          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X GET -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest")"
+          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X GET -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases")"
 
-          if test "${CODE}" -eq 200
+          if test "${CODE}" -ne 200
           then
-            RELEASE_ID="$(cat /tmp/.tmp | jq -r '.id')"
+            echo "::error::Couldn't get list of releases (Status Code: ${CODE})"
+            exit 1
+          fi
 
+          RELEASE_IDS="$(cat /tmp/.tmp | jq -r '.[].id')"
+
+          for RELEASE_ID in ${RELEASE_IDS[@]}
+          do
             CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}")"
 
             if test "${CODE}" -ne 204
             then
-              echo "::error::Couldn't delete the latest release (Status Code: ${CODE})"
+              echo "::error::Couldn't delete the release (Status Code: ${CODE})"
               exit 1
             fi
-          fi
+          done
 
-          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{ \"tag_name\": \"latest\", \"name\": \"Release\", \"body\": \"see readme for installation instructions\", \"draft\": false, \"prerelease\": false, \"generate_release_notes\": false }")"
+          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{ \"tag_name\": \"latest\", \"name\": \"Release\", \"body\": \"Checkout the [README](https://github.com/pong-bullet-heaven/pong-bullet-heaven#readme) for more information\", \"draft\": false, \"prerelease\": false, \"generate_release_notes\": false }")"
 
           if test "${CODE}" -ne 201
           then
@@ -97,7 +101,7 @@ jobs:
 
           RELEASE_ID="$(cat /tmp/.tmp | jq -r '.id')"
 
-          for ASSET_NAME in ${EXPORT_FILES[@]}
+          for ASSET_NAME in ${ASSET_NAMES[@]}
           do
             FILE="${EXPORT_DIR}/${ASSET_NAME}"
 
