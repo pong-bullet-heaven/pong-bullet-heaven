@@ -7,9 +7,9 @@ Game as part of a group project in computer science written in Godot Engine
 
 ## Play
 
-You can download the latest release from [GitHub Releases](https://github.com/pong-bullet-heaven/pong-bullet-heaven/releases)
+You can download the latest release from [GitHub Releases](https://github.com/pong-bullet-heaven/pong-bullet-heaven/releases/latest) or play the web version on [GitHub Pages](https://pong-bullet-heaven.github.io/pong-bullet-heaven)
 
-If you are using Windows you can also execute this PowerShell command to download the game and create an entry in the start menu
+If you are using Windows, you can also run this command in PowerShell to download the game and automatically create an entry in the start menu:
 
 ```pwsh
 irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 | iex
