@@ -91,7 +91,7 @@ jobs:
             fi
           done
 
-          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{ \"tag_name\": \"latest\", \"name\": \"Release\", \"body\": \"see readme for installation instructions\", \"draft\": false, \"prerelease\": false, \"generate_release_notes\": false }")"
+          CODE="$(curl -Lso /tmp/.tmp -w "%{response_code}" -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "X-GitHub-Api-Version: ${GITHUB_API_VER}" "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases" -d "{ \"tag_name\": \"latest\", \"name\": \"Release\", \"body\": \"Checkout the [README](https://github.com/pong-bullet-heaven/pong-bullet-heaven#readme) for more information\", \"draft\": false, \"prerelease\": false, \"generate_release_notes\": false }")"
 
           if test "${CODE}" -ne 201
           then
