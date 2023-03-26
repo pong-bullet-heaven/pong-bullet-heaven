@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=48 format=2]
 
-[ext_resource path="res://Assets/Images/Player/character.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Images/Player/Damage/character-hit.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/Player/Character/r_player-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/Player/Character/b_player-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Source/Upgrade/MultiBall.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/Paddle.gd" type="Script" id=5]
@@ -9,57 +9,174 @@
 [ext_resource path="res://Assets/Sounds/background.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sounds/xp.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Source/Upgrade/Pickup_Radius.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Images/Player/Character/player_idle-Sheet.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Images/Player/Character/f_player-Sheet.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Images/Player/Character/l_player-Sheet.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/Player/Paddle/gadget-Sheet.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/Player/Character/player_idle_hit-Sheet.png" type="Texture" id=14]
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 0, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 2048, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 4096, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 14 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 14 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 14 )
+region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 32 )
+atlas = ExtResource( 11 )
+region = Rect2( 2048, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 32, 32 )
+atlas = ExtResource( 11 )
+region = Rect2( 4096, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 11 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 12 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 12 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 12 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 10 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 10 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 10 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 1 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 1 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "b_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
 "loop": true,
 "name": "damage",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
-"name": "walking",
-"speed": 10.0
+"name": "f_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "l_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "n_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"loop": true,
+"name": "r_walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 21, 17 )
+extents = Vector2( 21, 22.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24, 13.5 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="SpriteFrames" id=33]
+animations = [ {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=12]
 radius = 128.0
@@ -68,17 +185,17 @@ radius = 128.0
 collision_layer = 513
 script = ExtResource( 3 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Player"]]
-scale = Vector2( 2, 2 )
+[node name="AnimatedSpriteCharacter" type="AnimatedSprite" parent="." groups=["Player"]]
+scale = Vector2( 0.05, 0.05 )
 z_index = 10
 frames = SubResource( 1 )
-animation = "walking"
+animation = "n_walk"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2( -1, -13 )
+position = Vector2( -1, 5.5 )
 shape = SubResource( 2 )
 
 [node name="Paddle" type="Area2D" parent="."]
@@ -91,6 +208,12 @@ position = Vector2( -1.00003, 17.5 )
 rotation = 3.14159
 shape = SubResource( 3 )
 one_way_collision_margin = 10.0
+
+[node name="AnimatedSpritePaddle" type="AnimatedSprite" parent="Paddle"]
+position = Vector2( 0, 30 )
+scale = Vector2( 0.05, 0.05 )
+z_index = 11
+frames = SubResource( 33 )
 
 [node name="XPCollector" type="Area2D" parent="."]
 
@@ -129,7 +252,6 @@ max_level = 3
 [node name="piercing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "piercing"
 description = "piercing"
-level = 5
 max_level = 5
 
 [node name="pulse_movement" parent="Upgrades" instance=ExtResource( 6 )]

@@ -7,12 +7,24 @@ var xp = 0
 var xp_needed = 1
 var level = 0
 
+var direction = "n"
+
 
 func _ready():
 	pass
 
 
 func _process(_delta):
+	var animation = direction + "_walk"
+	if invincible_seconds > 0:
+		animation = "damage"
+	$AnimatedSpriteCharacter.play(animation)
+	$AnimatedSpriteCharacter.rotation = -rotation
+	if abs(rotation) < PI / 2:
+		$Paddle/AnimatedSpritePaddle.z_index = 11
+	else:
+		$Paddle/AnimatedSpritePaddle.z_index = 9
+
 	if xp >= xp_needed:
 		on_level_up()
 
@@ -32,13 +44,21 @@ func _physics_process(delta):
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
 		v = v.normalized() * speed
+	var dir_vec = Vector2(0, 1).rotated(rotation + PI / 4)
+	#var dir_vec=v.rotated(PI/4)
+	if dir_vec[0] < 0:
+		if dir_vec[1] < 0:
+			direction = "l"
+		if dir_vec[1] > 0:
+			direction = "f"
+	if dir_vec[0] > 0:
+		if dir_vec[1] < 0:
+			direction = "b"
+		if dir_vec[1] > 0:
+			direction = "r"
+	if v == Vector2(0, 0):
+		direction = "n"
 
-	if invincible_seconds > 0:
-		$AnimatedSprite.play("damage")
-	elif v.length() > 0:
-		$AnimatedSprite.play("walking")
-	else:
-		$AnimatedSprite.stop()
 	v = move_and_slide(v)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
