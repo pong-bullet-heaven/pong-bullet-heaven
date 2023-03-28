@@ -30,7 +30,6 @@ func _physics_process(delta):
 	scalefactor = scalefactor * pow(2.0 / 3.0, Player.get_upgrade_level("multi_ball"))
 	$CollisionShape2D.shape.radius = base_radius * scalefactor
 	$AnimatedSprite.scale = base_scale * scalefactor
-	print(base_radius)
 
 
 func _on_Area2D_body_entered(body):

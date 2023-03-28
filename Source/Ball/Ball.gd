@@ -45,7 +45,7 @@ func _physics_process(_delta):
 		if Player.position.distance_to(position) < 130:
 			linear_velocity = v * 10
 		else:
-			linear_velocity += v * (1 / v.length()) * speed / 10
+			linear_velocity += v * (1 / v.length()) * speed / 10 + Vector2(1, 1) / v
 
 	if linear_velocity.length() > speed:  #maxspeed for variable velocity
 		linear_velocity = linear_velocity.normalized() * speed
