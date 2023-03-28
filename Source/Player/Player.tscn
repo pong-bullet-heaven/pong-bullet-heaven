@@ -255,6 +255,7 @@ max_level = 10
 [node name="ball_speed" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Ball Speed"
 description = "Ball travels faster"
+level = 10
 max_level = 10
 
 [node name="damage" parent="Upgrades" instance=ExtResource( 6 )]

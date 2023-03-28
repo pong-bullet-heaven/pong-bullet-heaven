@@ -14,17 +14,20 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["collectable"]]
 frames = ExtResource( 1 )
+animation = "blue"
 frame = 1
 playing = true
 
 [node name="Collision" type="CollisionShape2D" parent="." groups=["collectable"]]
 shape = SubResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CombineArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 16
 
-[node name="Combine" type="CollisionShape2D" parent="Area2D"]
+[node name="Combine" type="CollisionShape2D" parent="CombineArea"]
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
+[connection signal="area_entered" from="CombineArea" to="." method="_on_CombineArea_area_entered"]
+[connection signal="area_exited" from="CombineArea" to="." method="_on_CombineArea_area_exited"]
