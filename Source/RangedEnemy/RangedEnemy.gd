@@ -5,6 +5,13 @@ export var speed = 50
 export var health = 3
 export var backwardsspeed = -70
 export var Projectile = preload("res://Source/RangedEnemy/Projectile/Projectile.tscn")
+
+export var type = "blue"
+export var variations = ["one", "two"]
+var variation = "one"
+var direction = "r"
+var action = "walk"
+
 var damage_anim_seconds = 0
 var attacktimercount = 1
 var timero = 0  # timer for moving back in a sprint
@@ -25,38 +32,44 @@ func _process(delta):  # no damage animation yet available
 #		$AnimatedSprite.play("default")
 
 
-func move_forward():
-	if timero == 0:
+func move_forward(_delta):
+	if timero <= 0:
 		var v = (Player.position - position).normalized() * speed
-		rotation = v.angle() - PI / 2
+		if v[0] < 0:
+			direction = "l"
+		if v[0] > 0:
+			direction = "r"
 		v = move_and_slide(v)
 	else:
-		move_backward()
+		move_backward(_delta)
 
 
-func move_backward():
-	if timero != 0:  # timer that counts down the backwards sprint
-		timero -= 1
+func move_backward(_delta):
+	if timero > 0:  # timer that counts down the backwards sprint
+		timero -= _delta
 		var c = (Player.position - position).normalized() * backwardsspeed
-		rotation = c.angle() - PI / 2
+		if c[0] < 0:
+			direction = "l"
+		if c[0] > 0:
+			direction = "r"
 		c = move_and_slide(c)
 	else:
-		timero = 50
+		timero = 0.3
 
 
 func _physics_process(_delta):
 	if move_back == false:
-		move_forward()
-		attack_timer()
+		move_forward(_delta)
+		attack_timer(_delta)
 	elif move_back == true:
-		move_backward()
+		move_backward(_delta)
 
 
-func attack_timer():
-	attacktimercount = attacktimercount - 1
-	if attacktimercount == 0:
+func attack_timer(_delta):
+	attacktimercount = attacktimercount - _delta
+	if attacktimercount <= 0:
 		shoot()
-		attacktimercount = 800  # this is the attack speed
+		attacktimercount = 8  # this is the attack speed
 
 
 func shoot():  # shoot the projectile

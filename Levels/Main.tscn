@@ -29,9 +29,10 @@ exponent = 0.3
 [node name="Enemy" parent="EnemyController/SpawnWave2" instance=ExtResource( 3 )]
 speed = 75
 health = 3
+type = "red"
 
 [node name="SpawnWave3" parent="EnemyController" instance=ExtResource( 5 )]
-start_time = 30.0
+start_time = 60.0
 end_time = 180.0
 exponent = 0.1
 
