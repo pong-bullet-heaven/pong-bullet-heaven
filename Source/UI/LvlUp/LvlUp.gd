@@ -4,7 +4,7 @@ var available
 
 
 func _ready():
-	#get random upgrades
+	# get random upgrades
 	available = Player.get_available_upgrades()
 	available.shuffle()
 	# print(available)
@@ -15,7 +15,6 @@ func _ready():
 			break
 		button.get_node("Title").text = available[i].display_name
 		button.get_node("Description").text = available[i].description
-
 	get_tree().paused = true
 
 
