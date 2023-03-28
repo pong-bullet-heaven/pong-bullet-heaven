@@ -1,16 +1,29 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Source/RangedEnemy/Projectile/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-03.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-02.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-01.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-04.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/RangedEnemy/Projectile/bottle-Sheet.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -26,7 +39,8 @@ scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 6 )
 frame = 2
 playing = true
 

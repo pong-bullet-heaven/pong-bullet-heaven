@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bottle-01.png-74c43a1635c8d208d933fba0d77be653.stex"
+path="res://.import/bottle-Sheet.png-dba81daac1e27fa6b195a10e1bc716d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/RangedEnemy/Projectile/bottle-01.png"
-dest_files=[ "res://.import/bottle-01.png-74c43a1635c8d208d933fba0d77be653.stex" ]
+source_file="res://Assets/Images/RangedEnemy/Projectile/bottle-Sheet.png"
+dest_files=[ "res://.import/bottle-Sheet.png-dba81daac1e27fa6b195a10e1bc716d5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
