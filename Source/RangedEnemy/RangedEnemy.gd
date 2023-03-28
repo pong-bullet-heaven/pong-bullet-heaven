@@ -4,7 +4,6 @@ export var collision_damage = 1
 export var speed = 50
 export var health = 3
 export var backwardsspeed = -70
-export var Projectile = preload("res://Source/RangedEnemy/Projectile/Projectile.tscn")
 
 export var type = "blue"
 export var variations = ["one", "two"]
@@ -73,7 +72,8 @@ func attack_timer(_delta):
 
 
 func shoot():  # shoot the projectile
-	var projectile = Projectile.instance()
+	var scene_projectile = load("res://Source/RangedEnemy/Projectile/Projectile.tscn")
+	var projectile = scene_projectile.instance()
 	get_tree().get_root().add_child(projectile)
 	projectile.global_position = global_position
 	var dir = (Player.global_position - global_position).normalized()
