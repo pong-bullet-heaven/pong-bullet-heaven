@@ -90,7 +90,7 @@ func player_hit(damage):
 
 
 func on_level_up():
-	var scene_lvlup = load("res://Source/UI/Levelup/LevelUp.tscn")
+	var scene_lvlup = load("res://Source/UI/LvlUp/LvlUp.tscn")
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
