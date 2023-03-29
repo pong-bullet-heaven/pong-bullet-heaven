@@ -5,6 +5,25 @@
 
 Game as part of a group project in computer science written in Godot Engine
 
+## Credits
+
+### Game Development
+
+* Game Designer: [@HenrikNeffe](https://github.com/HenrikNeffe) [@yrtemmys](https://github.com/yrtemmys)
+* Game Programmer: [@DeltaPi314](https://github.com/DeltaPi314) [@HenrikNeffe](https://github.com/HenrikNeffe) [@marlene-dev](https://github.com/marlene-dev) [@masterflitzer](https://github.com/masterflitzer)
+* Game Artist: [@icaroboaventura](https://github.com/icaroboaventura) [@yrtemmys](https://github.com/yrtemmys)
+* Docs: [@marlene-dev](https://github.com/marlene-dev)
+
+### Music
+
+* Background Music
+
+  ```txt
+  Popcorn - Main Loop - Steven O'Brien
+  ------------------------------------------
+  Music by: <https://www.steven-obrien.net/>
+  ```
+
 ## Play
 
 You can download the latest release from [GitHub Releases](https://github.com/pong-bullet-heaven/pong-bullet-heaven/releases/latest) or play the web version on [GitHub Pages](https://pong-bullet-heaven.github.io/pong-bullet-heaven)
@@ -17,7 +36,7 @@ irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 |
 
 ## Develop
 
-- Clone the repo
+* Clone the repo
 
   ```bash
   git clone git@github.com:pong-bullet-heaven/pong-bullet-heaven.git
@@ -25,21 +44,21 @@ irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 |
   git clone https://github.com/pong-bullet-heaven/pong-bullet-heaven.git
   ```
 
-- Install python dependencies
+* Install python dependencies
 
   ```bash
   pip install -r requirements.txt
   ```
 
-- Setup git hooks with [pre-commit](https://github.com/pre-commit/pre-commit)
+* Setup git hooks with [pre-commit](https://github.com/pre-commit/pre-commit)
 
   ```bash
   pre-commit install
   pre-commit run --all-files
   ```
 
-- Install Godot
-  - Windows
+* Install Godot
+  * Windows
 
     ```pwsh
     irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/godot.ps1 | iex
@@ -51,7 +70,7 @@ irm https://github.com/pong-bullet-heaven/pong-bullet-heaven/raw/main/game.ps1 |
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
     ```
 
-  - macOS
+  * macOS
 
     ```bash
     brew install --cask godot
