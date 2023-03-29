@@ -6,6 +6,8 @@ var base_speed
 var xp
 var xp_needed
 var level
+var death_seconds
+var dying
 var direction
 var score: int
 var timer: float
@@ -32,12 +34,18 @@ func _setup():
 	direction = "n"
 	score = 0
 	timer = 0.0
+	death_seconds = 0
+	dying = false
 
 
 func _process(_delta):
 	var animation = direction + "_walk"
 	if invincible_seconds > 0:
 		animation = "damage"
+	if dying:
+		if direction != "b":
+			direction = "f"
+		animation = direction + "_death"
 	$AnimatedSpriteCharacter.play(animation)
 	$AnimatedSpriteCharacter.rotation = -rotation
 	if abs(rotation) < PI / 2:
@@ -50,6 +58,12 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	if dying:
+		death_seconds -= delta
+		if death_seconds <= 0:
+			die()
+		return
+
 	invincible_seconds = float(max(invincible_seconds - delta, 0))
 	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if Input.is_action_pressed("action"):
@@ -86,12 +100,9 @@ func _physics_process(delta):
 		if collider.is_in_group("Enemy"):
 			player_hit(collider.collision_damage)
 
-	if health <= 0:
-		pass
-
 
 func _input(event):  #turn to mouse
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not dying:
 		var vec = event.position / get_viewport_rect().size - Vector2(0.5, 0.5)
 		rotation = vec.angle() - PI / 2
 
@@ -107,8 +118,10 @@ func player_hit(damage):
 		health -= damage
 		invincible_seconds = 0.5
 		# print(health)
+
 	if health <= 0:
-		die()
+		dying = true
+		death_seconds = 1
 
 
 func on_level_up():

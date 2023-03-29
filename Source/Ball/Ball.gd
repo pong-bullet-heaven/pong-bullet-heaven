@@ -31,15 +31,15 @@ func get_borders():
 
 func _physics_process(_delta):
 	var speed = base_speed + 1000 * Player.get_upgrade_level("ball_speed")
-	if Input.is_action_just_pressed("action"):
+	if Input.is_action_just_pressed("action") and not Player.dying:
 		set_collision_mask_bit(1, false)
 
-	if Input.is_action_just_released("action"):
+	if Input.is_action_just_released("action") and not Player.dying:
 		set_collision_mask_bit(1, true)
 		if Player.position.distance_to(position) < 130:
 			linear_velocity = Vector2(0, 1).rotated(Player.rotation) * speed
 
-	if Input.is_action_pressed("action"):
+	if Input.is_action_pressed("action") and not Player.dying:
 		var target = Player.position + Vector2(0, 1).rotated(Player.rotation) * 70
 		var v = target - position
 		if Player.position.distance_to(position) < 130:
@@ -143,11 +143,11 @@ func on_bounce(target = null):
 		pierce_count = pow(2, Player.get_upgrade_level("piercing")) - 1  #0,1,3,7,15,31
 
 	#aoe
-	if Player.get_upgrade_level("aoe") > 0 && aoe_cooldown <= 0:
+	if Player.get_upgrade_level("aoe") > 0 && aoe_cooldown <= 0 && target != null:
 		var aoe = scene_aoe.instance()
 		aoe.position = position
 		get_tree().get_root().call_deferred("add_child", aoe)
-		aoe_cooldown = 1 - 0.1 * Player.get_upgrade_level("aoe")
+		aoe_cooldown = 0.1
 
 	#homing
 	if Player.get_upgrade_level("homing") > 0:

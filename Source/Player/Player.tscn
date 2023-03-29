@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Assets/Images/Player/Character/r_player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/Character/b_player-Sheet.png" type="Texture" id=2]
@@ -14,6 +14,37 @@
 [ext_resource path="res://Assets/Images/Player/Character/l_player-Sheet.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Images/Player/Paddle/gadget-Sheet.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Images/Player/Character/player_idle_hit-Sheet.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Images/Player/Character/player_front_dead.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/Player/Character/player_back_dead.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/UI/Upgrades/speed.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Images/UI/Upgrades/ballspeed.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Images/UI/Upgrades/damage.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Images/UI/Upgrades/multiball.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Images/UI/Upgrades/homing.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Images/UI/Upgrades/piercing.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Images/UI/Upgrades/pulse.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Images/UI/Upgrades/aoe.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Images/UI/Upgrades/pickup.png" type="Texture" id=25]
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
@@ -57,6 +88,25 @@ region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="AtlasTexture" id=46]
 flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 2048, 2048 )
 
@@ -137,7 +187,12 @@ region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": false,
+"name": "b_death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "b_walk",
 "speed": 5.0
@@ -148,6 +203,11 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": false,
+"name": "f_death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
 "name": "f_walk",
 "speed": 5.0
@@ -172,7 +232,7 @@ animations = [ {
 extents = Vector2( 21, 22.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 24, 13.5 )
+extents = Vector2( 29, 28.5 )
 
 [sub_resource type="AtlasTexture" id=62]
 flags = 4
@@ -213,7 +273,7 @@ script = ExtResource( 3 )
 scale = Vector2( 0.05, 0.05 )
 z_index = 10
 frames = SubResource( 1 )
-animation = "n_walk"
+animation = "b_death"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
@@ -228,7 +288,7 @@ collision_mask = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
-position = Vector2( -1.00003, 17.5 )
+position = Vector2( 3.14513e-05, 45.5 )
 rotation = 3.14159
 shape = SubResource( 3 )
 one_way_collision_margin = 10.0
@@ -251,49 +311,58 @@ shape = SubResource( 12 )
 display_name = "Speed"
 description = "Become faster"
 max_level = 10
+image = ExtResource( 17 )
 
 [node name="ball_speed" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Ball Speed"
 description = "Ball travels faster"
 level = 10
 max_level = 10
+image = ExtResource( 18 )
 
 [node name="damage" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Damage"
 description = "Increase damage"
 max_level = 10
+image = ExtResource( 19 )
 
 [node name="homing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Homing"
 description = "Homing on bounce"
 max_level = 3
+image = ExtResource( 21 )
 
 [node name="multi_ball" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 4 )
 display_name = "Multi-shot"
 description = "Increase number of balls"
 max_level = 3
+image = ExtResource( 20 )
 
 [node name="piercing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Piercing"
 description = "Ball can travel through more enemies"
 max_level = 5
+image = ExtResource( 22 )
 
 [node name="pulse_movement" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Pulse movement"
 description = "More speed while performing action"
 max_level = 3
+image = ExtResource( 23 )
 
 [node name="pickup_radius" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 9 )
 display_name = "Pickup range"
 description = "Increase pickup range"
 max_level = 5
+image = ExtResource( 25 )
 
 [node name="aoe" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Explosion"
 description = "Explosions on bounce with cooldown"
 max_level = 5
+image = ExtResource( 24 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2

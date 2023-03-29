@@ -1,29 +1,28 @@
-extends CanvasLayer
+extends HBoxContainer
 
 var available
 
 
 func _ready():
-	# get random upgrades
+	#get random upgrades
 	available = Player.get_available_upgrades()
 	available.shuffle()
 	# print(available)
-	var bbcode_center = "[center]%s[/center]"
 	for i in range(0, 3):
-		var button = $HBoxContainer.get_child(i)
+		var button = get_child(i)
 		if available.size() <= i:
 			button.queue_free()
 			break
-		button.get_node("Title").bbcode_text = bbcode_center % available[i].display_name
-		button.get_node("Description").bbcode_text = bbcode_center % available[i].description
-	UI.ui_occupied = true
+		button.get_node("TextureRect").texture = available[i].image
+		button.get_node("Title").text = available[i].display_name
+		button.get_node("Description").text = available[i].description
+
 	get_tree().paused = true
 
 
 func pressed(choice):
 	available[choice - 1].on_upgrade()
 	get_tree().paused = false
-	UI.ui_occupied = false
 	queue_free()
 
 
