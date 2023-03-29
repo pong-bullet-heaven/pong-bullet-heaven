@@ -13,20 +13,20 @@ func _physics_process(delta):
 	translate(direction * speed * delta)
 
 
-func destroy():
+func clear():
 	queue_free()
 
 
 #func _on_Projectile_area_entered(area):
-#	destroy()
+#	clear()
 
 
 func _on_Projectile_body_entered(body):
 	if body == Player:
 		Player.player_hit(projectile_damage)
 		# print(body.health)
-		destroy()
+		clear()
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+	clear()

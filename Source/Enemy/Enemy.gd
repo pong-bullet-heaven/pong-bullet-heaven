@@ -2,7 +2,7 @@ extends KinematicBody2D
 export var collision_damage = 1
 export var speed = 100
 export var health = 3
-
+export var maxhealth = 3 #this is just for score
 export var type = "blue"
 export var variations = ["one", "two"]
 var damage_anim_seconds = 0
@@ -55,6 +55,7 @@ func damage(amount):
 
 
 func die():
+	Player.score += maxhealth * 10
 	var xp = scene_xp.instance()
 	xp.position = position
 	get_tree().get_root().call_deferred("add_child", xp)
