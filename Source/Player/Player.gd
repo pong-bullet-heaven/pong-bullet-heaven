@@ -10,10 +10,6 @@ var level = 0
 var direction = "n"
 
 
-func _ready():
-	pass
-
-
 func _process(_delta):
 	var animation = direction + "_walk"
 	if invincible_seconds > 0:
@@ -87,15 +83,17 @@ func player_hit(damage):
 		health -= damage
 		invincible_seconds = 0.5
 		# print(health)
+	if health <= 0:
+		die()
 
 
 func on_level_up():
-	var scene_lvlup = load("res://Source/UI/LvlUp/LvlUp.tscn")
+	var lvlup = load("res://Source/UI/LvlUp/LvlUp.tscn")
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
 	# print("lvl up")
-	UI.add_child(scene_lvlup.instance())
+	UI.add_child(lvlup.instance())
 
 
 func get_upgrade_level(name):
@@ -121,3 +119,12 @@ func _filter_upgrade(upgrade):
 		if requirement_level > upgrade_requirement.level:
 			return false
 	return true
+
+
+func die():
+	var score = 1000
+	var time = 754
+	var gameover = load("res://Source/UI/GameOver/GameOver.tscn").instance()
+	gameover.score = score
+	gameover.time = time
+	UI.add_child(gameover)

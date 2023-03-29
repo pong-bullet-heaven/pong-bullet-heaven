@@ -3,14 +3,6 @@ extends Node2D
 var debug_lines = {}
 
 
-func _ready():
-	pass
-
-
-func _process(_delta):
-	pass
-
-
 func draw_debug_line(tag, a, b, color = Color.blanchedalmond, thickness = 5):
 	if OS.is_debug_build():
 		if !debug_lines.has(tag):
@@ -19,7 +11,7 @@ func draw_debug_line(tag, a, b, color = Color.blanchedalmond, thickness = 5):
 		line.points = [a, b]
 		line.default_color = color
 		line.width = thickness
-		get_node("/root").add_child(line)
+		get_tree().get_root().add_child(line)
 		debug_lines[tag].append(line)
 
 

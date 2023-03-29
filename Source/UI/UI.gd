@@ -1,15 +1,21 @@
-extends Control
+extends CanvasLayer
 
 export var audio_idx: int
-var scene_menu
 var menu
 
 
 func _ready():
+	_setup()
+
+
+func clear():
+	_setup()
+
+
+func _setup():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	audio_idx = AudioServer.get_bus_index("Master")
-	scene_menu = load("res://Source/UI/Menu/Menu.tscn").instance()
-	menu = scene_menu.get_child(0)
+	menu = load("res://Source/UI/Menu/Menu.tscn").instance()
 	menu.set_sound(true)
 	menu.set_fullscreen(true)
 	custom_cursor()
@@ -29,28 +35,33 @@ func _process(_delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		$MouseCursor.position = event.position
+		$Control/MouseCursor.position = event.position
 	elif event is InputEventMouseButton:
 		if event.pressed:
-			$MouseCursor.animation = "click"
+			$Control/MouseCursor.animation = "click"
 		else:
-			$MouseCursor.animation = "default"
+			$Control/MouseCursor.animation = "default"
 
 
 func custom_cursor():
 	var size = round(OS.window_size.y / 67.5)
-	var sprite_size = $MouseCursor.frames.get_frame("default", 0).get_size()
-	var scale = Vector2(1 / (sprite_size.x / size), 1 / (sprite_size.y / size))
-	$MouseCursor.scale *= scale
+	var sprite_scale = $Control/MouseCursor.scale
+	if sprite_scale >= Vector2(1, 1):
+		var sprite_frame = $Control/MouseCursor.frames.get_frame("default", 0)
+		var sprite_size = sprite_frame.get_size()
+		var scale = Vector2(
+			sprite_scale.x / (sprite_size.x / size), sprite_scale.y / (sprite_size.y / size)
+		)
+		$Control/MouseCursor.scale = scale
 
 
 func toggle_menu():
-	if scene_menu.get_parent():
+	if menu.get_parent():
 		get_tree().paused = false
-		UI.call_deferred("remove_child", scene_menu)
+		UI.call_deferred("remove_child", menu)
 	else:
 		get_tree().paused = true
-		UI.call_deferred("add_child", scene_menu)
+		UI.call_deferred("add_child", menu)
 
 
 func toggle_fullscreen():

@@ -1,6 +1,4 @@
-extends HBoxContainer
-
-var ui = UI.get_child(0)
+extends CanvasLayer
 
 var fullscreen_on = preload("res://Assets/Images/Icons/Fullscreen/maximize.tres")
 var fullscreen_off = preload("res://Assets/Images/Icons/Fullscreen/minimize.tres")
@@ -9,7 +7,7 @@ var volume_off = preload("res://Assets/Images/Icons/Volume/volume-off.tres")
 
 
 func _on_Play_pressed():
-	ui.toggle_menu()
+	UI.toggle_menu()
 
 
 func _on_Credits_pressed():
@@ -21,24 +19,24 @@ func _on_Quit_pressed():
 
 
 func _on_Fullscreen_pressed():
-	ui.toggle_fullscreen()
+	UI.toggle_fullscreen()
 
 
 func _on_Sound_pressed():
-	ui.toggle_sound()
+	UI.toggle_sound()
 
 
 func set_fullscreen(state: bool):
 	var txt = "Fullscreen"
 	if state:
-		$VBoxContainer/Fullscreen.text = txt + ": On"
+		$HBoxContainer/VBoxContainer/Fullscreen.text = txt + ": On"
 	else:
-		$VBoxContainer/Fullscreen.text = txt + ": Off"
+		$HBoxContainer/VBoxContainer/Fullscreen.text = txt + ": Off"
 
 
 func set_sound(state: bool):
 	var txt = "Sound"
 	if state:
-		$VBoxContainer/Sound.text = txt + ": On"
+		$HBoxContainer/VBoxContainer/Sound.text = txt + ": On"
 	else:
-		$VBoxContainer/Sound.text = txt + ": Off"
+		$HBoxContainer/VBoxContainer/Sound.text = txt + ": Off"

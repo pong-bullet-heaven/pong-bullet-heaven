@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends CanvasLayer
 
 var available
 
@@ -9,7 +9,7 @@ func _ready():
 	available.shuffle()
 	# print(available)
 	for i in range(0, 3):
-		var button = get_child(i)
+		var button = $HBoxContainer.get_child(i)
 		if available.size() <= i:
 			button.queue_free()
 			break
