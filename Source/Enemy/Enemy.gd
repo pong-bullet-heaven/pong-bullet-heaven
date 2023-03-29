@@ -53,8 +53,7 @@ func damage(amount):
 
 
 func die():
-	var scene_xp = load("res://Source/XP/XP.tscn")
-	var instance = scene_xp.instance()
-	instance.position = position
-	get_node("/root").call_deferred("add_child", instance)
+	var xp = load("res://Source/XP/XP.tscn").instance()
+	xp.position = position
+	get_tree().get_root().call_deferred("add_child", xp)
 	queue_free()

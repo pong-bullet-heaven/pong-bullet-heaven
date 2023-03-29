@@ -9,6 +9,10 @@ func _process(_delta):
 	pass
 
 
+func clear():
+	queue_free()
+
+
 func _physics_process(delta):
 	if caught:
 		var v = speed * (Player.position - position).normalized()

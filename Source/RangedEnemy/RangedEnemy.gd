@@ -72,8 +72,7 @@ func attack_timer(_delta):
 
 
 func shoot():  # shoot the projectile
-	var scene_projectile = load("res://Source/RangedEnemy/Projectile/Projectile.tscn")
-	var projectile = scene_projectile.instance()
+	var projectile = load("res://Source/RangedEnemy/Projectile/Projectile.tscn").instance()
 	get_tree().get_root().add_child(projectile)
 	projectile.global_position = global_position
 	var dir = (Player.global_position - global_position).normalized()
@@ -89,10 +88,9 @@ func damage(amount):
 
 
 func die():
-	var scene_xp = load("res://Source/XP/XP.tscn")
-	var instance = scene_xp.instance()
-	instance.position = position
-	get_node("/root").call_deferred("add_child", instance)
+	var xp = load("res://Source/XP/XP.tscn").instance()
+	xp.position = position
+	get_tree().get_root().call_deferred("add_child", xp)
 	queue_free()
 
 

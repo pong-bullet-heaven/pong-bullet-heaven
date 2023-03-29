@@ -1,21 +1,20 @@
-extends HBoxContainer
+extends CanvasLayer
 
 var available
 
 
 func _ready():
-	#get random upgrades
+	# get random upgrades
 	available = Player.get_available_upgrades()
 	available.shuffle()
 	# print(available)
 	for i in range(0, 3):
-		var button = get_child(i)
+		var button = $HBoxContainer.get_child(i)
 		if available.size() <= i:
 			button.queue_free()
 			break
 		button.get_node("Title").text = available[i].display_name
 		button.get_node("Description").text = available[i].description
-
 	get_tree().paused = true
 
 

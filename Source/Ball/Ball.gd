@@ -145,7 +145,7 @@ func on_bounce(target = null):
 		var aoe = load("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
 		aoe = aoe.instance()
 		aoe.position = position
-		get_node("/root").call_deferred("add_child", aoe)
+		get_tree().get_root().call_deferred("add_child", aoe)
 		aoe_cooldown = 1 - 0.1 * Player.get_upgrade_level("aoe")
 
 	#homing
