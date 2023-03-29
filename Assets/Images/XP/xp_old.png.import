@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/xp.png-71f563805f6d7bcac4fce34a077f12a2.stex"
+path="res://.import/xp_old.png-766691c8de1ad20857b12b78c6d32512.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/XP/xp.png"
-dest_files=[ "res://.import/xp.png-71f563805f6d7bcac4fce34a077f12a2.stex" ]
+source_file="res://Assets/Images/XP/xp_old.png"
+dest_files=[ "res://.import/xp_old.png-766691c8de1ad20857b12b78c6d32512.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

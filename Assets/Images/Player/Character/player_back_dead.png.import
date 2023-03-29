@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/xp.png-71f563805f6d7bcac4fce34a077f12a2.stex"
+path="res://.import/player_back_dead.png-866067e4d4e3926f05a289f86c9217fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/XP/xp.png"
-dest_files=[ "res://.import/xp.png-71f563805f6d7bcac4fce34a077f12a2.stex" ]
+source_file="res://Assets/Images/Player/Character/player_back_dead.png"
+dest_files=[ "res://.import/player_back_dead.png-866067e4d4e3926f05a289f86c9217fe.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

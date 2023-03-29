@@ -17,14 +17,14 @@ func clear():
 
 
 func _physics_process(delta):
-	if caught:
+	if caught and not Player.dying:
 		var v = speed * (Player.position - position).normalized()
 		position += v * delta
 		speed += 100 * delta
 
 
 func _on_Node2D_body_entered(body):
-	if body == Player:
+	if body == Player and not Player.dying:
 		Player.xp += value
 		queue_free()
 
