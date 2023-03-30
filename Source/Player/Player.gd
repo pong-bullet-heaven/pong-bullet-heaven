@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var health = 20
+export var health = 5
 export var invincible_seconds = 0
 var base_speed = 500
 var xp = 0
