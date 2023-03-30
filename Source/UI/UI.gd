@@ -13,11 +13,11 @@ func clear():
 
 
 func _setup():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	audio_idx = AudioServer.get_bus_index("Master")
 	menu = load("res://Source/UI/Menu/Menu.tscn").instance()
-	menu.set_sound(true)
-	menu.set_fullscreen(true)
+	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
+	menu.set_fullscreen(OS.window_fullscreen)
+	mouse_mode()
 	custom_cursor()
 	toggle_menu()
 
@@ -43,6 +43,13 @@ func _input(event):
 			$Control/MouseCursor.animation = "default"
 
 
+func mouse_mode():
+	if OS.window_fullscreen:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+
 func custom_cursor():
 	var size = round(OS.window_size.y / 67.5)
 	var sprite_scale = $Control/MouseCursor.scale
@@ -65,6 +72,10 @@ func toggle_menu():
 
 
 func toggle_fullscreen():
+	# disable in macos due to scaling issues with hidpi
+	if OS.get_name() == "OSX":
+		return
+
 	if OS.window_fullscreen:
 		var screen_size = OS.get_screen_size()
 		var base = Vector2(
@@ -76,16 +87,15 @@ func toggle_fullscreen():
 		OS.window_size = window_size
 		OS.window_fullscreen = false
 		OS.set_window_position(0.5 * screen_size - 0.5 * window_size)
-		menu.set_fullscreen(false)
 	else:
 		OS.window_fullscreen = true
-		menu.set_fullscreen(true)
+	mouse_mode()
+	menu.set_fullscreen(OS.window_fullscreen)
 
 
 func toggle_sound():
 	if AudioServer.is_bus_mute(audio_idx):
 		AudioServer.set_bus_mute(audio_idx, false)
-		menu.set_sound(true)
 	else:
 		AudioServer.set_bus_mute(audio_idx, true)
-		menu.set_sound(false)
+	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))

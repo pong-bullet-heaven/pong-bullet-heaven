@@ -15,7 +15,10 @@ func _on_Credits_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().quit()
+	if OS.get_name() == "HTML5" && OS.has_feature("JavaScript"):
+		JavaScript.eval("window.close()")
+	else:
+		get_tree().quit()
 
 
 func _on_Fullscreen_pressed():
