@@ -15,6 +15,10 @@ func _ready():
 	pass  # Replace with function body.
 
 
+func clear():
+	queue_free()
+
+
 func _physics_process(delta):
 	if !get_tree().paused:
 		time_alive += delta
