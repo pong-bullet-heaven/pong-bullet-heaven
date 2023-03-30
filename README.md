@@ -7,6 +7,10 @@ Game as part of a group project in computer science written in Godot Engine
 
 ## Credits
 
+### Game Engine
+
+* Godot Engine: <https://godotengine.org/license>
+
 ### Game Development
 
 * Game Designer: [@HenrikNeffe](https://github.com/HenrikNeffe) [@yrtemmys](https://github.com/yrtemmys)
