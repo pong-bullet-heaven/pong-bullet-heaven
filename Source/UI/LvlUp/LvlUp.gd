@@ -8,13 +8,14 @@ func _ready():
 	available = Player.get_available_upgrades()
 	available.shuffle()
 	# print(available)
+	var bbcode_center = "[center]%s[/center]"
 	for i in range(0, 3):
 		var button = $HBoxContainer.get_child(i)
 		if available.size() <= i:
 			button.queue_free()
 			break
-		button.get_node("Title").text = available[i].display_name
-		button.get_node("Description").text = available[i].description
+		button.get_node("Title").bbcode_text = bbcode_center % available[i].display_name
+		button.get_node("Description").bbcode_text = bbcode_center % available[i].description
 	UI.ui_occupied = true
 	get_tree().paused = true
 
