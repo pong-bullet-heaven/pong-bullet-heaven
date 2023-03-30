@@ -248,50 +248,50 @@ shape = SubResource( 12 )
 [node name="Upgrades" type="Node" parent="."]
 
 [node name="speed" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "speed"
-description = "more fast"
+display_name = "Speed"
+description = "Become faster"
 max_level = 10
 
 [node name="ball_speed" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Ball Speed"
-description = "more fast for ball"
+description = "Ball travels faster"
 max_level = 10
 
 [node name="damage" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "damage"
-description = "more damage"
+display_name = "Damage"
+description = "Increase damage"
 max_level = 10
 
 [node name="homing" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "homing"
-description = "homing bei bounce"
+display_name = "Homing"
+description = "Homing on bounce"
 max_level = 3
 
 [node name="multi_ball" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 4 )
-display_name = "multishot"
-description = "more balls"
+display_name = "Multi-shot"
+description = "Increase number of balls"
 max_level = 3
 
 [node name="piercing" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "piercing"
-description = "piercing"
+display_name = "Piercing"
+description = "Ball can travel through more enemies"
 max_level = 5
 
 [node name="pulse_movement" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "pulse movement"
-description = "more speed while space"
+display_name = "Pulse movement"
+description = "More speed while performing action"
 max_level = 3
 
 [node name="pickup_radius" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 9 )
-display_name = "pickup range"
-description = "more range for pickup"
+display_name = "Pickup range"
+description = "Increase pickup range"
 max_level = 5
 
 [node name="aoe" parent="Upgrades" instance=ExtResource( 6 )]
-display_name = "aoe"
-description = "aoe"
+display_name = "Explosion"
+description = "Explosions on bounce with cooldown"
 max_level = 5
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
