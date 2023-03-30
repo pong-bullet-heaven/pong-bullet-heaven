@@ -13,3 +13,7 @@ func on_upgrade():
 		level += 1
 		# print(display_name)
 		# print(level)
+
+
+func clear():
+	level = 0

@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+export var ui_occupied: bool
 export var audio_idx: int
 var menu
 
@@ -63,6 +64,9 @@ func custom_cursor():
 
 
 func toggle_menu():
+	if ui_occupied:
+		return
+
 	if menu.get_parent():
 		get_tree().paused = false
 		UI.call_deferred("remove_child", menu)

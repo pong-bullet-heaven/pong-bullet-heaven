@@ -15,12 +15,14 @@ func _ready():
 			break
 		button.get_node("Title").text = available[i].display_name
 		button.get_node("Description").text = available[i].description
+	UI.ui_occupied = true
 	get_tree().paused = true
 
 
 func pressed(choice):
 	available[choice - 1].on_upgrade()
 	get_tree().paused = false
+	UI.ui_occupied = false
 	queue_free()
 
 
