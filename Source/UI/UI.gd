@@ -72,6 +72,10 @@ func toggle_menu():
 
 
 func toggle_fullscreen():
+	# disable in macos due to scaling issues with hidpi
+	if OS.get_name() == "OSX":
+		return
+
 	if OS.window_fullscreen:
 		var screen_size = OS.get_screen_size()
 		var base = Vector2(
