@@ -1,13 +1,30 @@
 extends KinematicBody2D
 
-export var health = 5
-export var invincible_seconds = 0
-var base_speed = 500
-var xp = 0
-var xp_needed = 1
-var level = 0
+export var health: int
+export var invincible_seconds: int
+var base_speed
+var xp
+var xp_needed
+var level
+var direction
 
-var direction = "n"
+
+func _ready():
+	_setup()
+
+
+func clear():
+	_setup()
+
+
+func _setup():
+	health = 5
+	invincible_seconds = 0
+	base_speed = 500
+	xp = 0
+	xp_needed = 1
+	level = 0
+	direction = "n"
 
 
 func _process(_delta):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/upgrade-ui.png-564f4f27f3ef1a423b58ce02986e1880.stex"
+path="res://.import/game-over.png-b88d55bc074ace926415e3d7026d2664.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/upgrade-ui.png"
-dest_files=[ "res://.import/upgrade-ui.png-564f4f27f3ef1a423b58ce02986e1880.stex" ]
+source_file="res://Assets/Images/UI/game-over.png"
+dest_files=[ "res://.import/game-over.png-b88d55bc074ace926415e3d7026d2664.stex" ]
 
 [params]
 
