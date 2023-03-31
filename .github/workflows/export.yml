@@ -38,8 +38,6 @@ jobs:
           curl -Lso ${GODOT_ARCHIVE} ${GODOT_URL}
           unzip -q ${GODOT_ARCHIVE} -d ${GODOT_DIR}
           mv "${GODOT_DIR}/templates" "${GODOT_DIR}/${GODOT_VERSION}.${GODOT_RELEASE}"
-      - name: Run Godot Editor once for importing
-        run: timeout 300 ./godot --editor --quit
       - name: Export Project
         env:
           GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
