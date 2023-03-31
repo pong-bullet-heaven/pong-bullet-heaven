@@ -3,6 +3,7 @@ extends CanvasLayer
 
 func _on_Play_pressed():
 	UI.toggle_menu()
+	UI.ui_visible(true)
 
 
 func _on_Credits_pressed():
@@ -27,14 +28,14 @@ func _on_Sound_pressed():
 func set_fullscreen(state: bool):
 	var txt = "Fullscreen"
 	if state:
-		$VBoxContainer/Fullscreen.text = txt + ": On"
+		$CenterContainer/VBoxContainer/Fullscreen.text = txt + ": On"
 	else:
-		$VBoxContainer/Fullscreen.text = txt + ": Off"
+		$CenterContainer/VBoxContainer/Fullscreen.text = txt + ": Off"
 
 
 func set_sound(state: bool):
 	var txt = "Sound"
 	if state:
-		$VBoxContainer/Sound.text = txt + ": On"
+		$CenterContainer/VBoxContainer/Sound.text = txt + ": On"
 	else:
-		$VBoxContainer/Sound.text = txt + ": Off"
+		$CenterContainer/VBoxContainer/Sound.text = txt + ": Off"

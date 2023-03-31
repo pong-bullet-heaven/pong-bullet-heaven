@@ -7,8 +7,8 @@ var xp
 var xp_needed
 var level
 var direction
-var score
-var timer
+var score: int
+var timer: float
 
 var scene_gameover = preload("res://Source/UI/GameOver/GameOver.tscn")
 var scene_lvlup = preload("res://Source/UI/LvlUp/LvlUp.tscn")
@@ -31,7 +31,7 @@ func _setup():
 	level = 0
 	direction = "n"
 	score = 0
-	timer = 0
+	timer = 0.0
 
 
 func _process(_delta):
@@ -148,5 +148,5 @@ func _filter_upgrade(upgrade):
 func die():
 	var gameover = scene_gameover.instance()
 	gameover.score = score
-	gameover.timer = timer
+	gameover.time = round(timer)
 	UI.add_child(gameover)

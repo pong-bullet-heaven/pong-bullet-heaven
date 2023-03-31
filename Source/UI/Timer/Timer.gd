@@ -1,18 +1,15 @@
 extends RichTextLabel
 
+var enabled = true
 
-var time = 0
-var timer_on = true
 
 func _process(delta):
-	if(timer_on):
-		time += delta
-		text = var2str(time)
-#no hours added, i dont think anyone will ever last that long
-	var seconds = fmod(time,60)
-	var minutes = fmod(time, 60*60) / 60
-	
-	var time_passed = "%02d : %02d" % [minutes,seconds]
-	text = time_passed
-	
-	Player.timer = time
+	if !UI.ui_occupied:
+		Player.timer += delta
+
+	if enabled:
+		var timer = Player.timer
+		var timer_template = "[center]%02d : %02d[/center]"
+		var m = floor(timer / 60.0)
+		var s = fmod(timer, 60)
+		self.bbcode_text = timer_template % [m, s]

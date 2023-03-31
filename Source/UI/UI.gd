@@ -23,6 +23,7 @@ func _setup():
 	mouse_mode()
 	custom_cursor()
 	toggle_menu()
+	UI.ui_visible(false)
 
 
 func _process(_delta):
@@ -38,12 +39,12 @@ func _process(_delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		$Control/MouseCursor.position = event.position
+		$Dummy/MouseCursor.position = event.position
 	elif event is InputEventMouseButton:
 		if event.pressed:
-			$Control/MouseCursor.animation = "click"
+			$Dummy/MouseCursor.animation = "click"
 		else:
-			$Control/MouseCursor.animation = "default"
+			$Dummy/MouseCursor.animation = "default"
 
 
 func mouse_mode():
@@ -55,26 +56,30 @@ func mouse_mode():
 
 func custom_cursor():
 	var size = round(OS.window_size.y / 67.5)
-	var sprite_scale = $Control/MouseCursor.scale
+	var sprite_scale = $Dummy/MouseCursor.scale
 	if sprite_scale >= Vector2(1, 1):
-		var sprite_frame = $Control/MouseCursor.frames.get_frame("default", 0)
+		var sprite_frame = $Dummy/MouseCursor.frames.get_frame("default", 0)
 		var sprite_size = sprite_frame.get_size()
 		var scale = Vector2(
 			sprite_scale.x / (sprite_size.x / size), sprite_scale.y / (sprite_size.y / size)
 		)
-		$Control/MouseCursor.scale = scale
+		$Dummy/MouseCursor.scale = scale
 
 
 func toggle_menu():
-	if ui_occupied:
-		return
-
 	if menu.get_parent():
+		ui_occupied = false
 		get_tree().paused = false
 		UI.call_deferred("remove_child", menu)
-	else:
+	elif !ui_occupied:
+		ui_occupied = true
 		get_tree().paused = true
 		UI.call_deferred("add_child", menu)
+
+
+func ui_visible(state: bool):
+	$HBoxContainerTopRight/Score.visible = state
+	$HBoxContainerTopCenter/Timer.visible = state
 
 
 func toggle_fullscreen():

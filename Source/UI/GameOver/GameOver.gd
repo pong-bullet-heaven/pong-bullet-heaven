@@ -5,6 +5,7 @@ var time: int
 
 
 func _ready():
+	UI.ui_visible(false)
 	UI.ui_occupied = true
 	get_tree().paused = true
 
@@ -35,6 +36,7 @@ func _on_Button_pressed():
 	$Background/CenterButton/Button.theme.default_font.outline_size = 2
 	get_tree().paused = false
 	UI.ui_occupied = false
+	UI.ui_visible(true)
 	get_tree().reload_current_scene()
 	get_tree().get_root().propagate_call("clear")
 	queue_free()
