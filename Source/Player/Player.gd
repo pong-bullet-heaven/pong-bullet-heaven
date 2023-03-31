@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var health: int
-export var invincible_seconds: int
+export var invincible_seconds: float
 var base_speed
 var xp
 var xp_needed
@@ -22,7 +22,7 @@ func clear():
 
 func _setup():
 	health = 5
-	invincible_seconds = 0
+	invincible_seconds = 0.0
 	base_speed = 500
 	xp = 0
 	xp_needed = 1
@@ -46,7 +46,7 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	invincible_seconds = max(invincible_seconds - delta, 0)
+	invincible_seconds = float(max(invincible_seconds - delta, 0))
 	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if Input.is_action_pressed("action"):
 		match Player.get_upgrade_level("pulse_movement"):
@@ -99,7 +99,7 @@ func _on_XPCollector_area_entered(area):
 
 
 func player_hit(damage):
-	if invincible_seconds == 0:
+	if invincible_seconds == 0.0:
 		health -= damage
 		invincible_seconds = 0.5
 		# print(health)
