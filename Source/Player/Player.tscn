@@ -8,224 +8,225 @@
 [ext_resource path="res://Source/Upgrade/BaseUpgrade.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sounds/background.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sounds/xp.mp3" type="AudioStream" id=8]
-[ext_resource path="res://Source/Upgrade/Pickup_Radius.gd" type="Script" id=9]
+[ext_resource path="res://Source/Upgrade/PickupRadius.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Images/Player/Character/idle-player.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Images/Player/Character/front-player.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Images/Player/Character/left-player.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Images/Player/Paddle/gadget.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/Player/Character/front-player-dead.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Images/Player/Character/idle-player-hit.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Images/Player/Character/front-player-dead.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Images/Player/Character/back-player-dead.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Images/UI/Upgrades/speed.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Images/UI/Upgrades/ballspeed.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Images/UI/Upgrades/damage.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Images/UI/Upgrades/multiball.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Images/UI/Upgrades/homing.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Images/Player/Character/back-player-dead.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/Player/Paddle/gadget.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/UI/Upgrades/damage.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Images/UI/Upgrades/multiball.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Images/UI/Upgrades/aoe.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Images/UI/Upgrades/ballspeed.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Images/UI/Upgrades/pickup.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Images/UI/Upgrades/piercing.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Images/UI/Upgrades/pulse.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Images/UI/Upgrades/aoe.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Images/UI/Upgrades/pickup.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Images/UI/Upgrades/speed.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Images/UI/Upgrades/pulse.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Images/UI/Upgrades/homing.png" type="Texture" id=25]
 
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 0, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 2048, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 4096, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 6144, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=38]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=39]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 2048, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=40]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 4096, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=41]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 6144, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 2048, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 4096, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 6144, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=46]
+[sub_resource type="AtlasTexture" id=66]
 flags = 4
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=47]
+[sub_resource type="AtlasTexture" id=67]
 flags = 4
 atlas = ExtResource( 15 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=68]
 flags = 4
 atlas = ExtResource( 15 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=69]
 flags = 4
 atlas = ExtResource( 15 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 2048, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=80]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=81]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=82]
+flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=47]
+[sub_resource type="AtlasTexture" id=83]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=84]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=85]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=86]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=87]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=88]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=89]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=90]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=55]
+[sub_resource type="AtlasTexture" id=91]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=56]
+[sub_resource type="AtlasTexture" id=92]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=57]
+[sub_resource type="AtlasTexture" id=93]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=58]
+[sub_resource type="AtlasTexture" id=94]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=95]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=96]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=61]
+[sub_resource type="AtlasTexture" id=97]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"frames": [ SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ) ],
 "loop": false,
-"name": "b_death",
-"speed": 5.0
+"name": "back_death",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
 "loop": true,
-"name": "b_walk",
-"speed": 5.0
+"name": "back_walk",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"frames": [ SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ) ],
 "loop": true,
 "name": "damage",
-"speed": 5.0
+"speed": 4.0
 }, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"frames": [ SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ) ],
 "loop": false,
-"name": "f_death",
-"speed": 5.0
+"name": "front_death",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ) ],
 "loop": true,
-"name": "f_walk",
-"speed": 5.0
+"name": "front_walk",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"frames": [ SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ) ],
 "loop": true,
-"name": "l_walk",
-"speed": 5.0
+"name": "left_walk",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ) ],
+"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ) ],
 "loop": true,
-"name": "n_walk",
-"speed": 5.0
+"name": "not_walk",
+"speed": 4.0
 }, {
-"frames": [ SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ) ],
+"frames": [ SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ) ],
 "loop": true,
-"name": "r_walk",
-"speed": 5.0
+"name": "right_walk",
+"speed": 4.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -234,29 +235,29 @@ extents = Vector2( 21, 22.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 29, 28.5 )
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=98]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=99]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=100]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=101]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
 [sub_resource type="SpriteFrames" id=33]
 animations = [ {
-"frames": [ SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ) ],
+"frames": [ SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -273,7 +274,7 @@ script = ExtResource( 3 )
 scale = Vector2( 0.05, 0.05 )
 z_index = 10
 frames = SubResource( 1 )
-animation = "b_death"
+animation = "back_death"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 current = true
@@ -311,32 +312,32 @@ shape = SubResource( 12 )
 display_name = "Speed"
 description = "Become faster"
 max_level = 10
-image = ExtResource( 17 )
+image = ExtResource( 23 )
 
 [node name="ball_speed" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Ball Speed"
 description = "Ball travels faster"
 max_level = 10
-image = ExtResource( 18 )
+image = ExtResource( 20 )
 
 [node name="damage" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Damage"
 description = "Increase damage"
 max_level = 10
-image = ExtResource( 19 )
+image = ExtResource( 17 )
 
 [node name="homing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Homing"
 description = "Homing on bounce"
 max_level = 3
-image = ExtResource( 21 )
+image = ExtResource( 25 )
 
 [node name="multi_ball" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 4 )
 display_name = "Multi-shot"
 description = "Increase number of balls"
 max_level = 3
-image = ExtResource( 20 )
+image = ExtResource( 18 )
 
 [node name="piercing" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Piercing"
@@ -348,20 +349,20 @@ image = ExtResource( 22 )
 display_name = "Pulse movement"
 description = "More speed while performing action"
 max_level = 3
-image = ExtResource( 23 )
+image = ExtResource( 24 )
 
 [node name="pickup_radius" parent="Upgrades" instance=ExtResource( 6 )]
 script = ExtResource( 9 )
 display_name = "Pickup range"
 description = "Increase pickup range"
 max_level = 5
-image = ExtResource( 25 )
+image = ExtResource( 21 )
 
 [node name="aoe" parent="Upgrades" instance=ExtResource( 6 )]
 display_name = "Explosion"
 description = "Explosions on bounce with cooldown"
 max_level = 5
-image = ExtResource( 24 )
+image = ExtResource( 19 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2

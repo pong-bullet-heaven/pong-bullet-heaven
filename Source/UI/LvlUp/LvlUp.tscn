@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Source/UI/LvlUp/LvlUp.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/UI/upgrade.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/retro-gaming.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Images/UI/Upgrades/aoe.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -43,6 +44,7 @@ bbcode_enabled = true
 bbcode_text = "[center]Title[/center]"
 text = "Title"
 fit_content_height = true
+scroll_active = false
 
 [node name="Description" type="RichTextLabel" parent="HBoxContainer/Button1"]
 anchor_left = 0.5
@@ -58,6 +60,19 @@ theme = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]Description[/center]"
 text = "Description"
+scroll_active = false
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Button1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -176.0
+margin_right = 56.0
+margin_bottom = -64.0
+texture = ExtResource( 4 )
+stretch_mode = 6
 
 [node name="Button2" type="TextureButton" parent="HBoxContainer"]
 margin_left = 342.0
@@ -83,6 +98,7 @@ bbcode_enabled = true
 bbcode_text = "[center]Title[/center]"
 text = "Title"
 fit_content_height = true
+scroll_active = false
 
 [node name="Description" type="RichTextLabel" parent="HBoxContainer/Button2"]
 anchor_left = 0.5
@@ -98,6 +114,19 @@ theme = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]Description[/center]"
 text = "Description"
+scroll_active = false
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Button2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -176.0
+margin_right = 56.0
+margin_bottom = -64.0
+texture = ExtResource( 4 )
+stretch_mode = 6
 
 [node name="Button3" type="TextureButton" parent="HBoxContainer"]
 margin_left = 685.0
@@ -123,6 +152,7 @@ bbcode_enabled = true
 bbcode_text = "[center]Title[/center]"
 text = "Title"
 fit_content_height = true
+scroll_active = false
 
 [node name="Description" type="RichTextLabel" parent="HBoxContainer/Button3"]
 anchor_left = 0.5
@@ -138,6 +168,19 @@ theme = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]Description[/center]"
 text = "Description"
+scroll_active = false
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Button3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -176.0
+margin_right = 56.0
+margin_bottom = -64.0
+texture = ExtResource( 4 )
+stretch_mode = 6
 
 [connection signal="pressed" from="HBoxContainer/Button1" to="." method="_on_Button1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_Button2_pressed"]

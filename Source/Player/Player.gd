@@ -31,7 +31,7 @@ func _setup():
 	xp = 0
 	xp_needed = 1
 	level = 0
-	direction = "n"
+	direction = "not"
 	score = 0
 	timer = 0.0
 	death_seconds = 0
@@ -39,13 +39,21 @@ func _setup():
 
 
 func _process(_delta):
-	var animation = direction + "_walk"
-	if invincible_seconds > 0:
-		animation = "damage"
+	var animation
+	var kind
+
 	if dying:
-		if direction != "b":
-			direction = "f"
-		animation = direction + "_death"
+		kind = "death"
+		if direction != "back":
+			direction = "front"
+	else:
+		kind = "walk"
+
+	animation = "%s_%s" % [direction, kind]
+
+	if invincible_seconds > 0.0 && kind != "death":
+		animation = "damage"
+
 	$AnimatedSpriteCharacter.play(animation)
 	$AnimatedSpriteCharacter.rotation = -rotation
 	if abs(rotation) < PI / 2:
@@ -82,16 +90,16 @@ func _physics_process(delta):
 	#var dir_vec=v.rotated(PI/4)
 	if dir_vec[0] < 0:
 		if dir_vec[1] < 0:
-			direction = "l"
+			direction = "left"
 		if dir_vec[1] > 0:
-			direction = "f"
+			direction = "front"
 	if dir_vec[0] > 0:
 		if dir_vec[1] < 0:
-			direction = "b"
+			direction = "back"
 		if dir_vec[1] > 0:
-			direction = "r"
+			direction = "right"
 	if v == Vector2(0, 0):
-		direction = "n"
+		direction = "not"
 
 	v = move_and_slide(v)
 	for i in get_slide_count():
@@ -99,6 +107,10 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider.is_in_group("Enemy"):
 			player_hit(collider.collision_damage)
+
+	if health <= 0:
+		dying = true
+		death_seconds = 1
 
 
 func _input(event):  #turn to mouse
@@ -116,12 +128,8 @@ func _on_XPCollector_area_entered(area):
 func player_hit(damage):
 	if invincible_seconds == 0.0:
 		health -= damage
-		invincible_seconds = 0.5
+		invincible_seconds = 1.0
 		# print(health)
-
-	if health <= 0:
-		dying = true
-		death_seconds = 1
 
 
 func on_level_up():
