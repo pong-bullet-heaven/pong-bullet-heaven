@@ -16,6 +16,9 @@ var attacktimercount = 1
 var timero = 0  # timer for moving back in a sprint
 var move_back = false
 
+var scene_projectile = preload("res://Source/RangedEnemy/Projectile/Projectile.tscn")
+var scene_xp = preload("res://Source/XP/XP.tscn")
+
 
 func _ready():
 	pass
@@ -72,7 +75,7 @@ func attack_timer(_delta):
 
 
 func shoot():  # shoot the projectile
-	var projectile = load("res://Source/RangedEnemy/Projectile/Projectile.tscn").instance()
+	var projectile = scene_projectile.instance()
 	get_tree().get_root().add_child(projectile)
 	projectile.global_position = global_position
 	var dir = (Player.global_position - global_position).normalized()
@@ -88,7 +91,7 @@ func damage(amount):
 
 
 func die():
-	var xp = load("res://Source/XP/XP.tscn").instance()
+	var xp = scene_xp.instance()
 	xp.position = position
 	get_tree().get_root().call_deferred("add_child", xp)
 	queue_free()

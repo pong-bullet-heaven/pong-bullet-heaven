@@ -10,6 +10,8 @@ var variation = "one"
 var direction = "r"
 var action = "walk"
 
+var scene_xp = preload("res://Source/XP/XP.tscn")
+
 
 func _ready():
 	variations.shuffle()
@@ -53,7 +55,7 @@ func damage(amount):
 
 
 func die():
-	var xp = load("res://Source/XP/XP.tscn").instance()
+	var xp = scene_xp.instance()
 	xp.position = position
 	get_tree().get_root().call_deferred("add_child", xp)
 	queue_free()

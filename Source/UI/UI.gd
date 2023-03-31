@@ -4,6 +4,8 @@ export var ui_occupied: bool
 export var audio_idx: int
 var menu
 
+var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
+
 
 func _ready():
 	_setup()
@@ -15,7 +17,7 @@ func clear():
 
 func _setup():
 	audio_idx = AudioServer.get_bus_index("Master")
-	menu = load("res://Source/UI/Menu/Menu.tscn").instance()
+	menu = scene_menu.instance()
 	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
 	menu.set_fullscreen(OS.window_fullscreen)
 	mouse_mode()

@@ -8,6 +8,9 @@ var xp_needed
 var level
 var direction
 
+var scene_gameover = preload("res://Source/UI/GameOver/GameOver.tscn")
+var scene_lvlup = preload("res://Source/UI/LvlUp/LvlUp.tscn")
+
 
 func _ready():
 	_setup()
@@ -105,12 +108,12 @@ func player_hit(damage):
 
 
 func on_level_up():
-	var lvlup = load("res://Source/UI/LvlUp/LvlUp.tscn")
+	var lvlup = scene_lvlup.instance()
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
 	# print("lvl up")
-	UI.add_child(lvlup.instance())
+	UI.add_child(lvlup)
 
 
 func get_upgrade_level(name):
@@ -141,7 +144,7 @@ func _filter_upgrade(upgrade):
 func die():
 	var score = 1000
 	var time = 754
-	var gameover = load("res://Source/UI/GameOver/GameOver.tscn").instance()
+	var gameover = scene_gameover.instance()
 	gameover.score = score
 	gameover.time = time
 	UI.add_child(gameover)
