@@ -1,10 +1,5 @@
 extends CanvasLayer
 
-var fullscreen_on = preload("res://Assets/Images/Icons/Fullscreen/maximize.tres")
-var fullscreen_off = preload("res://Assets/Images/Icons/Fullscreen/minimize.tres")
-var volume_on = preload("res://Assets/Images/Icons/Volume/volume-on.tres")
-var volume_off = preload("res://Assets/Images/Icons/Volume/volume-off.tres")
-
 
 func _on_Play_pressed():
 	UI.toggle_menu()
@@ -32,14 +27,14 @@ func _on_Sound_pressed():
 func set_fullscreen(state: bool):
 	var txt = "Fullscreen"
 	if state:
-		$HBoxContainer/VBoxContainer/Fullscreen.text = txt + ": On"
+		$VBoxContainer/Fullscreen.text = txt + ": On"
 	else:
-		$HBoxContainer/VBoxContainer/Fullscreen.text = txt + ": Off"
+		$VBoxContainer/Fullscreen.text = txt + ": Off"
 
 
 func set_sound(state: bool):
 	var txt = "Sound"
 	if state:
-		$HBoxContainer/VBoxContainer/Sound.text = txt + ": On"
+		$VBoxContainer/Sound.text = txt + ": On"
 	else:
-		$HBoxContainer/VBoxContainer/Sound.text = txt + ": Off"
+		$VBoxContainer/Sound.text = txt + ": Off"

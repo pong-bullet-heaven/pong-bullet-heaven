@@ -1,81 +1,59 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Source/UI/Menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Images/Icons/Volume/volume-off.tres" type="Texture" id=2]
-[ext_resource path="res://Assets/Images/Icons/Fullscreen/minimize.tres" type="Texture" id=3]
 [ext_resource path="res://Assets/Themes/button.tres" type="Theme" id=4]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 576.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -77.5
+margin_top = -100.5
+margin_right = 77.5
+margin_bottom = 100.5
 theme = ExtResource( 4 )
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 455.0
-margin_right = 569.0
-margin_bottom = 576.0
-alignment = 1
-
-[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 200.0
-margin_right = 114.0
-margin_bottom = 232.0
-rect_min_size = Vector2( 96, 32 )
+[node name="Play" type="Button" parent="VBoxContainer"]
+margin_right = 155.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 128, 32 )
 text = "Play"
 
-[node name="Sound" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 236.0
-margin_right = 114.0
-margin_bottom = 268.0
-rect_min_size = Vector2( 96, 32 )
+[node name="Sound" type="Button" parent="VBoxContainer"]
+margin_top = 41.0
+margin_right = 155.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 128, 32 )
 text = "Sound"
 
-[node name="Fullscreen" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 272.0
-margin_right = 114.0
-margin_bottom = 304.0
-rect_min_size = Vector2( 96, 32 )
+[node name="Fullscreen" type="Button" parent="VBoxContainer"]
+margin_top = 82.0
+margin_right = 155.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 128, 32 )
 text = "Fullscreen"
 
-[node name="Credits" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 308.0
-margin_right = 114.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 96, 32 )
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_top = 123.0
+margin_right = 155.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 128, 32 )
 text = "Credits"
 
-[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer"]
-margin_top = 344.0
-margin_right = 114.0
-margin_bottom = 376.0
-rect_min_size = Vector2( 96, 32 )
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 164.0
+margin_right = 155.0
+margin_bottom = 201.0
+rect_min_size = Vector2( 128, 32 )
 text = "Quit"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-visible = false
-margin_top = 368.0
-margin_right = 1024.0
-margin_bottom = 496.0
-alignment = 1
-
-[node name="Volume" type="TextureRect" parent="HBoxContainer2"]
-margin_left = 256.0
-margin_right = 416.0
-margin_bottom = 128.0
-texture = ExtResource( 2 )
-
-[node name="Fullscreen" type="TextureRect" parent="HBoxContainer2"]
-margin_left = 640.0
-margin_right = 768.0
-margin_bottom = 128.0
-texture = ExtResource( 3 )
-
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
+[connection signal="pressed" from="VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
