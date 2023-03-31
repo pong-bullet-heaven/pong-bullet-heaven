@@ -25,14 +25,14 @@ func _ready():
 
 
 func highlight_btn(state: bool):
-	var btn = $CenterButton/Button
 	if state:
-		btn.theme.default_font.outline_size *= 2
+		$CenterButton/Button.theme.default_font.outline_size = 4
 	else:
-		btn.theme.default_font.outline_size /= 2
+		$CenterButton/Button.theme.default_font.outline_size = 2
 
 
 func _on_Button_pressed():
+	$CenterButton/Button.theme.default_font.outline_size = 2
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	get_tree().get_root().propagate_call("clear")
