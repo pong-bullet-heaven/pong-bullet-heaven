@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Fonts/retro-gaming.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -37,7 +39,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="DynamicFont" id=6]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
 [resource]
+default_font = SubResource( 6 )
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 3 )

@@ -14,29 +14,29 @@ func _ready():
 	var time_str = "[center]%02d:%02d[/center]"
 	var time_min = floor(time / 60.0)
 	var time_sec = time % 60
-	$Time.bbcode_text = time_str % [time_min, time_sec]
+	$Background/Time.bbcode_text = time_str % [time_min, time_sec]
 
 	if not score:
 		score = 0
 
 	var score_str = """[center]Score
 %05d[/center]"""
-	$Score.bbcode_text = score_str % score
+	$Background/Score.bbcode_text = score_str % score
 
 
 func highlight_btn(state: bool):
 	if state:
-		$CenterButton/Button.theme.default_font.outline_size = 4
+		$Background/CenterButton/Button.theme.default_font.outline_size = 4
 	else:
-		$CenterButton/Button.theme.default_font.outline_size = 2
+		$Background/CenterButton/Button.theme.default_font.outline_size = 2
 
 
 func _on_Button_pressed():
-	$CenterButton/Button.theme.default_font.outline_size = 2
+	$Background/CenterButton/Button.theme.default_font.outline_size = 2
 	get_tree().paused = false
+	UI.ui_occupied = false
 	get_tree().reload_current_scene()
 	get_tree().get_root().propagate_call("clear")
-	UI.ui_occupied = false
 	queue_free()
 
 
