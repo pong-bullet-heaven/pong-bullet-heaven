@@ -34,9 +34,9 @@ func highlight_btn(state: bool):
 func _on_Button_pressed():
 	$Background/CenterButton/Button.theme.default_font.outline_size = 2
 	get_tree().paused = false
+	UI.ui_occupied = false
 	get_tree().reload_current_scene()
 	get_tree().get_root().propagate_call("clear")
-	UI.ui_occupied = false
 	queue_free()
 
 
