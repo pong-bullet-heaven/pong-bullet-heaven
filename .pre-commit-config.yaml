@@ -31,3 +31,4 @@ repos:
     hooks:
       - id: gdlint
       - id: gdformat
+exclude: ^.import/

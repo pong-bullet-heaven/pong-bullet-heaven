@@ -5,6 +5,8 @@ var old_position = Vector2(0, 0)
 var pierce_count = 0
 var aoe_cooldown = 0
 
+var scene_aoe = preload("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -142,8 +144,7 @@ func on_bounce(target = null):
 
 	#aoe
 	if Player.get_upgrade_level("aoe") > 0 && aoe_cooldown <= 0:
-		var aoe = load("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
-		aoe = aoe.instance()
+		var aoe = scene_aoe.instance()
 		aoe.position = position
 		get_tree().get_root().call_deferred("add_child", aoe)
 		aoe_cooldown = 1 - 0.1 * Player.get_upgrade_level("aoe")

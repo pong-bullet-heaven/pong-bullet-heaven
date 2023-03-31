@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
 export var health: int
-export var invincible_seconds: int
+export var invincible_seconds: float
 var base_speed
 var xp
 var xp_needed
 var level
 var direction
+
+var scene_gameover = preload("res://Source/UI/GameOver/GameOver.tscn")
+var scene_lvlup = preload("res://Source/UI/LvlUp/LvlUp.tscn")
 
 
 func _ready():
@@ -19,7 +22,7 @@ func clear():
 
 func _setup():
 	health = 5
-	invincible_seconds = 0
+	invincible_seconds = 0.0
 	base_speed = 500
 	xp = 0
 	xp_needed = 1
@@ -43,7 +46,7 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	invincible_seconds = max(invincible_seconds - delta, 0)
+	invincible_seconds = float(max(invincible_seconds - delta, 0))
 	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if Input.is_action_pressed("action"):
 		match Player.get_upgrade_level("pulse_movement"):
@@ -96,7 +99,7 @@ func _on_XPCollector_area_entered(area):
 
 
 func player_hit(damage):
-	if invincible_seconds == 0:
+	if invincible_seconds == 0.0:
 		health -= damage
 		invincible_seconds = 0.5
 		# print(health)
@@ -105,12 +108,12 @@ func player_hit(damage):
 
 
 func on_level_up():
-	var lvlup = load("res://Source/UI/LvlUp/LvlUp.tscn")
+	var lvlup = scene_lvlup.instance()
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
 	# print("lvl up")
-	UI.add_child(lvlup.instance())
+	UI.add_child(lvlup)
 
 
 func get_upgrade_level(name):
@@ -141,7 +144,7 @@ func _filter_upgrade(upgrade):
 func die():
 	var score = 1000
 	var time = 754
-	var gameover = load("res://Source/UI/GameOver/GameOver.tscn").instance()
+	var gameover = scene_gameover.instance()
 	gameover.score = score
 	gameover.time = time
 	UI.add_child(gameover)

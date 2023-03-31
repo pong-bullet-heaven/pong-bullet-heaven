@@ -4,6 +4,8 @@ export var ui_occupied: bool
 export var audio_idx: int
 var menu
 
+var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
+
 
 func _ready():
 	_setup()
@@ -15,7 +17,7 @@ func clear():
 
 func _setup():
 	audio_idx = AudioServer.get_bus_index("Master")
-	menu = load("res://Source/UI/Menu/Menu.tscn").instance()
+	menu = scene_menu.instance()
 	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
 	menu.set_fullscreen(OS.window_fullscreen)
 	mouse_mode()
@@ -86,8 +88,11 @@ func toggle_fullscreen():
 			ProjectSettings.get_setting("display/window/size/width"),
 			ProjectSettings.get_setting("display/window/size/height")
 		)
-		var div = screen_size / base
-		var window_size = base * floor(min(div[0], div[1]))
+		# calculation is too complex and introduces unexpected behavior
+		# just use base viewport size as new window size
+		#var div = screen_size / base
+		#var window_size = base * floor(min(div[0], div[1]))
+		var window_size = base
 		OS.window_size = window_size
 		OS.window_fullscreen = false
 		OS.set_window_position(0.5 * screen_size - 0.5 * window_size)
