@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var collision_damage = 1
 export var speed = 50
 export var health = 3
+export var maxhealth = 3
 export var backwardsspeed = -70
 
 export var type = "blue"
@@ -12,7 +13,7 @@ var direction = "r"
 var action = "walk"
 
 var damage_anim_seconds = 0
-var attacktimercount = 1
+var attacktimercount = 8
 var timero = 0  # timer for moving back in a sprint
 var move_back = false
 
@@ -91,6 +92,7 @@ func damage(amount):
 
 
 func die():
+	Player.score += maxhealth * 10
 	var xp = scene_xp.instance()
 	xp.position = position
 	get_tree().get_root().call_deferred("add_child", xp)

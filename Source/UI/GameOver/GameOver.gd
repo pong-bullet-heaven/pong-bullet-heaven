@@ -5,8 +5,16 @@ var time: int
 
 
 func _ready():
+	UI.ui_visible(false)
 	UI.ui_occupied = true
 	get_tree().paused = true
+
+	if not score:
+		score = 0
+
+	var score_str = """[center]Score
+%05d[/center]"""
+	$Background/Score.bbcode_text = score_str % score
 
 	if not time:
 		time = 0
@@ -15,13 +23,6 @@ func _ready():
 	var time_min = floor(time / 60.0)
 	var time_sec = time % 60
 	$Background/Time.bbcode_text = time_str % [time_min, time_sec]
-
-	if not score:
-		score = 0
-
-	var score_str = """[center]Score
-%05d[/center]"""
-	$Background/Score.bbcode_text = score_str % score
 
 
 func highlight_btn(state: bool):
@@ -35,6 +36,7 @@ func _on_Button_pressed():
 	$Background/CenterButton/Button.theme.default_font.outline_size = 2
 	get_tree().paused = false
 	UI.ui_occupied = false
+	UI.ui_visible(true)
 	get_tree().reload_current_scene()
 	get_tree().get_root().propagate_call("clear")
 	queue_free()
