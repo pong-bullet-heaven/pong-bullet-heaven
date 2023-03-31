@@ -1,10 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Source/UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/UI/cursor.png" type="Texture" id=2]
 [ext_resource path="res://Source/UI/Timer/Timer.gd" type="Script" id=3]
 [ext_resource path="res://Source/UI/Score/Score.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/retro-gaming.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Images/UI/XPBar/xpsection.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/XPBar/xpbar2pink.png" type="Texture" id=7]
+[ext_resource path="res://Source/UI/HP/HPScript.gd" type="Script" id=8]
+[ext_resource path="res://Source/UI/XPBar/XPBar.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Images/UI/HP/HP_5.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -86,3 +91,33 @@ bbcode_text = "[center]00 : 00[/center]"
 text = "00 : 00"
 scroll_active = false
 script = ExtResource( 3 )
+
+[node name="HBoxContainerBottomCenter" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 1.0
+margin_top = 524.0
+margin_right = -1.0
+margin_bottom = 574.0
+alignment = 1
+
+[node name="XPBar" type="TextureProgress" parent="HBoxContainerBottomCenter"]
+margin_left = 511.0
+margin_right = 911.0
+margin_bottom = 50.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+texture_progress_offset = Vector2( 18, 17 )
+nine_patch_stretch = true
+script = ExtResource( 9 )
+
+[node name="HBoxContainerTopLeft" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = -1.0
+margin_right = -1.0
+margin_bottom = 50.0
+script = ExtResource( 8 )
+
+[node name="HP" type="Sprite" parent="HBoxContainerTopLeft"]
+position = Vector2( 141, 24 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )

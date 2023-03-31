@@ -80,6 +80,8 @@ func toggle_menu():
 func ui_visible(state: bool):
 	$HBoxContainerTopRight/Score.visible = state
 	$HBoxContainerTopCenter/Timer.visible = state
+	$HBoxContainerBottomCenter/XPBar.visible = state
+	$HBoxContainerTopLeft/HP.visible = state
 
 
 func toggle_fullscreen():
