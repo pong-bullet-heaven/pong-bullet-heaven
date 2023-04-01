@@ -12,12 +12,10 @@
 [ext_resource path="res://Assets/Images/UI/HP/hp-05.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 256, 256 )
 
@@ -46,12 +44,6 @@ default_font = SubResource( 4 )
 pause_mode = 2
 layer = 100
 script = ExtResource( 1 )
-
-[node name="Fps" type="Label" parent="."]
-margin_left = 883.0
-margin_top = 24.0
-margin_right = 1017.0
-margin_bottom = 38.0
 
 [node name="Dummy" type="Control" parent="."]
 
@@ -128,3 +120,19 @@ texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 6 )
 texture_progress_offset = Vector2( 20, 0 )
 script = ExtResource( 9 )
+
+[node name="HBoxContainerBottomLeft" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -26.0
+margin_bottom = -4.0
+
+[node name="FPS" type="Label" parent="HBoxContainerBottomLeft"]
+margin_right = 80.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 80, 22 )
+theme = SubResource( 5 )
+text = "FPS: 60"
+valign = 2

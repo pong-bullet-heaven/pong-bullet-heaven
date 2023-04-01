@@ -25,6 +25,10 @@ func _on_Fullscreen_pressed():
 	UI.toggle_fullscreen()
 
 
+func _on_FPS_pressed():
+	UI.toggle_fps()
+
+
 func _on_Sound_pressed():
 	UI.toggle_sound()
 
@@ -37,13 +41,17 @@ func set_fullscreen(state: bool):
 		$CenterContainer/VBoxContainer/Fullscreen.text = txt + ": Off"
 
 
+func set_fps(state: bool):
+	var txt = "FPS"
+	if state:
+		$CenterContainer/VBoxContainer/FPS.text = txt + ": On"
+	else:
+		$CenterContainer/VBoxContainer/FPS.text = txt + ": Off"
+
+
 func set_sound(state: bool):
 	var txt = "Sound"
 	if state:
 		$CenterContainer/VBoxContainer/Sound.text = txt + ": On"
 	else:
 		$CenterContainer/VBoxContainer/Sound.text = txt + ": Off"
-
-
-func _on_Fps_pressed():
-	UI.show_fps = !UI.show_fps

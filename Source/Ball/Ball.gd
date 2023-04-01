@@ -13,6 +13,10 @@ func _ready():
 	pass
 
 
+func clear():
+	position = Vector2(0, 0)
+
+
 func get_borders():
 	var offset = $CollisionShape2D.shape.radius
 	var window_size = get_viewport_rect().size

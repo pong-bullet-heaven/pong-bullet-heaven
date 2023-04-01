@@ -3,12 +3,13 @@ extends CanvasLayer
 export var audio_idx: int
 var menu
 var occupied: bool
-var show_fps = false
+
 var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
 
 
 func _ready():
 	_setup()
+	toggle_fps()
 
 
 func clear():
@@ -19,6 +20,7 @@ func _setup():
 	audio_idx = AudioServer.get_bus_index("Master")
 	menu = scene_menu.instance()
 	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
+	menu.set_fps($HBoxContainerBottomLeft/FPS.visible)
 	menu.set_fullscreen(OS.window_fullscreen)
 	mouse_mode()
 	custom_cursor()
@@ -33,13 +35,14 @@ func _process(_delta):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		toggle_fullscreen()
 
+	if Input.is_action_just_pressed("toggle_fps"):
+		toggle_fps()
+
 	if Input.is_action_just_pressed("toggle_sound"):
 		toggle_sound()
 
-	if show_fps:
-		$Fps.set_text("FPS " + String(Engine.get_frames_per_second()))
-	else:
-		$Fps.set_text("")
+	if $HBoxContainerBottomLeft/FPS.visible:
+		$HBoxContainerBottomLeft/FPS.text = "FPS: %d" % Engine.get_frames_per_second()
 
 
 func _input(event):
@@ -82,11 +85,51 @@ func toggle_menu():
 		UI.call_deferred("add_child", menu)
 
 
+func toggle_fullscreen():
+	# disable in macos due to scaling issues with hidpi
+	if OS.get_name() == "OSX":
+		return
+
+	if OS.window_fullscreen:
+		var screen_size = OS.get_screen_size()
+		var base = Vector2(
+			ProjectSettings.get_setting("display/window/size/width"),
+			ProjectSettings.get_setting("display/window/size/height")
+		)
+		# calculation is too complex and introduces unexpected behavior
+		# just use base viewport size as new window size
+		#var div = screen_size / base
+		#var window_size = base * floor(min(div[0], div[1]))
+		var window_size = base
+		OS.window_size = window_size
+		OS.window_fullscreen = false
+		OS.set_window_position(0.5 * screen_size - 0.5 * window_size)
+	else:
+		OS.window_fullscreen = true
+	mouse_mode()
+	menu.set_fullscreen(OS.window_fullscreen)
+
+
+func toggle_fps():
+	var fps = $HBoxContainerBottomLeft/FPS
+	fps.visible = !fps.visible
+	menu.set_fps(fps.visible)
+
+
+func toggle_sound():
+	if AudioServer.is_bus_mute(audio_idx):
+		AudioServer.set_bus_mute(audio_idx, false)
+	else:
+		AudioServer.set_bus_mute(audio_idx, true)
+	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
+
+
 func ui_visible(state: bool):
-	$HBoxContainerTopRight/Score.visible = state
-	$HBoxContainerTopCenter/Timer.visible = state
-	$HBoxContainerBottomCenter/XPBar.visible = state
 	$HBoxContainerTopLeft/HP.visible = state
+	$HBoxContainerTopCenter/Timer.visible = state
+	$HBoxContainerTopRight/Score.visible = state
+	$HBoxContainerBottomCenter/XPBar.visible = state
+	# $HBoxContainerBottomLeft/FPS.visible = state
 
 
 func is_occupied():
@@ -116,36 +159,3 @@ func set_modulate():
 	get_tree().get_root().get_node("/root/Main/EnemyController").modulate = color_fg
 	var bg_path = "/root/Main/ParallaxBackground/ParallaxLayer/Background"
 	get_tree().get_root().get_node(bg_path).modulate = color_bg
-
-
-func toggle_fullscreen():
-	# disable in macos due to scaling issues with hidpi
-	if OS.get_name() == "OSX":
-		return
-
-	if OS.window_fullscreen:
-		var screen_size = OS.get_screen_size()
-		var base = Vector2(
-			ProjectSettings.get_setting("display/window/size/width"),
-			ProjectSettings.get_setting("display/window/size/height")
-		)
-		# calculation is too complex and introduces unexpected behavior
-		# just use base viewport size as new window size
-		#var div = screen_size / base
-		#var window_size = base * floor(min(div[0], div[1]))
-		var window_size = base
-		OS.window_size = window_size
-		OS.window_fullscreen = false
-		OS.set_window_position(0.5 * screen_size - 0.5 * window_size)
-	else:
-		OS.window_fullscreen = true
-	mouse_mode()
-	menu.set_fullscreen(OS.window_fullscreen)
-
-
-func toggle_sound():
-	if AudioServer.is_bus_mute(audio_idx):
-		AudioServer.set_bus_mute(audio_idx, false)
-	else:
-		AudioServer.set_bus_mute(audio_idx, true)
-	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
