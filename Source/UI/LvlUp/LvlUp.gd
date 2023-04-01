@@ -14,8 +14,12 @@ func _ready():
 		if available.size() <= i:
 			button.queue_free()
 			break
+
 		button.get_node("Title").bbcode_text = bbcode_center % available[i].display_name
 		button.get_node("Description").bbcode_text = bbcode_center % available[i].description
+
+		button.get_node("Icon").texture = available[i].image
+
 	UI.ui_occupied = true
 	get_tree().paused = true
 

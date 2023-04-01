@@ -6,6 +6,8 @@ var base_speed
 var xp
 var xp_needed
 var level
+var death_seconds
+var dying
 var direction
 var score: int
 var timer: float
@@ -29,15 +31,29 @@ func _setup():
 	xp = 0
 	xp_needed = 1
 	level = 0
-	direction = "n"
+	direction = "not"
 	score = 0
 	timer = 0.0
+	death_seconds = 0
+	dying = false
 
 
 func _process(_delta):
-	var animation = direction + "_walk"
-	if invincible_seconds > 0:
+	var animation
+	var kind
+
+	if dying:
+		kind = "death"
+		if direction != "back":
+			direction = "front"
+	else:
+		kind = "walk"
+
+	animation = "%s_%s" % [direction, kind]
+
+	if invincible_seconds > 0.0 && kind != "death":
 		animation = "damage"
+
 	$AnimatedSpriteCharacter.play(animation)
 	$AnimatedSpriteCharacter.rotation = -rotation
 	if abs(rotation) < PI / 2:
@@ -50,6 +66,12 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	if dying:
+		death_seconds -= delta
+		if death_seconds <= 0:
+			die()
+		return
+
 	invincible_seconds = float(max(invincible_seconds - delta, 0))
 	var speed = base_speed + 100 * get_upgrade_level("speed")
 	if Input.is_action_pressed("action"):
@@ -68,16 +90,16 @@ func _physics_process(delta):
 	#var dir_vec=v.rotated(PI/4)
 	if dir_vec[0] < 0:
 		if dir_vec[1] < 0:
-			direction = "l"
+			direction = "left"
 		if dir_vec[1] > 0:
-			direction = "f"
+			direction = "front"
 	if dir_vec[0] > 0:
 		if dir_vec[1] < 0:
-			direction = "b"
+			direction = "back"
 		if dir_vec[1] > 0:
-			direction = "r"
+			direction = "right"
 	if v == Vector2(0, 0):
-		direction = "n"
+		direction = "not"
 
 	v = move_and_slide(v)
 	for i in get_slide_count():
@@ -87,11 +109,12 @@ func _physics_process(delta):
 			player_hit(collider.collision_damage)
 
 	if health <= 0:
-		pass
+		dying = true
+		death_seconds = 1
 
 
 func _input(event):  #turn to mouse
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not dying:
 		var vec = event.position / get_viewport_rect().size - Vector2(0.5, 0.5)
 		rotation = vec.angle() - PI / 2
 
@@ -105,10 +128,8 @@ func _on_XPCollector_area_entered(area):
 func player_hit(damage):
 	if invincible_seconds == 0.0:
 		health -= damage
-		invincible_seconds = 0.5
+		invincible_seconds = 1.0
 		# print(health)
-	if health <= 0:
-		die()
 
 
 func on_level_up():

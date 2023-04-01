@@ -6,6 +6,7 @@ export var level: int
 export var max_level: int
 export var required_upgrades: Dictionary
 export var required_level: int
+export var image: Texture
 
 
 func on_upgrade():
