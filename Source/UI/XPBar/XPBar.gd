@@ -1,5 +1,6 @@
 extends TextureProgress
 
-func _process(delta):
+
+func _process(_delta):
 	value = Player.xp
 	max_value = Player.xp_needed
