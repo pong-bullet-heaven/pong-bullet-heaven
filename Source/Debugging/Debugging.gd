@@ -11,7 +11,7 @@ func draw_debug_line(tag, a, b, color = Color.blanchedalmond, thickness = 5):
 		line.points = [a, b]
 		line.default_color = color
 		line.width = thickness
-		get_tree().get_root().add_child(line)
+		get_tree().root.add_child(line)
 		debug_lines[tag].append(line)
 
 

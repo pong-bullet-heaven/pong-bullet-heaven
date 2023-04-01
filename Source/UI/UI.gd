@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-export var audio_idx: int
+var audio_idx: int
 var menu
 var occupied: bool
 
@@ -57,7 +57,10 @@ func _input(event):
 
 func mouse_mode():
 	if OS.window_fullscreen:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		if OS.get_name() == "HTML5":
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
@@ -154,8 +157,8 @@ func set_modulate():
 	var color_bg = Color(modulate_bg, modulate_bg, modulate_bg, 1)
 	var color_fg = Color(modulate_fg, modulate_fg, modulate_fg, 1)
 
-	get_tree().get_root().get_node("/root/Player").modulate = color_fg
-	get_tree().get_root().get_node("/root/Main/Ball").modulate = color_fg
-	get_tree().get_root().get_node("/root/Main/EnemyController").modulate = color_fg
+	get_tree().root.get_node("/root/Player").modulate = color_fg
+#	get_tree().root.get_node("/root/Main/Ball").modulate = color_fg
+	get_tree().root.get_node("/root/Main/EnemyController").modulate = color_fg
 	var bg_path = "/root/Main/ParallaxBackground/ParallaxLayer/Background"
-	get_tree().get_root().get_node(bg_path).modulate = color_bg
+	get_tree().root.get_node(bg_path).modulate = color_bg

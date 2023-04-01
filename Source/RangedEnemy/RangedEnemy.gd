@@ -81,7 +81,7 @@ func attack_timer(_delta):
 
 func shoot():  # shoot the projectile
 	var projectile = scene_projectile.instance()
-	get_tree().get_root().add_child(projectile)
+	get_tree().root.add_child(projectile)
 	projectile.global_position = global_position
 	var dir = (Player.global_position - global_position).normalized()
 	projectile.global_rotation = dir.angle() + PI / 2.0
@@ -99,7 +99,7 @@ func die():
 	Player.score += maxhealth * 10
 	var xp = scene_xp.instance()
 	xp.position = position
-	get_tree().get_root().call_deferred("add_child", xp)
+	get_tree().root.call_deferred("add_child", xp)
 	queue_free()
 
 

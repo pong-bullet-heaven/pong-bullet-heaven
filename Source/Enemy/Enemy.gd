@@ -62,5 +62,5 @@ func die():
 	Player.score += maxhealth * 10
 	var xp = scene_xp.instance()
 	xp.position = position
-	get_tree().get_root().call_deferred("add_child", xp)
+	get_tree().root.call_deferred("add_child", xp)
 	queue_free()
