@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/xpbar2pink.png-44e796a55d5f4348c8818437ce691805.stex"
+path="res://.import/disk-full.png-11a9e2dacafb63af399731257ac0e23e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/XPBar/xpbar2pink.png"
-dest_files=[ "res://.import/xpbar2pink.png-44e796a55d5f4348c8818437ce691805.stex" ]
+source_file="res://Assets/Images/UI/HP/disk-full.png"
+dest_files=[ "res://.import/disk-full.png-11a9e2dacafb63af399731257ac0e23e.stex" ]
 
 [params]
 
