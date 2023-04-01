@@ -134,11 +134,13 @@ func player_hit(damage):
 
 func on_level_up():
 	var lvlup = scene_lvlup.instance()
+	UI.add_child(lvlup)
+
+
+func on_level_up_finished():
 	xp -= xp_needed
 	level += 1
 	xp_needed = 5 * level
-	# print("lvl up")
-	UI.add_child(lvlup)
 
 
 func get_upgrade_level(name):

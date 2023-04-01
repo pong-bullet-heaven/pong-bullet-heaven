@@ -115,11 +115,10 @@ alignment = 1
 [node name="XPBar" type="TextureProgress" parent="HBoxContainerBottomCenter"]
 margin_left = 352.0
 margin_right = 672.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 320, 48 )
 texture_under = ExtResource( 7 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 6 )
-texture_progress_offset = Vector2( 20, 20 )
-nine_patch_stretch = true
+texture_progress_offset = Vector2( 20, 0 )
 script = ExtResource( 9 )
