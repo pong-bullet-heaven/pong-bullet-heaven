@@ -90,11 +90,49 @@ health = 3
 type = "red"
 
 [node name="SpawnWave3" parent="EnemyController" instance=ExtResource( 5 )]
-start_time = 60.0
+start_time = 90.0
 end_time = 180.0
-exponent = 0.1
+exponent = 0.05
 
 [node name="RangedEnemy" parent="EnemyController/SpawnWave3" instance=ExtResource( 6 )]
+
+[node name="SpawnWave4" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 180.0
+end_time = 240.0
+exponent = 0.3
+
+[node name="Enemy" parent="EnemyController/SpawnWave4" instance=ExtResource( 3 )]
+speed = 75
+health = 3
+type = "red"
+
+[node name="SpawnWave5" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 180.0
+end_time = 300.0
+exponent = 0.1
+
+[node name="Enemy" parent="EnemyController/SpawnWave5" instance=ExtResource( 3 )]
+health = 5
+maxhealth = 5
+type = "green"
+
+[node name="SpawnWave7" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 240.0
+end_time = 270.0
+exponent = 0.05
+
+[node name="RangedEnemy" parent="EnemyController/SpawnWave7" instance=ExtResource( 6 )]
+
+[node name="SpawnWave6" parent="EnemyController" instance=ExtResource( 5 )]
+start_time = 240.0
+end_time = 300.0
+exponent = 0.3
+
+[node name="Enemy" parent="EnemyController/SpawnWave6" instance=ExtResource( 3 )]
+speed = 50
+health = 20
+maxhealth = 20
+type = "purple"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

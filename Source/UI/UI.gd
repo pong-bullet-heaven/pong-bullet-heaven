@@ -3,7 +3,7 @@ extends CanvasLayer
 export var ui_occupied: bool
 export var audio_idx: int
 var menu
-
+var show_fps = false
 var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
 
 
@@ -35,6 +35,11 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("toggle_sound"):
 		toggle_sound()
+
+	if show_fps:
+		$Fps.set_text("FPS " + String(Engine.get_frames_per_second()))
+	else:
+		$Fps.set_text("")
 
 
 func _input(event):
