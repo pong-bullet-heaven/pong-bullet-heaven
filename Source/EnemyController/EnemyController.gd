@@ -3,7 +3,7 @@ export(float) var timer = 1.0
 export(int) var maximum = 300
 
 # radius outside of vision of player
-var radius
+var radius = 800
 var time_elapsed = 0
 
 
@@ -12,8 +12,6 @@ func _ready():
 
 
 func _process(delta):
-	radius = get_viewport_rect().end.length() + 50
-
 	var enemy_overflow = get_enemy_count() - maximum
 	if enemy_overflow > 0:
 		delete(enemy_overflow)

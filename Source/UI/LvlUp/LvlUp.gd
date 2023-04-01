@@ -28,6 +28,7 @@ func pressed(choice):
 	available[choice - 1].on_upgrade()
 	get_tree().paused = false
 	UI.ui_occupied = false
+	Player.on_level_up_finished()
 	queue_free()
 
 

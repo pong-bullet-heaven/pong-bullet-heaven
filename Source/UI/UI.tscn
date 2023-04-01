@@ -1,16 +1,23 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Source/UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/UI/cursor.png" type="Texture" id=2]
 [ext_resource path="res://Source/UI/Timer/Timer.gd" type="Script" id=3]
 [ext_resource path="res://Source/UI/Score/Score.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/retro-gaming.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Images/UI/XPBar/xp-bar-section.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/XPBar/xp-bar.png" type="Texture" id=7]
+[ext_resource path="res://Source/UI/HP/HP.gd" type="Script" id=8]
+[ext_resource path="res://Source/UI/XPBar/XPBar.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Images/UI/HP/hp-05.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 256, 256 )
 
@@ -53,6 +60,36 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 centered = false
 
+[node name="HBoxContainerTopLeft" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 4.0
+margin_bottom = 48.0
+
+[node name="HP" type="TextureRect" parent="HBoxContainerTopLeft"]
+margin_right = 280.0
+margin_bottom = 48.0
+texture = ExtResource( 10 )
+script = ExtResource( 8 )
+
+[node name="HBoxContainerTopCenter" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 4.0
+margin_bottom = 36.0
+alignment = 1
+
+[node name="Timer" type="RichTextLabel" parent="HBoxContainerTopCenter"]
+margin_left = 384.0
+margin_right = 640.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 256, 32 )
+theme = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[center]00 : 00[/center]"
+text = "00 : 00"
+scroll_active = false
+script = ExtResource( 3 )
+
 [node name="HBoxContainerTopRight" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -74,19 +111,20 @@ text = "Score: 00000"
 scroll_active = false
 script = ExtResource( 4 )
 
-[node name="HBoxContainerTopCenter" type="HBoxContainer" parent="."]
+[node name="HBoxContainerBottomCenter" type="HBoxContainer" parent="."]
+anchor_top = 1.0
 anchor_right = 1.0
-margin_top = 4.0
+anchor_bottom = 1.0
+margin_top = -48.0
 alignment = 1
 
-[node name="Timer" type="RichTextLabel" parent="HBoxContainerTopCenter"]
-margin_left = 384.0
-margin_right = 640.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 256, 32 )
-theme = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]00 : 00[/center]"
-text = "00 : 00"
-scroll_active = false
-script = ExtResource( 3 )
+[node name="XPBar" type="TextureProgress" parent="HBoxContainerBottomCenter"]
+margin_left = 352.0
+margin_right = 672.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 320, 48 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+texture_progress_offset = Vector2( 20, 0 )
+script = ExtResource( 9 )
