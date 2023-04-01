@@ -10,7 +10,7 @@ func _physics_process(_delta):
 
 
 func _on_Paddle_body_entered(body):
-	if body.is_in_group("ball"):
+	if body.is_in_group("Ball"):
 		var v = body.linear_velocity
 		var reflection_axis = Player.rotation - PI / 2
 		if v.angle_to(Vector2(0, 1).rotated(reflection_axis)) > 0:  #check if collision is from front

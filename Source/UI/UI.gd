@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-export var ui_occupied: bool
 export var audio_idx: int
 var menu
+var occupied: bool
 var show_fps = false
 var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
 
@@ -73,11 +73,11 @@ func custom_cursor():
 
 func toggle_menu():
 	if menu.get_parent():
-		ui_occupied = false
+		ui_occupied(false)
 		get_tree().paused = false
 		UI.call_deferred("remove_child", menu)
-	elif !ui_occupied:
-		ui_occupied = true
+	elif !is_occupied():
+		ui_occupied(true)
 		get_tree().paused = true
 		UI.call_deferred("add_child", menu)
 
@@ -87,6 +87,35 @@ func ui_visible(state: bool):
 	$HBoxContainerTopCenter/Timer.visible = state
 	$HBoxContainerBottomCenter/XPBar.visible = state
 	$HBoxContainerTopLeft/HP.visible = state
+
+
+func is_occupied():
+	return occupied
+
+
+func ui_occupied(state: bool):
+	occupied = state
+	set_modulate()
+
+
+func set_modulate():
+	var modulate_bg
+	var modulate_fg
+	if is_occupied():
+		modulate_bg = 128.0 / 255.0
+		modulate_fg = 192.0 / 255.0
+	else:
+		modulate_bg = 192.0 / 255.0
+		modulate_fg = 255.0 / 255.0
+
+	var color_bg = Color(modulate_bg, modulate_bg, modulate_bg, 1)
+	var color_fg = Color(modulate_fg, modulate_fg, modulate_fg, 1)
+
+	get_tree().get_root().get_node("/root/Player").modulate = color_fg
+	get_tree().get_root().get_node("/root/Main/Ball").modulate = color_fg
+	get_tree().get_root().get_node("/root/Main/EnemyController").modulate = color_fg
+	var bg_path = "/root/Main/ParallaxBackground/ParallaxLayer/Background"
+	get_tree().get_root().get_node(bg_path).modulate = color_bg
 
 
 func toggle_fullscreen():

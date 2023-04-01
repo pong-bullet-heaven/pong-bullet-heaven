@@ -1,6 +1,10 @@
 extends CanvasLayer
 
 
+func clear():
+	queue_free()
+
+
 func _on_Play_pressed():
 	UI.toggle_menu()
 	UI.ui_visible(true)

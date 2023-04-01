@@ -64,7 +64,7 @@ frame_16/delay_sec = 0.0
 frame_17/texture = ExtResource( 23 )
 frame_17/delay_sec = 0.0
 
-[node name="Root" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
 
@@ -137,10 +137,9 @@ type = "purple"
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-modulate = Color( 0.75, 0.75, 0.75, 1 )
 motion_mirroring = Vector2( 2048, 1152 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = SubResource( 1 )
 centered = false
 region_enabled = true

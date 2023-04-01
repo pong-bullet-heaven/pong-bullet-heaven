@@ -25,6 +25,10 @@ func _ready():
 	pass
 
 
+func clear():
+	queue_free()
+
+
 func _process(delta):  # no damage animation yet available
 	damage_anim_seconds = max(damage_anim_seconds - delta, 0)
 

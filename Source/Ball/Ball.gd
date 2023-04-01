@@ -129,7 +129,7 @@ func _on_Ball_body_entered(body):
 
 
 func on_bounce(target = null):
-	if target != null and target.is_in_group("ball"):
+	if target != null and target.is_in_group("Ball"):
 		return
 
 	#pierce
