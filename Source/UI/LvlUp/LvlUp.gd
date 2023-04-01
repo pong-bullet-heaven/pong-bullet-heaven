@@ -20,14 +20,16 @@ func _ready():
 
 		button.get_node("Icon").texture = available[i].image
 
-	UI.ui_occupied = true
+	UI.ui_visible(false)
+	UI.ui_occupied(true)
 	get_tree().paused = true
 
 
 func pressed(choice):
 	available[choice - 1].on_upgrade()
 	get_tree().paused = false
-	UI.ui_occupied = false
+	UI.ui_occupied(false)
+	UI.ui_visible(true)
 	Player.on_level_up_finished()
 	queue_free()
 

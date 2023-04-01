@@ -4,7 +4,7 @@ var enabled = true
 
 
 func _process(delta):
-	if !UI.ui_occupied:
+	if !UI.is_occupied():
 		Player.timer += delta
 
 	if enabled:

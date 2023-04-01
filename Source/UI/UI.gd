@@ -1,14 +1,15 @@
 extends CanvasLayer
 
-export var ui_occupied: bool
 export var audio_idx: int
 var menu
-var show_fps = false
+var occupied: bool
+
 var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
 
 
 func _ready():
 	_setup()
+	toggle_fps()
 
 
 func clear():
@@ -19,6 +20,7 @@ func _setup():
 	audio_idx = AudioServer.get_bus_index("Master")
 	menu = scene_menu.instance()
 	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
+	menu.set_fps($HBoxContainerBottomLeft/FPS.visible)
 	menu.set_fullscreen(OS.window_fullscreen)
 	mouse_mode()
 	custom_cursor()
@@ -33,13 +35,14 @@ func _process(_delta):
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		toggle_fullscreen()
 
+	if Input.is_action_just_pressed("toggle_fps"):
+		toggle_fps()
+
 	if Input.is_action_just_pressed("toggle_sound"):
 		toggle_sound()
 
-	if show_fps:
-		$Fps.set_text("FPS " + String(Engine.get_frames_per_second()))
-	else:
-		$Fps.set_text("")
+	if $HBoxContainerBottomLeft/FPS.visible:
+		$HBoxContainerBottomLeft/FPS.text = "FPS: %d" % Engine.get_frames_per_second()
 
 
 func _input(event):
@@ -73,20 +76,13 @@ func custom_cursor():
 
 func toggle_menu():
 	if menu.get_parent():
-		ui_occupied = false
+		ui_occupied(false)
 		get_tree().paused = false
 		UI.call_deferred("remove_child", menu)
-	elif !ui_occupied:
-		ui_occupied = true
+	elif !is_occupied():
+		ui_occupied(true)
 		get_tree().paused = true
 		UI.call_deferred("add_child", menu)
-
-
-func ui_visible(state: bool):
-	$HBoxContainerTopRight/Score.visible = state
-	$HBoxContainerTopCenter/Timer.visible = state
-	$HBoxContainerBottomCenter/XPBar.visible = state
-	$HBoxContainerTopLeft/HP.visible = state
 
 
 func toggle_fullscreen():
@@ -114,9 +110,52 @@ func toggle_fullscreen():
 	menu.set_fullscreen(OS.window_fullscreen)
 
 
+func toggle_fps():
+	var fps = $HBoxContainerBottomLeft/FPS
+	fps.visible = !fps.visible
+	menu.set_fps(fps.visible)
+
+
 func toggle_sound():
 	if AudioServer.is_bus_mute(audio_idx):
 		AudioServer.set_bus_mute(audio_idx, false)
 	else:
 		AudioServer.set_bus_mute(audio_idx, true)
 	menu.set_sound(!AudioServer.is_bus_mute(audio_idx))
+
+
+func ui_visible(state: bool):
+	$HBoxContainerTopLeft/HP.visible = state
+	$HBoxContainerTopCenter/Timer.visible = state
+	$HBoxContainerTopRight/Score.visible = state
+	$HBoxContainerBottomCenter/XPBar.visible = state
+	# $HBoxContainerBottomLeft/FPS.visible = state
+
+
+func is_occupied():
+	return occupied
+
+
+func ui_occupied(state: bool):
+	occupied = state
+	set_modulate()
+
+
+func set_modulate():
+	var modulate_bg
+	var modulate_fg
+	if is_occupied():
+		modulate_bg = 128.0 / 255.0
+		modulate_fg = 192.0 / 255.0
+	else:
+		modulate_bg = 192.0 / 255.0
+		modulate_fg = 255.0 / 255.0
+
+	var color_bg = Color(modulate_bg, modulate_bg, modulate_bg, 1)
+	var color_fg = Color(modulate_fg, modulate_fg, modulate_fg, 1)
+
+	get_tree().get_root().get_node("/root/Player").modulate = color_fg
+	get_tree().get_root().get_node("/root/Main/Ball").modulate = color_fg
+	get_tree().get_root().get_node("/root/Main/EnemyController").modulate = color_fg
+	var bg_path = "/root/Main/ParallaxBackground/ParallaxLayer/Background"
+	get_tree().get_root().get_node(bg_path).modulate = color_bg

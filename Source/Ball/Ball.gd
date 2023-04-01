@@ -13,6 +13,10 @@ func _ready():
 	pass
 
 
+func clear():
+	position = Vector2(0, 0)
+
+
 func get_borders():
 	var offset = $CollisionShape2D.shape.radius
 	var window_size = get_viewport_rect().size
@@ -129,7 +133,7 @@ func _on_Ball_body_entered(body):
 
 
 func on_bounce(target = null):
-	if target != null and target.is_in_group("ball"):
+	if target != null and target.is_in_group("Ball"):
 		return
 
 	#pierce

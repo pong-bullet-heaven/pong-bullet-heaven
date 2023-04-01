@@ -35,7 +35,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Ball" type="RigidBody2D" groups=["ball"]]
+[node name="Ball" type="RigidBody2D" groups=["Ball"]]
 collision_layer = 4
 collision_mask = 6
 physics_material_override = SubResource( 1 )
@@ -46,10 +46,10 @@ linear_velocity = Vector2( 1000, 0 )
 linear_damp = 0.1
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["ball"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ball"]]
 shape = SubResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["ball"]]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["Ball"]]
 scale = Vector2( 0.035, 0.035 )
 frames = SubResource( 7 )
 frame = 1
@@ -59,7 +59,7 @@ playing = true
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["ball"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Ball"]]
 shape = SubResource( 2 )
 
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="."]

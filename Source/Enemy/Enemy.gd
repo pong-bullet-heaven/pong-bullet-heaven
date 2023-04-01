@@ -13,6 +13,10 @@ var action = "walk"
 var scene_xp = preload("res://Source/XP/XP.tscn")
 
 
+func clear():
+	queue_free()
+
+
 func _ready():
 	variations.shuffle()
 	variation = variations[0]

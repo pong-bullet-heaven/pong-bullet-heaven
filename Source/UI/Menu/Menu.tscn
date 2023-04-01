@@ -13,9 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 426.0
+margin_left = 434.0
 margin_top = 167.0
-margin_right = 598.0
+margin_right = 589.0
 margin_bottom = 409.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -23,49 +23,49 @@ theme = ExtResource( 4 )
 alignment = 1
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 128, 32 )
 text = "Play"
 
 [node name="Sound" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 41.0
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 128, 32 )
 text = "Sound"
 
-[node name="Fps" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="FPS" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 82.0
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 119.0
 rect_min_size = Vector2( 128, 32 )
-text = "FPS-Counter"
+text = "FPS"
 
 [node name="Fullscreen" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 123.0
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 128, 32 )
 text = "Fullscreen"
 
 [node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 164.0
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 201.0
 rect_min_size = Vector2( 128, 32 )
 text = "Credits"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 205.0
-margin_right = 172.0
+margin_right = 155.0
 margin_bottom = 242.0
 rect_min_size = Vector2( 128, 32 )
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Fps" to="." method="_on_Fps_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/FPS" to="." method="_on_FPS_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
