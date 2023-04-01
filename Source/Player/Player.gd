@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export var health: int
-export var invincible_seconds: float
+var health: int
+var invincible_seconds: float
 var base_speed
 var xp
 var xp_needed

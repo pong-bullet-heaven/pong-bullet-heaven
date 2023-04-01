@@ -3,12 +3,21 @@ export(float) var timer = 1.0
 export(int) var maximum = 300
 
 # radius outside of vision of player
-var radius = 800
-var time_elapsed = 0
+var radius
+var time_elapsed
 
 
 func _ready():
-	pass
+	_setup()
+
+
+func clear():
+	_setup()
+
+
+func _setup():
+	radius = 800
+	time_elapsed = 0
 
 
 func _process(delta):

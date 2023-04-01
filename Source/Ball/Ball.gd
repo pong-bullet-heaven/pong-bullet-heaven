@@ -1,20 +1,28 @@
 extends RigidBody2D
 export var base_speed = 1000
-var old_velocity = Vector2(0, 0)
-var old_position = Vector2(0, 0)
-var pierce_count = 0
-var aoe_cooldown = 0
+
+var old_velocity: Vector2
+var old_position: Vector2
+var pierce_count: float
+var aoe_cooldown: float
 
 var scene_aoe = preload("res://Source/Upgrade/AoeEffect/AoeEffect.tscn")
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	_setup()
 
 
 func clear():
+	queue_free()
+
+
+func _setup():
 	position = Vector2(0, 0)
+	old_velocity = Vector2(0, 0)
+	old_position = Vector2(0, 0)
+	pierce_count = 0
+	aoe_cooldown = 0
 
 
 func get_borders():
@@ -150,7 +158,7 @@ func on_bounce(target = null):
 	if Player.get_upgrade_level("aoe") > 0 && aoe_cooldown <= 0 && target != null:
 		var aoe = scene_aoe.instance()
 		aoe.position = position
-		get_tree().get_root().call_deferred("add_child", aoe)
+		get_tree().root.call_deferred("add_child", aoe)
 		aoe_cooldown = 0.1
 
 	#homing

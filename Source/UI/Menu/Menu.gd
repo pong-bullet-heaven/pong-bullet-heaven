@@ -1,11 +1,17 @@
 extends CanvasLayer
 
+var scene_ball = preload("res://Source/Ball/Ball.tscn")
+
 
 func clear():
 	queue_free()
 
 
 func _on_Play_pressed():
+	var main = get_tree().root.get_node("/root/Main")
+	if !main.get_node_or_null("Ball"):
+		var ball = scene_ball.instance()
+		main.add_child(ball)
 	UI.toggle_menu()
 	UI.ui_visible(true)
 
@@ -16,7 +22,7 @@ func _on_Credits_pressed():
 
 func _on_Quit_pressed():
 	if OS.get_name() == "HTML5" && OS.has_feature("JavaScript"):
-		JavaScript.eval("window.close()")
+		JavaScript.eval("open(location, '_self').close()")
 	else:
 		get_tree().quit()
 

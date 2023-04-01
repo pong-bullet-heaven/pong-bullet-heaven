@@ -37,7 +37,7 @@ func _on_Button_pressed():
 	get_tree().paused = false
 	UI.ui_occupied(false)
 	UI.ui_visible(true)
-	get_tree().get_root().propagate_call("clear")
+	get_tree().root.propagate_call("clear")
 	queue_free()
 
 

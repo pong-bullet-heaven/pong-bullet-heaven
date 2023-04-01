@@ -7,7 +7,7 @@ func _ready():
 
 func on_upgrade():
 	#double ball count, halve ball size
-	var balls = get_tree().get_nodes_in_group("ball")
+	var balls = get_tree().get_nodes_in_group("Ball")
 	for ball_node in balls:
 		if ball_node is CollisionShape2D:
 			ball_node.shape.radius = ball_node.shape.radius / sqrt(2)
