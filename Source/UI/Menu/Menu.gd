@@ -39,3 +39,7 @@ func set_sound(state: bool):
 		$CenterContainer/VBoxContainer/Sound.text = txt + ": On"
 	else:
 		$CenterContainer/VBoxContainer/Sound.text = txt + ": Off"
+
+
+func _on_Fps_pressed():
+	UI.show_fps = !UI.show_fps
