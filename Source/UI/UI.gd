@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var audio_idx: int
 var menu
+var menu_reset: bool
 var occupied: bool
 
 var scene_menu = preload("res://Source/UI/Menu/Menu.tscn")
@@ -25,11 +26,12 @@ func _setup():
 	mouse_mode()
 	custom_cursor()
 	toggle_menu()
+	menu_reset = true
 	UI.ui_visible(false)
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("toggle_menu"):
+	if Input.is_action_just_pressed("toggle_menu") && !menu_reset:
 		toggle_menu()
 
 	if Input.is_action_just_pressed("toggle_fullscreen"):
@@ -86,6 +88,7 @@ func toggle_menu():
 		ui_occupied(true)
 		get_tree().paused = true
 		UI.call_deferred("add_child", menu)
+	menu_reset = false
 
 
 func toggle_fullscreen():
