@@ -128,7 +128,7 @@ func _on_XPCollector_area_entered(area):
 func player_hit(damage):
 	if invincible_seconds == 0.0:
 		health -= damage
-		invincible_seconds = 1.0
+		invincible_seconds = 1.5
 		# print(health)
 
 
