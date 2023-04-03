@@ -7,22 +7,18 @@
 radius = 15.0
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 32, 32 )
 
@@ -44,7 +40,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 2
+frame = 1
 playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]

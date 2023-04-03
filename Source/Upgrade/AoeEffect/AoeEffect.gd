@@ -2,17 +2,13 @@ extends Area2D
 var time_alive = 0
 var base_radius = 15
 var base_scale = Vector2(1, 1)
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	#this causes weird interference, use hardcoded values for now
 	#base_radius=$CollisionShape2D.shape.radius
 	#base_scale=$AnimatedSprite.scale
-	pass  # Replace with function body.
+	pass
 
 
 func clear():

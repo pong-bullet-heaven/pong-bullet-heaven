@@ -3,6 +3,7 @@ extends KinematicBody2D
 var health: int
 var invincible_seconds: float
 var base_speed
+var base_xp_collision_radius
 var xp
 var xp_needed
 var level
@@ -28,6 +29,7 @@ func _setup():
 	health = 5
 	invincible_seconds = 0.0
 	base_speed = 500
+	base_xp_collision_radius = 128
 	xp = 0
 	xp_needed = 1
 	level = 0
@@ -82,6 +84,11 @@ func _physics_process(delta):
 				speed = speed * 0.5
 			3:
 				speed = speed * 1.5
+
+	$XPCollector/CollisionShape2D.shape.radius = (
+		base_xp_collision_radius
+		* pow(sqrt(2), get_upgrade_level("pickup_radius"))
+	)
 
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
