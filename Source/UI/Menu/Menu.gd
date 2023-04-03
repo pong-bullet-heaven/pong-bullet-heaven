@@ -7,11 +7,17 @@ func clear():
 	queue_free()
 
 
-func _on_Play_pressed():
-	var main = get_tree().root.get_node("/root/Main")
-	if !main.get_node_or_null("Ball"):
+func spawn_ball_if_none():
+	var main = get_tree().root.get_node("Main")
+	if get_tree().get_nodes_in_group("Ball").empty():
 		var ball = scene_ball.instance()
+		ball.get_node("CollisionShape2D").shape.radius = ball.base_collision_radius
+		ball.get_node("AnimatedSprite").scale = ball.base_sprite_scale
 		main.add_child(ball)
+
+
+func _on_Play_pressed():
+	spawn_ball_if_none()
 	UI.toggle_menu()
 	UI.ui_visible(true)
 

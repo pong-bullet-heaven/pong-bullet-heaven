@@ -1,10 +1,6 @@
 extends "BaseUpgrade.gd"
 
 
-func _ready():
-	pass
-
-
 func on_upgrade():
 	#double ball count, halve ball size
 	var balls = get_tree().get_nodes_in_group("Ball")
