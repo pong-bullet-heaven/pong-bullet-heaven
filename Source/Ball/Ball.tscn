@@ -9,7 +9,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 29.0172
+radius = 32.0
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )

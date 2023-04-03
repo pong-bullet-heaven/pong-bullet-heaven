@@ -19,7 +19,7 @@
 [ext_resource path="res://Assets/Images/RangedEnemy/ranged-enemy-07.png" type="Texture" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 64.4981
+radius = 64.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

@@ -144,8 +144,8 @@ func on_level_up_finished():
 
 
 func get_upgrade_level(name):
-	var node = $Upgrades.get_node(name)
-	return node.level
+	var node = $Upgrades.get_node_or_null(name)
+	return 0 if not node else node.level
 
 
 func get_available_upgrades():
