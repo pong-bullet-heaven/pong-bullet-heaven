@@ -33,7 +33,7 @@ func _on_CombineArea_area_entered(area):
 	var added_xp = area.get_parent()
 	if !merging:
 		combine_values += added_xp.value
-		combineable_xp.append(added_xp)
+		combineable_xp.push_back(added_xp)
 		if len(combineable_xp) > 3:
 			var average_position = position
 			for xp in combineable_xp:

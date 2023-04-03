@@ -128,7 +128,7 @@ func _input(event):  #turn to mouse
 
 func _on_XPCollector_area_entered(area):
 	$XPSound.play()
-	if area.is_in_group("collectable"):
+	if area.is_in_group("Collectable"):
 		area.caught = true
 
 
@@ -159,7 +159,7 @@ func get_available_upgrades():
 	var available = []
 	for upgrade in $Upgrades.get_children():
 		if _filter_upgrade(upgrade):
-			available.append(upgrade)
+			available.push_back(upgrade)
 	return available
 
 
