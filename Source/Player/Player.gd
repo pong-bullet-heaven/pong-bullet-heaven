@@ -3,6 +3,7 @@ extends KinematicBody2D
 var health: int
 var invincible_seconds: float
 var base_speed
+var base_xp_collision_radius
 var xp
 var xp_needed
 var level
@@ -28,6 +29,7 @@ func _setup():
 	health = 5
 	invincible_seconds = 0.0
 	base_speed = 500
+	base_xp_collision_radius = 128
 	xp = 0
 	xp_needed = 1
 	level = 0
@@ -83,6 +85,11 @@ func _physics_process(delta):
 			3:
 				speed = speed * 1.5
 
+	$XPCollector/CollisionShape2D.shape.radius = (
+		base_xp_collision_radius
+		* pow(sqrt(2), get_upgrade_level("pickup_radius"))
+	)
+
 	var v = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if v.length() > 0:
 		v = v.normalized() * speed
@@ -121,14 +128,14 @@ func _input(event):  #turn to mouse
 
 func _on_XPCollector_area_entered(area):
 	$XPSound.play()
-	if area.is_in_group("collectable"):
+	if area.is_in_group("Collectable"):
 		area.caught = true
 
 
 func player_hit(damage):
 	if invincible_seconds == 0.0:
 		health -= damage
-		invincible_seconds = 1.0
+		invincible_seconds = 1.5
 		# print(health)
 
 
@@ -144,15 +151,15 @@ func on_level_up_finished():
 
 
 func get_upgrade_level(name):
-	var node = $Upgrades.get_node(name)
-	return node.level
+	var node = $Upgrades.get_node_or_null(name)
+	return 0 if not node else node.level
 
 
 func get_available_upgrades():
 	var available = []
 	for upgrade in $Upgrades.get_children():
 		if _filter_upgrade(upgrade):
-			available.append(upgrade)
+			available.push_back(upgrade)
 	return available
 
 

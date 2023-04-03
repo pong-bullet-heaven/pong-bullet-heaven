@@ -15,8 +15,8 @@ Game as part of a group project in computer science written in Godot Engine
 ### Game Development
 
 * Game Designer: [@HenrikNeffe](https://github.com/HenrikNeffe) [@yrtemmys](https://github.com/yrtemmys)
-* Game Programmer: [@DeltaPi314](https://github.com/DeltaPi314) [@HenrikNeffe](https://github.com/HenrikNeffe) [@marlene-dev](https://github.com/marlene-dev) [@masterflitzer](https://github.com/masterflitzer)
-* Game Artist: [@icaroboaventura](https://github.com/icaroboaventura) [@yrtemmys](https://github.com/yrtemmys)
+* Game Programmer: [@DeltaPi314](https://github.com/DeltaPi314) [@HenrikNeffe](https://github.com/HenrikNeffe) [@masterflitzer](https://github.com/masterflitzer)
+* Game Artist: [@icaroboaventura](https://github.com/icaroboaventura) [@marlene-dev](https://github.com/marlene-dev) [@yrtemmys](https://github.com/yrtemmys)
 * Docs: [@marlene-dev](https://github.com/marlene-dev)
 
 ### Music

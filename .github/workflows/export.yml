@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EXPORT_DIR: export
-      GODOT_VERSION: 3.5.1
+      GODOT_VERSION: 3.5.2
       GODOT_RELEASE: stable
     steps:
       - uses: actions/checkout@v3

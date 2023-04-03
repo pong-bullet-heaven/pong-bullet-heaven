@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Assets/Images/Player/Character/right-player.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Player/Character/back-player.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Source/Upgrade/BaseUpgrade.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sounds/background.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Sounds/xp.mp3" type="AudioStream" id=8]
-[ext_resource path="res://Source/Upgrade/PickupRadius.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Images/Player/Character/idle-player.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Images/Player/Character/front-player.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Images/Player/Character/left-player.png" type="Texture" id=12]
@@ -58,19 +57,27 @@ region = Rect2( 4096, 0, 2048, 2048 )
 atlas = ExtResource( 2 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=74]
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 2048, 2048 )
-
-[sub_resource type="AtlasTexture" id=75]
+[sub_resource type="AtlasTexture" id=102]
 atlas = ExtResource( 14 )
 region = Rect2( 2048, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=76]
+[sub_resource type="AtlasTexture" id=103]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=104]
 atlas = ExtResource( 14 )
 region = Rect2( 4096, 0, 2048, 2048 )
 
-[sub_resource type="AtlasTexture" id=77]
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 14 )
+region = Rect2( 6144, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 14 )
+region = Rect2( 4096, 0, 2048, 2048 )
+
+[sub_resource type="AtlasTexture" id=107]
 atlas = ExtResource( 14 )
 region = Rect2( 6144, 0, 2048, 2048 )
 
@@ -166,7 +173,7 @@ animations = [ {
 "name": "back_walk",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ) ],
+"frames": [ SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ), SubResource( 107 ) ],
 "loop": true,
 "name": "damage",
 "speed": 4.0
@@ -320,7 +327,6 @@ max_level = 3
 image = ExtResource( 24 )
 
 [node name="pickup_radius" parent="Upgrades" instance=ExtResource( 6 )]
-script = ExtResource( 9 )
 display_name = "Pickup range"
 description = "Increase pickup range"
 max_level = 5

@@ -1,5 +1,7 @@
 extends RigidBody2D
 export var base_speed = 1000
+export var base_collision_radius = 32
+export var base_sprite_scale = Vector2(0.035, 0.035)
 
 var old_velocity: Vector2
 var old_position: Vector2
