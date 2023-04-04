@@ -28,7 +28,8 @@ func _on_Credits_pressed():
 
 func _on_Quit_pressed():
 	if OS.get_name() == "HTML5" && OS.has_feature("JavaScript"):
-		JavaScript.eval("open(location, '_self').close()")
+		# does only work sometimes and on some browsers (no guarantee too work)
+		JavaScript.eval("window.open(location.href, '_self').close()")
 	else:
 		get_tree().quit()
 

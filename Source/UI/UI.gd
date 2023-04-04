@@ -112,6 +112,11 @@ func toggle_fullscreen():
 		OS.set_window_position(0.5 * screen_size - 0.5 * window_size)
 	else:
 		OS.window_fullscreen = true
+
+	if OS.get_name() == "HTML5":
+		# wait cause it takes some time to update fullscreen state
+		yield(get_tree().create_timer(0.5), "timeout")
+
 	mouse_mode()
 	menu.set_fullscreen(OS.window_fullscreen)
 
